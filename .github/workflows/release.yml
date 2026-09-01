@@ -1,0 +1,137 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  preflight:
+    name: Version · tag contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run release:check
+      - name: Match tag, package and notes
+        shell: bash
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          test "$GITHUB_REF_NAME" = "v$VERSION"
+          test -f "docs/releases/$GITHUB_REF_NAME.md"
+
+  android:
+    name: Android · signed release APK
+    needs: preflight
+    runs-on: ubuntu-latest
+    env:
+      KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - run: npm ci --no-audit --no-fund
+      - run: npm run android:sync
+      - name: Compile release APK
+        working-directory: android
+        run: chmod +x gradlew && ./gradlew test assembleRelease --stacktrace
+      - name: Sign and verify APK
+        shell: bash
+        run: |
+          test -n "$KEYSTORE_BASE64" || { echo "Falta ANDROID_KEYSTORE_BASE64" >&2; exit 1; }
+          test -n "$KEYSTORE_PASSWORD" || { echo "Falta ANDROID_KEYSTORE_PASSWORD" >&2; exit 1; }
+          test -n "$KEY_ALIAS" || { echo "Falta ANDROID_KEY_ALIAS" >&2; exit 1; }
+          test -n "$KEY_PASSWORD" || { echo "Falta ANDROID_KEY_PASSWORD" >&2; exit 1; }
+          VERSION="${GITHUB_REF_NAME#v}"
+          UNSIGNED="android/app/build/outputs/apk/release/app-release-unsigned.apk"
+          KEYSTORE="$RUNNER_TEMP/pdf-reader-release.jks"
+          ALIGNED="$RUNNER_TEMP/pdf-reader-aligned.apk"
+          OUTPUT="release/android/PDF-Reader-Android-$GITHUB_REF_NAME.apk"
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$KEYSTORE"
+          mkdir -p release/android
+          "$ANDROID_HOME/build-tools/36.0.0/zipalign" -f -p 4 "$UNSIGNED" "$ALIGNED"
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" sign \
+            --ks "$KEYSTORE" \
+            --ks-key-alias "$KEY_ALIAS" \
+            --ks-pass env:KEYSTORE_PASSWORD \
+            --key-pass env:KEY_PASSWORD \
+            --out "$OUTPUT" \
+            "$ALIGNED"
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose --print-certs "$OUTPUT"
+          BADGING="$("$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging "$OUTPUT")"
+          grep -q "package: name='cl.vladimiracunadev.pdfreader' versionCode='1' versionName='$VERSION'" <<< "$BADGING"
+          if grep -Eq "uses-permission.*(INTERNET|READ_EXTERNAL_STORAGE|WRITE_EXTERNAL_STORAGE|MANAGE_EXTERNAL_STORAGE)" <<< "$BADGING"; then
+            echo "El APK release declara un permiso prohibido." >&2
+            exit 1
+          fi
+          unzip -l "$OUTPUT" | grep -q 'assets/public/vendor/pdf.worker.mjs'
+          sha256sum "$OUTPUT" > release/android/ANDROID-SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-android
+          path: release/android/*
+          if-no-files-found: error
+
+  windows:
+    name: Windows · installers
+    needs: preflight
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run check
+      - run: npm run build:windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-windows
+          path: release/windows/*.exe
+          if-no-files-found: error
+
+  publish:
+    name: GitHub Release
+    runs-on: ubuntu-latest
+    needs: [android, windows]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Create checksums and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          cd artifacts
+          rm -f ANDROID-SHA256SUMS.txt
+          sha256sum ./*.apk ./*.exe > SHA256SUMS.txt
+          cd ..
+          NOTES="docs/releases/$GITHUB_REF_NAME.md"
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" artifacts/* --clobber
+            gh release edit "$GITHUB_REF_NAME" --title "PDF Reader $GITHUB_REF_NAME" --notes-file "$NOTES" --latest
+          else
+            gh release create "$GITHUB_REF_NAME" artifacts/* --title "PDF Reader $GITHUB_REF_NAME" --notes-file "$NOTES" --latest
+          fi

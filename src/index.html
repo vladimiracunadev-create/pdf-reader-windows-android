@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#101827" />
+  <meta name="description" content="Lector PDF moderno, simple y de solo lectura." />
+  <title>PDF Reader</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="PDF Reader">
+        <img src="./assets/icon.svg" alt="" width="34" height="34" />
+        <div><strong>PDF Reader</strong><span>Solo lectura</span></div>
+      </div>
+      <div class="top-actions">
+        <button id="openBtn" class="btn primary" title="Abrir PDF (Ctrl+O)">Abrir PDF</button>
+        <button id="themeBtn" class="btn icon" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+        <button id="helpBtn" class="btn icon" title="Ayuda" aria-label="Ayuda">?</button>
+      </div>
+    </header>
+
+    <section id="toolbar" class="toolbar" aria-label="Controles del lector">
+      <div class="tool-group">
+        <button id="thumbsBtn" class="btn icon" title="Miniaturas" aria-label="Miniaturas">☰</button>
+        <button id="prevBtn" class="btn icon" title="Página anterior" aria-label="Página anterior">‹</button>
+        <label class="page-control"><span class="sr-only">Página</span><input id="pageInput" type="number" min="1" value="1" inputmode="numeric" /><span id="pageTotal">/ 0</span></label>
+        <button id="nextBtn" class="btn icon" title="Página siguiente" aria-label="Página siguiente">›</button>
+      </div>
+      <div class="tool-group">
+        <button id="zoomOutBtn" class="btn icon" title="Alejar (-)" aria-label="Alejar">−</button>
+        <button id="zoomLabel" class="btn text" title="Restablecer zoom">100%</button>
+        <button id="zoomInBtn" class="btn icon" title="Acercar (+)" aria-label="Acercar">+</button>
+        <button id="fitWidthBtn" class="btn text" title="Ajustar al ancho">Ancho</button>
+        <button id="fitPageBtn" class="btn text" title="Ajustar página completa">Página</button>
+      </div>
+      <div class="tool-group">
+        <button id="rotateBtn" class="btn icon" title="Rotar 90° (R)" aria-label="Rotar">↻</button>
+        <button id="searchBtn" class="btn icon" title="Buscar texto (Ctrl+F)" aria-label="Buscar">⌕</button>
+        <button id="fullscreenBtn" class="btn icon" title="Pantalla completa (F)" aria-label="Pantalla completa">⛶</button>
+      </div>
+    </section>
+
+    <main class="workspace">
+      <aside id="sidebar" class="sidebar" aria-label="Miniaturas">
+        <div class="sidebar-title"><strong>Páginas</strong><button id="closeSidebarBtn" class="btn icon" aria-label="Cerrar miniaturas">×</button></div>
+        <div id="thumbList" class="thumb-list"></div>
+      </aside>
+
+      <section class="viewer-area">
+        <div id="welcome" class="welcome-card">
+          <div class="welcome-icon"><img src="./assets/icon.svg" alt="" width="78" height="78" /></div>
+          <h1>Lee tus PDF sin complicaciones</h1>
+          <p>Abre un archivo desde tu equipo o celular. El documento se procesa localmente y nunca se modifica.</p>
+          <button id="welcomeOpenBtn" class="btn primary large">Seleccionar PDF</button>
+          <div class="feature-grid">
+            <span>🔍 Zoom simple</span><span>📄 Navegación clara</span><span>🌙 Modo oscuro</span><span>🔒 Solo lectura</span>
+          </div>
+          <div id="recentSection" class="recent-section hidden"><h2>Recientes</h2><div id="recentList"></div></div>
+          <p class="drop-hint">En Windows también puedes arrastrar un PDF aquí.</p>
+        </div>
+
+        <div id="viewer" class="viewer hidden" tabindex="0" aria-label="Documento PDF">
+          <div id="canvasStage" class="canvas-stage"><canvas id="pdfCanvas"></canvas></div>
+          <div id="loading" class="loading hidden" role="status">Cargando…</div>
+        </div>
+
+        <div id="emptyError" class="error-card hidden" role="alert"><strong>No se pudo abrir el PDF.</strong><span id="errorText"></span><button id="retryBtn" class="btn primary">Elegir otro PDF</button></div>
+      </section>
+
+      <aside id="searchPanel" class="search-panel" aria-label="Buscar en el documento">
+        <div class="sidebar-title"><strong>Buscar</strong><button id="closeSearchBtn" class="btn icon" aria-label="Cerrar búsqueda">×</button></div>
+        <form id="searchForm" class="search-form"><input id="searchInput" type="search" placeholder="Texto a buscar" autocomplete="off" /><button class="btn primary" type="submit">Buscar</button></form>
+        <div id="searchStatus" class="search-status"></div>
+        <div id="searchResults" class="search-results"></div>
+      </aside>
+    </main>
+
+    <footer class="statusbar">
+      <span id="fileStatus">Ningún documento abierto</span>
+      <span id="readOnlyBadge" class="badge">SOLO LECTURA</span>
+      <span id="viewStatus">—</span>
+    </footer>
+
+    <nav class="mobile-nav" aria-label="Controles móviles">
+      <button id="mPrev" class="btn icon" aria-label="Página anterior">‹</button><button id="mZoomOut" class="btn icon" aria-label="Alejar">−</button><span id="mPage">—</span><button id="mZoomIn" class="btn icon" aria-label="Acercar">+</button><button id="mNext" class="btn icon" aria-label="Página siguiente">›</button>
+    </nav>
+
+    <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden />
+
+    <dialog id="helpDialog" class="help-dialog">
+      <form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form>
+      <h2>Ayuda rápida</h2>
+      <p>Esta aplicación está diseñada para leer PDF de forma simple. No guarda cambios dentro del archivo.</p>
+      <div class="help-grid">
+        <div><kbd>Ctrl</kbd> + <kbd>O</kbd><span>Abrir PDF</span></div><div><kbd>+</kbd> / <kbd>-</kbd><span>Zoom</span></div>
+        <div><kbd>PgUp</kbd> / <kbd>PgDn</kbd><span>Cambiar página</span></div><div><kbd>Ctrl</kbd> + <kbd>F</kbd><span>Buscar</span></div>
+        <div><kbd>R</kbd><span>Rotar</span></div><div><kbd>F</kbd><span>Pantalla completa</span></div>
+      </div>
+      <p><a href="./about.html">Acerca del proyecto</a></p>
+    </dialog>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

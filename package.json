@@ -1,0 +1,89 @@
+{
+  "name": "pdf-reader-windows-android",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lector PDF moderno, simple y de solo lectura para Windows, Android y navegador.",
+  "homepage": "https://vladimiracunadev-create.github.io/pdf-reader-windows-android/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladimiracunadev-create/pdf-reader-windows-android.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vladimiracunadev-create/pdf-reader-windows-android/issues"
+  },
+  "main": "desktop/main.cjs",
+  "author": "vladimiracunadev-create",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:web": "node scripts/build-web.mjs",
+    "build:pages": "npm run build:web && node scripts/build-pages.mjs",
+    "clean": "node scripts/clean.mjs",
+    "start:web": "node scripts/serve.mjs",
+    "start:pages": "npm run build:pages && node scripts/serve.mjs pages-dist",
+    "start:desktop": "npm run build:web && electron .",
+    "test": "node --test test/*.test.mjs",
+    "verify": "node scripts/verify-repo.mjs",
+    "check": "npm test && npm run verify",
+    "build:windows": "npm run build:web && electron-builder --win nsis portable",
+    "android:init": "node scripts/android-init.mjs",
+    "android:assets": "capacitor-assets generate --android --iconBackgroundColor '#3157d5' --iconBackgroundColorDark '#101827' --splashBackgroundColor '#eef2f7' --splashBackgroundColorDark '#101827' --logoSplashScale 0.18",
+    "android:sync": "npm run build:web && npx cap sync android && node scripts/patch-android.mjs",
+    "android:debug": "npm run android:init && npm run android:sync && cd android && ./gradlew assembleDebug",
+    "android:release": "npm run android:init && npm run android:sync && cd android && ./gradlew assembleRelease",
+    "release:check": "npm run check && npm run build:pages"
+  },
+  "dependencies": {
+    "@capacitor/core": "8.5.0",
+    "pdfjs-dist": "6.3.289"
+  },
+  "devDependencies": {
+    "@capacitor/android": "8.5.0",
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "8.5.0",
+    "electron": "44.0.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "cl.vladimiracunadev.pdfreader",
+    "productName": "PDF Reader",
+    "asar": true,
+    "directories": {
+      "output": "release/windows"
+    },
+    "files": [
+      "dist/**/*",
+      "desktop/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "artifactName": "PDF-Reader-Windows-${version}-${arch}-Setup.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "PDF-Reader-Windows-${version}-${arch}-Portable.${ext}"
+    },
+    "fileAssociations": [
+      {
+        "ext": "pdf",
+        "name": "Portable Document Format",
+        "description": "Abrir PDF con PDF Reader",
+        "role": "Viewer"
+      }
+    ]
+  },
+  "type": "module",
+  "packageManager": "npm@11.6.2"
+}

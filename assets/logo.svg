@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="PDF Reader">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#3157d5"/>
+      <stop offset="1" stop-color="#6f86ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#g)"/>
+  <path d="M35 22h39l20 20v59a8 8 0 0 1-8 8H35a8 8 0 0 1-8-8V30a8 8 0 0 1 8-8z" fill="white"/>
+  <path d="M74 22v18a4 4 0 0 0 4 4h16" fill="#dbe4ff"/>
+  <path d="M42 60h38M42 72h38M42 84h25" stroke="#3157d5" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="84" cy="89" r="18" fill="#172033" stroke="white" stroke-width="5"/>
+  <path d="m97 102 12 12" stroke="white" stroke-width="7" stroke-linecap="round"/>
+</svg>

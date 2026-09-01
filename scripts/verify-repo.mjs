@@ -1,0 +1,12 @@
+import { readFile, access } from 'node:fs/promises';
+const must=['README.md','LICENSE','CHANGELOG.md','SECURITY.md','package-lock.json','spec/spec.md','docs/index.md','docs/architecture.md','docs/user-guide.md','docs/android.md','docs/privacy.md','docs/runbook.md','docs/security.md','docs/releases/v0.1.0.md','.github/workflows/ci.yml','.github/workflows/pages.yml','.github/workflows/release.yml','site/index.html','site/styles.css','assets/logo.svg','src/index.html','src/app.js','desktop/main.cjs','capacitor.config.json','android/app/build.gradle','android/app/src/main/AndroidManifest.xml'];
+for(const f of must)await access(f);
+const pkg=JSON.parse(await readFile('package.json','utf8'));if(pkg.version!=='0.1.0')throw new Error('La versión inicial debe ser 0.1.0');
+const html=await readFile('src/index.html','utf8');if(!html.includes('SOLO LECTURA')&&!html.includes('Solo lectura'))throw new Error('Falta indicador de solo lectura');
+const app=await readFile('src/app.js','utf8');for(const bad of ['savePdf','writePdf','deletePage','addAnnotation'])if(app.includes(bad))throw new Error(`Función de edición no permitida: ${bad}`);
+const readme=await readFile('README.md','utf8');for(const marker of ['GitHub Pages','Windows','Android','v0.1.0'])if(!readme.includes(marker))throw new Error(`README incompleto: ${marker}`);
+const manifest=await readFile('android/app/src/main/AndroidManifest.xml','utf8');for(const permission of ['android.permission.INTERNET','android.permission.READ_EXTERNAL_STORAGE','android.permission.WRITE_EXTERNAL_STORAGE','android.permission.MANAGE_EXTERNAL_STORAGE'])if(manifest.includes(permission))throw new Error(`Permiso Android prohibido: ${permission}`);
+const gradle=await readFile('android/app/build.gradle','utf8');if(!gradle.includes('versionCode 1')||!gradle.includes('versionName "0.1.0"'))throw new Error('Versión Android inconsistente');
+const release=await readFile('.github/workflows/release.yml','utf8');for(const marker of ['assembleRelease','zipalign','apksigner','SHA256SUMS.txt'])if(!release.includes(marker))throw new Error(`Release Android incompleto: ${marker}`);
+const pages=await readFile('.github/workflows/pages.yml','utf8');if(!pages.includes('pages-dist'))throw new Error('Pages debe publicar landing + demo desde pages-dist');
+console.log('Estructura, alcance read-only, Android y documentación: OK');

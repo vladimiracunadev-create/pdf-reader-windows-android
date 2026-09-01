@@ -1,0 +1,7 @@
+{
+  "appId": "cl.vladimiracunadev.pdfreader",
+  "appName": "PDF Reader",
+  "webDir": "dist",
+  "server": { "androidScheme": "https" },
+  "android": { "allowMixedContent": false }
+}
