@@ -28,7 +28,7 @@ jobs:
       - run: npm run check
       - run: npm audit --omit=dev --audit-level=high
       - run: npm run build:pages
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: pages-preview
           path: pages-dist
@@ -70,7 +70,7 @@ jobs:
           fi
           mkdir -p release/android
           cp "$APK" release/android/PDF-Reader-Android-v0.1.0-debug.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: android-debug-preview
           path: release/android/PDF-Reader-Android-v0.1.0-debug.apk
@@ -88,7 +88,7 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build:windows
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows-preview
           path: release/windows/*.exe
