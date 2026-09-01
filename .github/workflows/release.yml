@@ -71,6 +71,7 @@ jobs:
           mkdir -p release/android
           "$ANDROID_HOME/build-tools/36.0.0/zipalign" -f -p 4 "$UNSIGNED" "$ALIGNED"
           "$ANDROID_HOME/build-tools/36.0.0/apksigner" sign \
+            --v4-signing-enabled false \
             --ks "$KEYSTORE" \
             --ks-key-alias "$KEY_ALIAS" \
             --ks-pass env:KEYSTORE_PASSWORD \
