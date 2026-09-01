@@ -27,7 +27,7 @@
     "test": "node --test test/*.test.mjs",
     "verify": "node scripts/verify-repo.mjs",
     "check": "npm test && npm run verify",
-    "build:windows": "npm run build:web && electron-builder --win nsis portable",
+    "build:windows": "npm run build:web && electron-builder --win nsis portable --publish never",
     "android:init": "node scripts/android-init.mjs",
     "android:assets": "capacitor-assets generate --android --iconBackgroundColor '#3157d5' --iconBackgroundColorDark '#101827' --splashBackgroundColor '#eef2f7' --splashBackgroundColorDark '#101827' --logoSplashScale 0.18",
     "android:sync": "npm run build:web && npx cap sync android && node scripts/patch-android.mjs",

@@ -19,7 +19,7 @@ jobs:
     name: Web · tests + landing
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
@@ -28,7 +28,7 @@ jobs:
       - run: npm run check
       - run: npm audit --omit=dev --audit-level=high
       - run: npm run build:pages
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: pages-preview
           path: pages-dist
@@ -39,17 +39,17 @@ jobs:
     needs: web-quality
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: npm
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'
           cache: gradle
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
       - run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
       - run: npm ci --no-audit --no-fund
       - run: npm run android:sync
@@ -70,7 +70,7 @@ jobs:
           fi
           mkdir -p release/android
           cp "$APK" release/android/PDF-Reader-Android-v0.1.0-debug.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: android-debug-preview
           path: release/android/PDF-Reader-Android-v0.1.0-debug.apk
@@ -81,14 +81,14 @@ jobs:
     needs: web-quality
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build:windows
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows-preview
           path: release/windows/*.exe
