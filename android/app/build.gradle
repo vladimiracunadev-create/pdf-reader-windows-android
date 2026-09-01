@@ -31,10 +31,6 @@ repositories {
 }
 
 dependencies {
-    // AndroidX Test 1.3 / Espresso 3.7 use Kotlin 1.8.22 while Capacitor still
-    // exposes the legacy jdk7/jdk8 modules. The BOM aligns those modules and
-    // prevents duplicate Kotlin classes in assembleDebugAndroidTest.
-    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.22')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
