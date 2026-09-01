@@ -1,9 +1,9 @@
 ## Qué cambia
 
 ## Cómo se validó
-- [ ] `npm test`
-- [ ] `npm run verify`
-- [ ] `npm run build:web`
+- [ ] `pnpm test`
+- [ ] `pnpm verify`
+- [ ] `pnpm build:web`
 - [ ] CI verde
 
 ## Alcance read-only

@@ -18,7 +18,7 @@ El selector de documentos del sistema entrega solo el archivo que la persona eli
 
 ## Requisitos
 
-- Node.js 22+ y npm 11;
+- Node.js 22+ y pnpm 11;
 - JDK 21;
 - Android SDK Platform 36;
 - Android SDK Build Tools 36.0.0.
@@ -28,9 +28,9 @@ El selector de documentos del sistema entrega solo el archivo que la persona eli
 El directorio `android/` se versiona para fijar Gradle, SDK, iconos, splash y configuración de la primera versión. Los assets web dentro de `android/app/src/main/assets/public/` se regeneran y están ignorados por Git.
 
 ```bash
-npm ci
-npm run android:assets
-npm run android:sync
+pnpm install --frozen-lockfile
+pnpm android:assets
+pnpm android:sync
 ```
 
 - `android:assets` regenera iconos y splash desde `assets/logo.svg` con la herramienta oficial `@capacitor/assets`.
@@ -40,7 +40,7 @@ npm run android:sync
 ## APK debug para desarrollo
 
 ```bash
-npm run android:debug
+pnpm android:debug
 ```
 
 Salida:

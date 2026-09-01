@@ -10,5 +10,5 @@
 - Proyecto Android reproducible con icono y splash propios.
 - APK release firmado y auditado: paquete, versión, permisos, contenido y SHA-256.
 - CI main, landing + demo en GitHub Pages y workflow de GitHub Release.
-- Lockfile npm y builds basados en `npm ci`.
+- Lockfile pnpm y builds reproducibles con `pnpm install --frozen-lockfile`.
 - Documentación técnica, usuario, operación, seguridad y gobierno.

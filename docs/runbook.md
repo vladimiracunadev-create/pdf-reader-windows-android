@@ -2,31 +2,31 @@
 
 ## Validación local
 ```bash
-npm install
-npm run check
-npm run build:web
+pnpm install --frozen-lockfile
+pnpm check
+pnpm build:web
 ```
 
 ## Probar web
 ```bash
-npm run start:web
+pnpm start:web
 ```
 
 ## Probar Windows
 ```bash
-npm run start:desktop
+pnpm start:desktop
 ```
 
 ## Build Windows
 ```bash
-npm run build:windows
+pnpm build:windows
 ```
 Salida: `release/windows/`.
 
 ## Build Android debug
 ```bash
-npm run android:init
-npm run android:sync
+pnpm android:init
+pnpm android:sync
 cd android
 ./gradlew assembleDebug
 ```

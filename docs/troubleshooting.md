@@ -1,10 +1,10 @@
 # Troubleshooting
 
 ## `Falta node_modules/pdfjs-dist/...`
-Ejecuta `npm install` antes del build.
+Ejecuta `pnpm install --frozen-lockfile` antes del build.
 
 ## Android no existe
-Ejecuta `npm run android:init`. Capacitor generará el proyecto nativo.
+Ejecuta `pnpm android:init`. Capacitor generará el proyecto nativo.
 
 ## Android SDK no encontrado
 Instala Android SDK 36 y define `ANDROID_HOME`/`ANDROID_SDK_ROOT` según tu entorno.

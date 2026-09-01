@@ -5,9 +5,9 @@ Consulta [docs/architecture.md](docs/architecture.md), [docs/runbook.md](docs/ru
 Flujo mínimo:
 
 ```bash
-npm ci
-npm run check
-npm run build:pages
+pnpm install --frozen-lockfile
+pnpm check
+pnpm build:pages
 ```
 
 No se aceptan funciones que modifiquen el PDF original dentro del alcance base del producto.

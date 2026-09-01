@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 
 for (const required of ['dist/index.html', 'site/index.html', 'site/styles.css']) {
   if (!existsSync(required)) {
-    console.error(`Falta ${required}. Ejecuta primero npm run build:web.`);
+    console.error(`Falta ${required}. Ejecuta primero pnpm build:web.`);
     process.exit(2);
   }
 }

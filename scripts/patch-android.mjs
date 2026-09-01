@@ -6,7 +6,7 @@ const gradlePath = 'android/app/build.gradle';
 const stringsPath = 'android/app/src/main/res/values/strings.xml';
 
 if (![manifestPath, gradlePath, stringsPath].every(existsSync)) {
-  console.error('Android no está generado por completo. Ejecuta npm run android:init.');
+  console.error('Android no está generado por completo. Ejecuta pnpm android:init.');
   process.exit(2);
 }
 

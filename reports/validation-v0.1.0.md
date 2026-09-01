@@ -13,15 +13,15 @@ Fecha: 2026-08-31
 - Release por tag.
 
 ## Validación local
-- `npm ci`: dependencias fijadas instaladas desde `package-lock.json`.
-- `npm test`: 5/5 pruebas verdes.
-- `npm run verify`: estructura, alcance read-only y documentación OK.
-- `npm run build:web`: núcleo y recursos PDF.js generados.
-- `npm run build:pages`: landing y demo separadas generadas.
-- `npm run android:init`: bootstrap multiplataforma y política Android aplicados.
+- `pnpm install --frozen-lockfile`: dependencias fijadas instaladas desde `pnpm-lock.yaml`.
+- `pnpm test`: 5/5 pruebas verdes.
+- `pnpm verify`: estructura, alcance read-only y documentación OK.
+- `pnpm build:web`: núcleo y recursos PDF.js generados.
+- `pnpm build:pages`: landing y demo separadas generadas.
+- `pnpm android:init`: bootstrap multiplataforma y política Android aplicados.
 - navegador real: landing validada en desktop y 390×844 sin overflow horizontal.
 - navegador real: PDF de muestra abierto y renderizado; búsqueda devolvió 1 resultado sin errores de consola.
-- `npm run build:windows`: instalador NSIS y portable construidos como archivos distintos.
+- `pnpm build:windows`: instalador NSIS y portable construidos como archivos distintos.
 - JavaScript/CJS validado sintácticamente con Node.
 - Workflows YAML parseables.
 

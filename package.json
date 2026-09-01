@@ -19,21 +19,21 @@
   },
   "scripts": {
     "build:web": "node scripts/build-web.mjs",
-    "build:pages": "npm run build:web && node scripts/build-pages.mjs",
+    "build:pages": "pnpm build:web && node scripts/build-pages.mjs",
     "clean": "node scripts/clean.mjs",
     "start:web": "node scripts/serve.mjs",
-    "start:pages": "npm run build:pages && node scripts/serve.mjs pages-dist",
-    "start:desktop": "npm run build:web && electron .",
+    "start:pages": "pnpm build:pages && node scripts/serve.mjs pages-dist",
+    "start:desktop": "pnpm build:web && electron .",
     "test": "node --test test/*.test.mjs",
     "verify": "node scripts/verify-repo.mjs",
-    "check": "npm test && npm run verify",
-    "build:windows": "npm run build:web && electron-builder --win nsis portable --publish never",
+    "check": "pnpm test && pnpm verify",
+    "build:windows": "pnpm build:web && electron-builder --win nsis portable --publish never",
     "android:init": "node scripts/android-init.mjs",
     "android:assets": "capacitor-assets generate --android --iconBackgroundColor '#3157d5' --iconBackgroundColorDark '#101827' --splashBackgroundColor '#eef2f7' --splashBackgroundColorDark '#101827' --logoSplashScale 0.18",
-    "android:sync": "npm run build:web && npx cap sync android && node scripts/patch-android.mjs",
-    "android:debug": "npm run android:init && npm run android:sync && cd android && ./gradlew assembleDebug",
-    "android:release": "npm run android:init && npm run android:sync && cd android && ./gradlew assembleRelease",
-    "release:check": "npm run check && npm run build:pages"
+    "android:sync": "pnpm build:web && pnpm exec cap sync android && node scripts/patch-android.mjs",
+    "android:debug": "pnpm android:init && pnpm android:sync && cd android && ./gradlew assembleDebug",
+    "android:release": "pnpm android:init && pnpm android:sync && cd android && ./gradlew assembleRelease",
+    "release:check": "pnpm check && pnpm build:pages"
   },
   "dependencies": {
     "@capacitor/core": "8.5.0",
@@ -85,5 +85,5 @@
     ]
   },
   "type": "module",
-  "packageManager": "npm@11.6.2"
+  "packageManager": "pnpm@11.19.0"
 }

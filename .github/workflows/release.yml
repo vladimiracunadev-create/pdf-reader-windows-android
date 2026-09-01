@@ -13,12 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - run: npm run release:check
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm release:check
       - name: Match tag, package and notes
         shell: bash
         run: |
@@ -37,10 +38,11 @@ jobs:
       KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
     steps:
       - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: npm
+          cache: pnpm
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
@@ -48,8 +50,8 @@ jobs:
           cache: gradle
       - uses: android-actions/setup-android@v4
       - run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
-      - run: npm ci --no-audit --no-fund
-      - run: npm run android:sync
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm android:sync
       - name: Compile release APK
         working-directory: android
         run: chmod +x gradlew && ./gradlew test assembleRelease --stacktrace
@@ -96,13 +98,14 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - run: npm run check
-      - run: npm run build:windows
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build:windows
       - uses: actions/upload-artifact@v7
         with:
           name: release-windows

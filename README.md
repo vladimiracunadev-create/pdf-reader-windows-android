@@ -116,17 +116,17 @@ PDF elegido por la persona
           └── GitHub Pages  → landing + demo web
 ```
 
-La aplicación usa HTML, CSS y JavaScript sin framework para mantener pequeño y auditable el núcleo. Las dependencias están fijadas y `package-lock.json` permite instalaciones reproducibles.
+La aplicación usa HTML, CSS y JavaScript sin framework para mantener pequeño y auditable el núcleo. Las dependencias están fijadas y `pnpm-lock.yaml` permite instalaciones reproducibles.
 
 ## 🚀 Ejecutar y verificar
 
-Requisitos generales: Node.js 22+ y npm 11.
+Requisitos generales: Node.js 22+ y pnpm 11.
 
 ```bash
-npm ci
-npm run check
-npm run build:pages
-npm run start:web
+pnpm install --frozen-lockfile
+pnpm check
+pnpm build:pages
+pnpm start:web
 ```
 
 La demo se abre en `http://localhost:4173`. Los documentos elegidos permanecen en esa pestaña.
@@ -136,8 +136,8 @@ La demo se abre en `http://localhost:4173`. Los documentos elegidos permanecen e
 Requisitos adicionales: JDK 21 y Android SDK 36.
 
 ```bash
-npm run android:init
-npm run android:sync
+pnpm android:init
+pnpm android:sync
 cd android
 ./gradlew test assembleDebug
 ```
@@ -147,8 +147,8 @@ El APK local queda en `android/app/build/outputs/apk/debug/app-debug.apk`. Para 
 ### Windows
 
 ```bash
-npm run start:desktop
-npm run build:windows
+pnpm start:desktop
+pnpm build:windows
 ```
 
 Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmada con Authenticode, por lo que Windows puede mostrar SmartScreen; comprueba el hash del release antes de continuar.

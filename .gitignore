@@ -1,5 +1,5 @@
 node_modules/
-.npm-cache/
+.pnpm-store/
 dist/
 pages-dist/
 release/
