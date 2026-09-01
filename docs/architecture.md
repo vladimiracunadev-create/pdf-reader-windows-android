@@ -2,66 +2,15 @@
 
 PDF Reader comparte el mismo motor y la misma experiencia en las tres plataformas. Android y Windows agregan adaptadores deliberadamente pequeños para conversar con el sistema operativo; ninguna plataforma mantiene una implementación paralela del lector.
 
-```mermaid
-flowchart LR
-    subgraph INPUT["1 · Entrada"]
-        PICKER["Selector / drop"]
-        INTENT["Android ACTION_VIEW"]
-        ASSOC["Asociación .pdf Windows"]
-    end
-
-    subgraph CORE["2 · Núcleo compartido"]
-        LOAD["Validación + Uint8Array"]
-        PDFJS["PDF.js 6.3.289"]
-        RENDER["Canvas + miniaturas"]
-        SEARCH["Extracción de texto"]
-        READER["Navegación + zoom"]
-        LOAD --> PDFJS
-        PDFJS --> RENDER
-        PDFJS --> SEARCH
-        RENDER --> READER
-    end
-
-    subgraph LOCAL["3 · Datos locales"]
-        IDB[("IndexedDB<br/>PDF + progreso · máx. 8")]
-        LS[("localStorage<br/>tema + preferencias")]
-    end
-
-    subgraph OUTPUT["4 · Superficies"]
-        ANDROID["Android<br/>Capacitor + Kotlin"]
-        WINDOWS["Windows<br/>Electron sandbox"]
-        WEB["Web<br/>GitHub Pages"]
-    end
-
-    PICKER --> LOAD
-    INTENT --> LOAD
-    ASSOC --> LOAD
-    READER <--> IDB
-    READER <--> LS
-    READER --> ANDROID
-    READER --> WINDOWS
-    READER --> WEB
-```
+![Arquitectura Android-first de PDF Reader](images/architecture.svg)
 
 ## Límites de confianza
 
-```mermaid
-sequenceDiagram
-    actor Persona
-    participant SO as Sistema operativo
-    participant Puente as Adaptador nativo
-    participant App as Núcleo compartido
-    participant Local as Almacenamiento local
-
-    Persona->>SO: elige o abre un PDF
-    SO->>Puente: URI / ruta autorizada
-    Puente->>App: nombre + bytes del documento
-    App->>App: PDF.js renderiza en modo lectura
-    App->>Local: copia reciente y progreso
-    Persona->>App: compartir conversación
-    App->>SO: nombre + página + progreso
-    Note over App,SO: Los bytes del PDF no se comparten
-```
+1. La persona elige un archivo o lo abre desde Android/Windows.
+2. El adaptador entrega al núcleo común únicamente el nombre y los bytes autorizados.
+3. PDF.js renderiza el documento en modo lectura; el original nunca se modifica.
+4. IndexedDB puede conservar una copia reciente y el progreso dentro del dispositivo.
+5. Al compartir, la aplicación entrega al sistema solo nombre, página y progreso; nunca los bytes del PDF.
 
 ## Decisiones
 

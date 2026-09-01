@@ -107,45 +107,9 @@ Los PDF son contenido no confiable. En Windows, el renderer de Electron usa `con
 
 ## 🏗️ Arquitectura
 
-```mermaid
-flowchart TB
-    U(["👤 Persona"]) -->|"Selecciona o abre un .pdf"| IN
-
-    subgraph APP["📄 Núcleo de lectura compartido · HTML + CSS + JavaScript"]
-        direction TB
-        IN["📥 Entrada controlada<br/>File Picker · drag & drop · intent"]
-        BYTES["🧱 Documento local<br/>Uint8Array"]
-        ENGINE["⚙️ Mozilla PDF.js 6.3.289"]
-        UI["🖥️ Experiencia de lectura<br/>canvas · miniaturas · búsqueda · zoom táctil"]
-        IN --> BYTES --> ENGINE --> UI
-        UI --> STATE[("🗃️ Estado local<br/>IndexedDB: 8 recientes<br/>localStorage: tema y progreso")]
-        STATE -. "reabrir" .-> BYTES
-    end
-
-    subgraph PLATFORMS["📦 Adaptadores de plataforma"]
-        direction LR
-        ANDROID["🤖 Android 7+<br/>Capacitor 8.5 · Kotlin<br/>ACTION_VIEW · Share nativo"]
-        WINDOWS["🪟 Windows 10/11<br/>Electron 44 sandbox<br/>IPC mínimo · asociación .pdf"]
-        WEB["🌐 Web<br/>navegador · GitHub Pages<br/>demo instalable sin backend"]
-    end
-
-    UI --> ANDROID
-    UI --> WINDOWS
-    UI --> WEB
-    UI -->|"solo nombre, página y progreso"| SHARE["💬 Hoja de compartir<br/>WhatsApp u otra app"]
-
-    LOCAL["🔒 Frontera de privacidad<br/>sin cuenta · sin servidor · sin telemetría"]
-    STATE --- LOCAL
-
-    classDef core fill:#3157d5,color:#fff,stroke:#193690,stroke-width:2px;
-    classDef native fill:#0f766e,color:#fff,stroke:#064e3b,stroke-width:2px;
-    classDef data fill:#7c3aed,color:#fff,stroke:#4c1d95,stroke-width:2px;
-    classDef guard fill:#111827,color:#fff,stroke:#6b7280,stroke-width:2px;
-    class ENGINE,UI core;
-    class ANDROID,WINDOWS,WEB native;
-    class STATE data;
-    class LOCAL guard;
-```
+<p align="center">
+  <img src="docs/images/architecture.svg" width="100%" alt="Arquitectura Android-first de PDF Reader: entrada PDF local, núcleo compartido con PDF.js, persistencia local y adaptadores para Android, Windows y Web" />
+</p>
 
 ### Capas y responsabilidades
 
