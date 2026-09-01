@@ -5,7 +5,7 @@
 
 ## About
 **Description**
-> 📄 PDF Reader v0.1.0 — lector local y de solo lectura para Android 7+, Windows y Web. PDF.js + Capacitor + Electron · cero cuentas, permisos Android y telemetría. APK firmado. 🔒
+> 📄 PDF Reader v0.2.0 — lector PDF Android-first, local y de solo lectura: zoom táctil, historial reabrible, About y compartir a WhatsApp. Android 7+, Windows y Web · cero cuentas, permisos sensibles y telemetría. APK firmado. 🔒
 
 **Website**
 `https://vladimiracunadev-create.github.io/pdf-reader-windows-android/`
@@ -24,9 +24,9 @@ Settings → Pages → Build and deployment → **GitHub Actions**.
 
 La raíz publica la landing y `/app/` publica el lector web funcional.
 
-## Release inicial
+## Release actual
 Después de confirmar CI verde en `main`:
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.2.0
+git push origin v0.2.0
 ```

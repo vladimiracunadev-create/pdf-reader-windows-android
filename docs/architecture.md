@@ -29,7 +29,9 @@ Núcleo web (HTML/CSS/JS)
 - **Capacitor:** reutiliza la misma UI en Android con shell nativo.
 
 ## Estado local
-`localStorage` guarda solo preferencias: tema y estado de lectura por huella simple (`nombre + tamaño + mtime`). En Windows también se almacena una lista corta de rutas recientes para reabrir documentos desde el mismo equipo.
+`localStorage` guarda tema y estado de lectura por huella simple (`nombre + tamaño + mtime`). IndexedDB conserva hasta ocho PDF recientes con metadatos y progreso para reabrirlos en Android, Windows o web. La persona puede eliminar una entrada o borrar el historial completo.
 
 ## Límites
-El documento se carga en memoria. PDF extremadamente grandes pueden requerir más RAM. La v0.1.0 prioriza simplicidad; streaming parcial queda fuera del MVP.
+El documento se carga en memoria y una copia puede persistirse en IndexedDB. La cuota la decide el dispositivo y un fallo de persistencia no impide leer. PDF extremadamente grandes pueden requerir más RAM. El streaming parcial queda fuera de `v0.2.0`.
+
+`@capacitor/share` conecta la acción explícita de compartir con la hoja nativa de Android. La capa web usa `navigator.share` y, cuando no está disponible, abre WhatsApp Web. El mensaje nunca contiene los bytes del PDF.

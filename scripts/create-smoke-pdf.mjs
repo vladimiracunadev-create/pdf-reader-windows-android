@@ -6,7 +6,7 @@ const stream = [
   'BT',
   '/F1 24 Tf',
   '72 720 Td',
-  '(PDF Reader v0.1.0) Tj',
+  '(PDF Reader v0.2.0) Tj',
   '0 -38 Td',
   '/F1 13 Tf',
   '(Documento local para comprobar renderizado y busqueda.) Tj',

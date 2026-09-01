@@ -12,10 +12,12 @@ if (![manifestPath, gradlePath, stringsPath].every(existsSync)) {
 
 const pkg = JSON.parse(await readFile('package.json', 'utf8'));
 if (!/^\d+\.\d+\.\d+$/.test(pkg.version)) throw new Error(`Versión SemVer no compatible: ${pkg.version}`);
+const versionCode = Number(pkg.pdfReader?.androidVersionCode);
+if (!Number.isInteger(versionCode) || versionCode < 1) throw new Error('Falta pdfReader.androidVersionCode válido en package.json');
 
 let gradle = await readFile(gradlePath, 'utf8');
 gradle = gradle
-  .replace(/versionCode\s+\d+/, 'versionCode 1')
+  .replace(/versionCode\s+\d+/, `versionCode ${versionCode}`)
   .replace(/versionName\s+"[^"]+"/, `versionName "${pkg.version}"`);
 await writeFile(gradlePath, gradle);
 
@@ -41,4 +43,4 @@ if (forbidden.some((permission) => manifest.includes(permission))) {
   throw new Error('El manifiesto Android todavía contiene permisos prohibidos.');
 }
 
-console.log(`Android listo: v${pkg.version}, selector del sistema y cero permisos declarados.`);
+console.log(`Android listo: v${pkg.version} (${versionCode}), selector del sistema y cero permisos sensibles/de red/almacenamiento.`);

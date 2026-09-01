@@ -64,18 +64,20 @@ jobs:
         run: |
           APK="android/app/build/outputs/apk/debug/app-debug.apk"
           AAPT2="$ANDROID_HOME/build-tools/36.0.0/aapt2"
+          VERSION="$(node -p "require('./package.json').version")"
+          VERSION_CODE="$(node -p "require('./package.json').pdfReader.androidVersionCode")"
           BADGING="$($AAPT2 dump badging "$APK")"
-          grep -q "package: name='cl.vladimiracunadev.pdfreader' versionCode='1' versionName='0.1.0'" <<< "$BADGING"
+          grep -q "package: name='cl.vladimiracunadev.pdfreader' versionCode='$VERSION_CODE' versionName='$VERSION'" <<< "$BADGING"
           if grep -Eq "uses-permission.*(INTERNET|READ_EXTERNAL_STORAGE|WRITE_EXTERNAL_STORAGE|MANAGE_EXTERNAL_STORAGE)" <<< "$BADGING"; then
             echo "El APK declara un permiso prohibido." >&2
             exit 1
           fi
           mkdir -p release/android
-          cp "$APK" release/android/PDF-Reader-Android-v0.1.0-debug.apk
+          cp "$APK" "release/android/PDF-Reader-Android-v$VERSION-debug.apk"
       - uses: actions/upload-artifact@v7
         with:
           name: android-debug-preview
-          path: release/android/PDF-Reader-Android-v0.1.0-debug.apk
+          path: release/android/PDF-Reader-Android-v*-debug.apk
           if-no-files-found: error
 
   windows-smoke:

@@ -9,13 +9,15 @@ PDF Reader funciona localmente. No incorpora cuentas, publicidad, analítica, te
 - contenido y metadatos básicos del PDF elegido por la persona;
 - tema visual;
 - página, zoom, modo de ajuste y rotación asociados a una huella local del documento;
-- en Windows, hasta cinco rutas recientes para permitir reabrir archivos del mismo equipo.
+- hasta ocho copias recientes del PDF dentro de IndexedDB/WebView, junto con nombre, tamaño, fecha de apertura y progreso, para poder reabrirlas.
 
-El documento se mantiene en memoria para renderizarse. La aplicación no crea una copia, no modifica el original y no lo transmite.
+El documento se mantiene en memoria para renderizarse y, por defecto, se copia al historial privado local para poder recuperarlo. La aplicación no modifica el original ni transmite el PDF. La persona puede eliminar una lectura o borrar todo el historial desde la app.
 
 ## Android
 
-El APK `v0.1.0` no declara permisos del sistema. El archivo entra mediante el selector de documentos de Android, que concede acceso únicamente al elemento elegido durante el flujo de apertura.
+El APK `v0.2.0` no declara permisos del sistema. El archivo entra mediante el selector de documentos de Android, que concede acceso únicamente al elemento elegido durante el flujo de apertura. La copia de historial vive dentro del almacenamiento privado del WebView.
+
+La acción **Compartir** abre la hoja del sistema y propone un texto con nombre, página y enlace público del proyecto. No adjunta el PDF. Solo después de una acción explícita de la persona, Android entrega ese texto a WhatsApp u otra app elegida.
 
 ## Web
 
@@ -27,7 +29,7 @@ Electron limita el renderer mediante sandbox, aislamiento de contexto y ausencia
 
 ## Eliminación local
 
-Las preferencias se eliminan borrando los datos de la aplicación o del sitio. Desinstalar la app Android elimina su almacenamiento local. Los PDF originales no pertenecen al almacenamiento de PDF Reader.
+El historial puede borrarse dentro de PDF Reader. Las preferencias restantes se eliminan borrando los datos de la aplicación o del sitio. Desinstalar la app Android elimina su almacenamiento local. Los PDF originales no pertenecen al almacenamiento de PDF Reader y nunca se borran desde la app.
 
 ## Incidentes
 

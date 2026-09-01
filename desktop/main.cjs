@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs/promises');
 let mainWindow;
@@ -21,6 +21,7 @@ function createWindow(){
 app.whenReady().then(()=>{
   ipcMain.handle('pdf:pick',async()=>{const result=await dialog.showOpenDialog(mainWindow,{title:'Abrir PDF',properties:['openFile'],filters:[{name:'Documento PDF',extensions:['pdf']}]});if(result.canceled||!result.filePaths[0])return {canceled:true};return readPdf(result.filePaths[0]);});
   ipcMain.handle('pdf:open-path',(_,p)=>readPdf(p));ipcMain.handle('pdf:startup',()=>({path:startupPath}));
+  ipcMain.handle('pdf:open-default-apps',()=>shell.openExternal('ms-settings:defaultapps'));
   createWindow();app.on('activate',()=>{if(BrowserWindow.getAllWindows().length===0)createWindow()});
 });
 app.on('open-file',(event,p)=>{event.preventDefault();startupPath=p;if(mainWindow)mainWindow.webContents.send('pdf:external-open',p)});

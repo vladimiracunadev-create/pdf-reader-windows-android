@@ -3,105 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#101827" />
-  <meta name="description" content="Lector PDF moderno, simple y de solo lectura." />
+  <meta name="theme-color" content="#f8fafc" />
+  <meta name="description" content="Lector PDF local, claro y de solo lectura." />
   <title>PDF Reader</title>
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
+<body data-view="reader">
   <div id="app" class="app-shell">
     <header class="topbar">
-      <div class="brand" aria-label="PDF Reader">
-        <img src="./assets/icon.svg" alt="" width="34" height="34" />
-        <div><strong>PDF Reader</strong><span>Solo lectura</span></div>
-      </div>
+      <button id="brandBtn" class="brand" type="button" aria-label="Ir al lector">
+        <img src="./assets/icon.svg" alt="" width="36" height="36" />
+        <span><strong>PDF Reader</strong><small id="documentTitle">Local · solo lectura</small></span>
+      </button>
+      <nav class="desktop-tabs" aria-label="Secciones">
+        <button class="section-tab active" type="button" data-view="reader">Lector</button>
+        <button class="section-tab" type="button" data-view="history">Historial</button>
+        <button class="section-tab" type="button" data-view="about">About</button>
+      </nav>
       <div class="top-actions">
-        <button id="openBtn" class="btn primary" title="Abrir PDF (Ctrl+O)">Abrir PDF</button>
-        <button id="themeBtn" class="btn icon" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
-        <button id="helpBtn" class="btn icon" title="Ayuda" aria-label="Ayuda">?</button>
+        <button id="openBtn" class="btn primary" type="button" title="Abrir PDF (Ctrl+O)">Abrir PDF</button>
+        <button id="themeBtn" class="btn icon" type="button" title="Usar tema oscuro" aria-label="Usar tema oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.5A7 7 0 0 1 13.5 3H12Z"/></svg></button>
       </div>
     </header>
 
-    <section id="toolbar" class="toolbar" aria-label="Controles del lector">
-      <div class="tool-group">
-        <button id="thumbsBtn" class="btn icon" title="Miniaturas" aria-label="Miniaturas">☰</button>
-        <button id="prevBtn" class="btn icon" title="Página anterior" aria-label="Página anterior">‹</button>
-        <label class="page-control"><span class="sr-only">Página</span><input id="pageInput" type="number" min="1" value="1" inputmode="numeric" /><span id="pageTotal">/ 0</span></label>
-        <button id="nextBtn" class="btn icon" title="Página siguiente" aria-label="Página siguiente">›</button>
-      </div>
-      <div class="tool-group">
-        <button id="zoomOutBtn" class="btn icon" title="Alejar (-)" aria-label="Alejar">−</button>
-        <button id="zoomLabel" class="btn text" title="Restablecer zoom">100%</button>
-        <button id="zoomInBtn" class="btn icon" title="Acercar (+)" aria-label="Acercar">+</button>
-        <button id="fitWidthBtn" class="btn text" title="Ajustar al ancho">Ancho</button>
-        <button id="fitPageBtn" class="btn text" title="Ajustar página completa">Página</button>
-      </div>
-      <div class="tool-group">
-        <button id="rotateBtn" class="btn icon" title="Rotar 90° (R)" aria-label="Rotar">↻</button>
-        <button id="searchBtn" class="btn icon" title="Buscar texto (Ctrl+F)" aria-label="Buscar">⌕</button>
-        <button id="fullscreenBtn" class="btn icon" title="Pantalla completa (F)" aria-label="Pantalla completa">⛶</button>
-      </div>
-    </section>
-
-    <main class="workspace">
-      <aside id="sidebar" class="sidebar" aria-label="Miniaturas">
-        <div class="sidebar-title"><strong>Páginas</strong><button id="closeSidebarBtn" class="btn icon" aria-label="Cerrar miniaturas">×</button></div>
-        <div id="thumbList" class="thumb-list"></div>
-      </aside>
-
-      <section class="viewer-area">
-        <div id="welcome" class="welcome-card">
-          <div class="welcome-icon"><img src="./assets/icon.svg" alt="" width="78" height="78" /></div>
-          <h1>Lee tus PDF sin complicaciones</h1>
-          <p>Abre un archivo desde tu equipo o celular. El documento se procesa localmente y nunca se modifica.</p>
-          <button id="welcomeOpenBtn" class="btn primary large">Seleccionar PDF</button>
-          <div class="feature-grid">
-            <span>🔍 Zoom simple</span><span>📄 Navegación clara</span><span>🌙 Modo oscuro</span><span>🔒 Solo lectura</span>
+    <main class="content">
+      <section id="readerView" class="app-view reader-view" aria-label="Lector PDF">
+        <section id="toolbar" class="toolbar" aria-label="Herramientas del documento">
+          <div class="tool-group reader-navigation">
+            <button id="thumbsBtn" class="btn icon" type="button" title="Miniaturas" aria-label="Abrir miniaturas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h4v5H4V5Zm6 0h10v2H10V5Zm0 3h7v2h-7V8ZM4 14h4v5H4v-5Zm6 0h10v2H10v-2Zm0 3h7v2h-7v-2Z"/></svg></button>
+            <button id="prevBtn" class="btn icon desktop-page" type="button" title="Página anterior" aria-label="Página anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15.5 5-7 7 7 7 1.5-1.5-5.5-5.5L17 6.5 15.5 5Z"/></svg></button>
+            <label class="page-control"><span class="sr-only">Página</span><input id="pageInput" type="number" min="1" value="1" inputmode="numeric" /><span id="pageTotal">/ 0</span></label>
+            <button id="nextBtn" class="btn icon desktop-page" type="button" title="Página siguiente" aria-label="Página siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 5 7 7-7 7L7 17.5l5.5-5.5L7 6.5 8.5 5Z"/></svg></button>
+            <button id="searchBtn" class="btn icon" type="button" title="Buscar texto (Ctrl+F)" aria-label="Buscar texto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 0 3.9 11.7l4.9 4.9 1.4-1.4-4.9-4.9A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"/></svg></button>
           </div>
-          <div id="recentSection" class="recent-section hidden"><h2>Recientes</h2><div id="recentList"></div></div>
-          <p class="drop-hint">En Windows también puedes arrastrar un PDF aquí.</p>
-        </div>
+          <div class="tool-group zoom-tools">
+            <button id="zoomOutBtn" class="btn icon" type="button" title="Alejar (-)" aria-label="Alejar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h14v2H5v-2Z"/></svg></button>
+            <button id="zoomLabel" class="btn text zoom-value" type="button" title="Ajustar al ancho">100%</button>
+            <button id="zoomInBtn" class="btn icon" type="button" title="Acercar (+)" aria-label="Acercar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg></button>
+            <button id="fitWidthBtn" class="btn text" type="button" title="Ajustar al ancho">Ancho</button>
+            <button id="fitPageBtn" class="btn text" type="button" title="Ver página completa">Página</button>
+          </div>
+          <div class="tool-group advanced-tools">
+            <button id="rotateBtn" class="btn icon" type="button" title="Rotar 90° (R)" aria-label="Rotar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.7 6.3A8 8 0 1 0 20 12h-2a6 6 0 1 1-1.7-4.2L13 11h8V3l-3.3 3.3Z"/></svg></button>
+            <button id="shareBtn" class="btn icon" type="button" title="Compartir lectura" aria-label="Compartir lectura"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.8a3.2 3.2 0 0 0 0-2.8l6.7-3.8A3 3 0 1 0 15 5c0 .1 0 .2.1.3L8.4 9.1A3 3 0 1 0 8.4 15l6.7 3.8v.2a3 3 0 1 0 3-3Z"/></svg></button>
+            <button id="fullscreenBtn" class="btn icon desktop-only" type="button" title="Pantalla completa (F)" aria-label="Pantalla completa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4Zm10 0h6v6h-2V6h-4V4ZM4 14h2v4h4v2H4v-6Zm14 0h2v6h-6v-2h4v-4Z"/></svg></button>
+          </div>
+        </section>
 
-        <div id="viewer" class="viewer hidden" tabindex="0" aria-label="Documento PDF">
-          <div id="canvasStage" class="canvas-stage"><canvas id="pdfCanvas"></canvas></div>
-          <div id="loading" class="loading hidden" role="status">Cargando…</div>
+        <div class="workspace">
+          <aside id="sidebar" class="sidebar" aria-label="Miniaturas"><div class="panel-title"><strong>Páginas</strong><button id="closeSidebarBtn" class="btn icon" type="button" aria-label="Cerrar miniaturas">×</button></div><div id="thumbList" class="thumb-list"></div></aside>
+          <section class="viewer-area">
+            <div id="welcome" class="welcome-card">
+              <div class="welcome-icon"><img src="./assets/icon.svg" alt="" width="76" height="76" /></div><p class="eyebrow">Privado por diseño</p><h1>Tus PDF, claros y a mano</h1>
+              <p>Abre un documento, léelo con gestos naturales y vuelve a él desde el historial local. El archivo no sale del dispositivo.</p>
+              <button id="welcomeOpenBtn" class="btn primary large" type="button">Seleccionar PDF</button>
+              <div class="feature-grid"><span><strong>Pinza</strong> para ampliar</span><span><strong>Desliza</strong> para avanzar</span><span><strong>Historial</strong> reabrible</span></div>
+              <button id="welcomeHistoryBtn" class="text-link" type="button">Ver historial de lectura</button><p class="drop-hint">En Windows también puedes arrastrar un PDF aquí.</p>
+            </div>
+            <div id="viewer" class="viewer hidden" tabindex="0" aria-label="Documento PDF"><div id="canvasStage" class="canvas-stage"><canvas id="pdfCanvas"></canvas></div><div id="loading" class="loading hidden" role="status">Cargando…</div></div>
+            <div id="emptyError" class="error-card hidden" role="alert"><strong>No se pudo abrir el PDF</strong><span id="errorText"></span><button id="retryBtn" class="btn primary" type="button">Elegir otro PDF</button></div>
+          </section>
+          <aside id="searchPanel" class="search-panel" aria-label="Buscar en el documento"><div class="panel-title"><strong>Buscar</strong><button id="closeSearchBtn" class="btn icon" type="button" aria-label="Cerrar búsqueda">×</button></div><form id="searchForm" class="search-form"><input id="searchInput" type="search" placeholder="Palabra o frase" autocomplete="off" /><button class="btn primary" type="submit">Buscar</button></form><div id="searchStatus" class="search-status"></div><div id="searchResults" class="search-results"></div></aside>
         </div>
-
-        <div id="emptyError" class="error-card hidden" role="alert"><strong>No se pudo abrir el PDF.</strong><span id="errorText"></span><button id="retryBtn" class="btn primary">Elegir otro PDF</button></div>
       </section>
 
-      <aside id="searchPanel" class="search-panel" aria-label="Buscar en el documento">
-        <div class="sidebar-title"><strong>Buscar</strong><button id="closeSearchBtn" class="btn icon" aria-label="Cerrar búsqueda">×</button></div>
-        <form id="searchForm" class="search-form"><input id="searchInput" type="search" placeholder="Texto a buscar" autocomplete="off" /><button class="btn primary" type="submit">Buscar</button></form>
-        <div id="searchStatus" class="search-status"></div>
-        <div id="searchResults" class="search-results"></div>
-      </aside>
+      <section id="historyView" class="app-view page-view hidden" aria-labelledby="historyTitle">
+        <div class="view-heading"><p class="eyebrow">Solo en este dispositivo</p><h1 id="historyTitle">Historial de lectura</h1><p>Vuelve a abrir tus documentos aunque hayas cerrado la app. Se conservan hasta ocho PDF recientes y tu última página.</p></div>
+        <div id="historyList" class="history-list"></div>
+        <div id="historyEmpty" class="empty-state"><strong>Aún no hay lecturas</strong><span>Abre un PDF y aparecerá aquí automáticamente.</span><button id="historyOpenBtn" class="btn primary" type="button">Abrir mi primer PDF</button></div>
+        <div class="history-footer"><span>Los archivos guardados se eliminan al borrar los datos de la app.</span><button id="clearHistoryBtn" class="btn danger" type="button">Borrar historial</button></div>
+      </section>
+
+      <section id="aboutView" class="app-view page-view hidden" aria-labelledby="aboutTitle">
+        <div class="view-heading"><p class="eyebrow">Transparencia del producto</p><h1 id="aboutTitle">About</h1><p>Qué es PDF Reader, quién lo crea y qué ocurre con tus documentos.</p></div>
+        <div class="about-grid">
+          <article class="info-card product-card"><img src="./assets/icon.svg" alt="" width="58" height="58" /><div><h2>PDF Reader</h2><dl><div><dt>Versión</dt><dd>0.2.0</dd></div><div><dt>Autor</dt><dd>Vladimir Acuña</dd></div><div><dt>Licencia</dt><dd>MIT</dd></div></dl></div></article>
+          <article class="info-card"><h2>Filosofía</h2><p>Leer debe sentirse directo: abrir, entender y continuar. La interfaz privilegia pocas acciones claras, controles táctiles amplios y el mismo comportamiento sin importar cuántas páginas tenga el PDF.</p></article>
+          <article class="info-card"><h2>Privacidad local</h2><p>No hay cuenta, publicidad, analítica ni telemetría. El historial guarda copias recientes dentro del almacenamiento privado de la app. Compartir es una acción explícita y envía solo el nombre y el progreso, nunca el PDF.</p></article>
+          <article class="info-card"><h2>Proyecto abierto</h2><p>El código, los builds verificables, los hashes y las notas de cada versión están publicados en GitHub.</p><div class="card-actions"><a class="btn text" href="https://github.com/vladimiracunadev-create/pdf-reader-windows-android" target="_blank" rel="noopener">Repositorio</a><a class="btn text" href="https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest" target="_blank" rel="noopener">Último release</a></div></article>
+        </div>
+      </section>
     </main>
 
-    <footer class="statusbar">
-      <span id="fileStatus">Ningún documento abierto</span>
-      <span id="readOnlyBadge" class="badge">SOLO LECTURA</span>
-      <span id="viewStatus">—</span>
-    </footer>
-
-    <nav class="mobile-nav" aria-label="Controles móviles">
-      <button id="mPrev" class="btn icon" aria-label="Página anterior">‹</button><button id="mZoomOut" class="btn icon" aria-label="Alejar">−</button><span id="mPage">—</span><button id="mZoomIn" class="btn icon" aria-label="Acercar">+</button><button id="mNext" class="btn icon" aria-label="Página siguiente">›</button>
+    <section id="readerDock" class="reader-dock" aria-label="Navegación y zoom">
+      <button id="mPrev" class="dock-button" type="button" aria-label="Página anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15.5 5-7 7 7 7 1.5-1.5-5.5-5.5L17 6.5 15.5 5Z"/></svg><span>Anterior</span></button>
+      <button id="mZoomOut" class="dock-button" type="button" aria-label="Alejar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h14v2H5v-2Z"/></svg><span>Alejar</span></button>
+      <button id="mPage" class="dock-page" type="button" title="Ajustar al ancho">—</button>
+      <button id="mZoomIn" class="dock-button" type="button" aria-label="Acercar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg><span>Ampliar</span></button>
+      <button id="mNext" class="dock-button" type="button" aria-label="Página siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 5 7 7-7 7L7 17.5l5.5-5.5L7 6.5 8.5 5Z"/></svg><span>Siguiente</span></button>
+    </section>
+    <footer class="statusbar"><span id="fileStatus">Ningún documento abierto</span><span class="badge">SOLO LECTURA</span><span id="viewStatus">—</span></footer>
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="nav-item active" type="button" data-view="reader"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5V3Zm2 2v14h10V8h-3V5H7Zm2 7h6v2H9v-2Zm0 4h6v2H9v-2Z"/></svg><span>Lector</span></button>
+      <button class="nav-item" type="button" data-view="history"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.4 5H2l3.5-4L9 9H6.7A6 6 0 1 0 12 6v4l3 2-1 1.7-4-2.7V4h2Z"/></svg><span>Historial</span></button>
+      <button id="mobileShareBtn" class="nav-item" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.8a3.2 3.2 0 0 0 0-2.8l6.7-3.8A3 3 0 1 0 15 5c0 .1 0 .2.1.3L8.4 9.1A3 3 0 1 0 8.4 15l6.7 3.8v.2a3 3 0 1 0 3-3Z"/></svg><span>Compartir</span></button>
+      <button class="nav-item" type="button" data-view="about"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 10h2v7h-2v-7Zm0-3h2v2h-2V7Zm1-4a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"/></svg><span>About</span></button>
     </nav>
-
-    <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden />
-
-    <dialog id="helpDialog" class="help-dialog">
-      <form method="dialog"><button class="dialog-close" aria-label="Cerrar">×</button></form>
-      <h2>Ayuda rápida</h2>
-      <p>Esta aplicación está diseñada para leer PDF de forma simple. No guarda cambios dentro del archivo.</p>
-      <div class="help-grid">
-        <div><kbd>Ctrl</kbd> + <kbd>O</kbd><span>Abrir PDF</span></div><div><kbd>+</kbd> / <kbd>-</kbd><span>Zoom</span></div>
-        <div><kbd>PgUp</kbd> / <kbd>PgDn</kbd><span>Cambiar página</span></div><div><kbd>Ctrl</kbd> + <kbd>F</kbd><span>Buscar</span></div>
-        <div><kbd>R</kbd><span>Rotar</span></div><div><kbd>F</kbd><span>Pantalla completa</span></div>
-      </div>
-      <p><a href="./about.html">Acerca del proyecto</a></p>
+    <dialog id="defaultReaderDialog" class="default-dialog">
+      <div class="dialog-icon"><img src="./assets/icon.svg" alt="" width="58" height="58" /></div>
+      <p class="eyebrow">Una vez por versión</p>
+      <h2>¿Usar PDF Reader para abrir tus PDF?</h2>
+      <p id="defaultReaderText">Android mostrará sus lectores disponibles. Elige <strong>PDF Reader</strong> y luego <strong>Siempre</strong>. La decisión sigue bajo tu control y puede cambiarse en Ajustes.</p>
+      <div class="dialog-actions"><button id="defaultLaterBtn" class="btn text" type="button">Ahora no</button><button id="defaultSetupBtn" class="btn primary" type="button">Configurar ahora</button></div>
     </dialog>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden />
   </div>
   <script type="module" src="./app.js"></script>
 </body>

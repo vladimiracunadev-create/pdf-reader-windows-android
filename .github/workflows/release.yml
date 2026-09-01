@@ -63,6 +63,7 @@ jobs:
           test -n "$KEY_ALIAS" || { echo "Falta ANDROID_KEY_ALIAS" >&2; exit 1; }
           test -n "$KEY_PASSWORD" || { echo "Falta ANDROID_KEY_PASSWORD" >&2; exit 1; }
           VERSION="${GITHUB_REF_NAME#v}"
+          VERSION_CODE="$(node -p "require('./package.json').pdfReader.androidVersionCode")"
           UNSIGNED="android/app/build/outputs/apk/release/app-release-unsigned.apk"
           KEYSTORE="$RUNNER_TEMP/pdf-reader-release.jks"
           ALIGNED="$RUNNER_TEMP/pdf-reader-aligned.apk"
@@ -80,7 +81,7 @@ jobs:
             "$ALIGNED"
           "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose --print-certs "$OUTPUT"
           BADGING="$("$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging "$OUTPUT")"
-          grep -q "package: name='cl.vladimiracunadev.pdfreader' versionCode='1' versionName='$VERSION'" <<< "$BADGING"
+          grep -q "package: name='cl.vladimiracunadev.pdfreader' versionCode='$VERSION_CODE' versionName='$VERSION'" <<< "$BADGING"
           if grep -Eq "uses-permission.*(INTERNET|READ_EXTERNAL_STORAGE|WRITE_EXTERNAL_STORAGE|MANAGE_EXTERNAL_STORAGE)" <<< "$BADGING"; then
             echo "El APK release declara un permiso prohibido." >&2
             exit 1

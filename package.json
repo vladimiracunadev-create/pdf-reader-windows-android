@@ -1,6 +1,6 @@
 {
   "name": "pdf-reader-windows-android",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Lector PDF moderno, simple y de solo lectura para Windows, Android y navegador.",
   "homepage": "https://vladimiracunadev-create.github.io/pdf-reader-windows-android/",
@@ -31,12 +31,13 @@
     "android:init": "node scripts/android-init.mjs",
     "android:assets": "capacitor-assets generate --android --iconBackgroundColor '#3157d5' --iconBackgroundColorDark '#101827' --splashBackgroundColor '#eef2f7' --splashBackgroundColorDark '#101827' --logoSplashScale 0.18",
     "android:sync": "pnpm build:web && pnpm exec cap sync android && node scripts/patch-android.mjs",
-    "android:debug": "pnpm android:init && pnpm android:sync && cd android && ./gradlew assembleDebug",
-    "android:release": "pnpm android:init && pnpm android:sync && cd android && ./gradlew assembleRelease",
+    "android:debug": "pnpm android:init && pnpm android:sync && node scripts/run-gradle.mjs assembleDebug",
+    "android:release": "pnpm android:init && pnpm android:sync && node scripts/run-gradle.mjs assembleRelease",
     "release:check": "pnpm check && pnpm build:pages"
   },
   "dependencies": {
     "@capacitor/core": "8.5.0",
+    "@capacitor/share": "8.0.1",
     "pdfjs-dist": "6.3.289"
   },
   "devDependencies": {
@@ -85,5 +86,8 @@
     ]
   },
   "type": "module",
-  "packageManager": "pnpm@11.19.0"
+  "packageManager": "pnpm@11.19.0",
+  "pdfReader": {
+    "androidVersionCode": 2
+  }
 }
