@@ -15,7 +15,8 @@ Usa `‹` y `›`, escribe una página concreta o abre el panel de miniaturas. E
 - `−`: alejar.
 - `+`: acercar.
 - En Android, separa o junta dos dedos sobre el documento. El gesto funciona igual en PDF de una o muchas páginas.
-- Un doble toque alterna entre ampliar y ajustar al ancho.
+- Un doble toque alterna entre ampliar y ajustar al ancho. La app conserva bajo los dedos o el toque la zona que estabas leyendo.
+- Cuando el PDF ampliado sea más ancho que la pantalla, deslízalo horizontalmente: los bordes izquierdo y derecho permanecen accesibles. La primera ampliación muestra una indicación breve.
 - El indicador central del control móvil muestra página y escala; al tocarlo vuelve a ajustar al ancho.
 - **Ancho**: adapta el documento al ancho disponible.
 - **Página**: intenta mostrar la página completa.

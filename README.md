@@ -15,7 +15,7 @@
 [![Telemetría](https://img.shields.io/badge/telemetr%C3%ADa-cero-2f9e67)](docs/privacy.md)
 [![Licencia](https://img.shields.io/badge/licencia-MIT-blue)](LICENSE)
 
-📱 **[Descargar APK Android →](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest/download/PDF-Reader-Android-v0.2.0.apk)** ·
+📱 **[Descargar APK Android →](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest/download/PDF-Reader-Android-v0.3.0.apk)** ·
 🌐 **[Página del producto →](https://vladimiracunadev-create.github.io/pdf-reader-windows-android/)** ·
 ▶️ **[Probar en el navegador →](https://vladimiracunadev-create.github.io/pdf-reader-windows-android/app/)** ·
 📘 **[Manual de usuario →](docs/user-guide.md)**
@@ -32,16 +32,16 @@ El PDF se procesa localmente con Mozilla PDF.js. No existe backend, cuenta, publ
 
 ## 📱 Android primero
 
-`v0.2.0` consolida Android como experiencia principal: reorganiza la interfaz móvil, separa los controles del visor, incorpora zoom de pinza real, historial reabrible, compartir hacia WhatsApp mediante la hoja nativa y una pestaña About coherente con los proyectos RootCause del autor. Windows y la demo web comparten el mismo núcleo.
+`v0.3.0` consolida Android como experiencia principal: el zoom conserva el punto de lectura y permite recorrer cada página de borde a borde, incluso al superar el ancho de la pantalla. Mantiene la interfaz móvil sin solapamientos, historial reabrible, compartir hacia WhatsApp mediante la hoja nativa y una pestaña About coherente con los proyectos RootCause del autor. Windows y la demo web comparten el mismo núcleo.
 
-| Superficie Android | Estado en v0.2.0 |
+| Superficie Android | Estado en v0.3.0 |
 |---|---|
 | Compatibilidad | Android 7.0+ · API mínima 24 · objetivo API 36 |
 | Instalación | APK release firmado para descarga directa desde GitHub |
 | Archivos | Selector de documentos del sistema; sin acceso general al almacenamiento |
 | Permisos | **Cero permisos sensibles o con consentimiento**: sin `INTERNET` ni almacenamiento general |
 | Privacidad | Sin cuentas, anuncios, backend ni telemetría |
-| Interacción | Controles fuera del lienzo, pinza y doble toque para zoom, swipe horizontal entre páginas |
+| Interacción | Controles fuera del lienzo, zoom anclado con pinza/doble toque y desplazamiento completo de borde a borde |
 | Continuidad | Historial local de hasta ocho PDF con última página y apertura directa |
 | Compartir | Hoja nativa del sistema; WhatsApp recibe solo nombre/progreso, nunca el PDF |
 | Lector predeterminado | Pregunta una vez por versión y guía a elegir **PDF Reader → Siempre** |
@@ -50,14 +50,14 @@ El PDF se procesa localmente con Mozilla PDF.js. No existe backend, cuenta, publ
 
 ### Instalar el APK
 
-1. Descarga `PDF-Reader-Android-v0.2.0.apk` desde el [release más reciente](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest).
+1. Descarga `PDF-Reader-Android-v0.3.0.apk` desde el [release más reciente](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest).
 2. Abre el archivo en Android.
 3. Si el sistema lo solicita, permite a tu navegador o gestor de archivos instalar aplicaciones desconocidas.
 4. Revisa el resumen: PDF Reader no debe solicitar acceso a cámara, micrófono, ubicación, contactos ni Internet.
 5. Instala y pulsa **Seleccionar PDF**.
 6. La primera apertura de cada versión pregunta si quieres usar PDF Reader por defecto. Pulsa **Configurar ahora**, elige **PDF Reader** y después **Siempre** en el selector de Android.
 
-La clave de firma es la misma usada por `v0.1.0`, por lo que `v0.2.0` puede instalarse como actualización sin cambiar la identidad criptográfica de la app. El procedimiento está en [Compilar y publicar Android](docs/android.md).
+La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.0` puede instalarse como actualización sin cambiar la identidad criptográfica de la app. El procedimiento está en [Compilar y publicar Android](docs/android.md).
 
 ## ✅ Estado verificable
 
@@ -66,23 +66,23 @@ La clave de firma es la misma usada por `v0.1.0`, por lo que `v0.2.0` puede inst
 | 📄 Lectura | PDF.js `6.3.289`, worker separado, CMaps, fuentes estándar y decodificadores WASM empaquetados |
 | 🧭 Navegación | anterior/siguiente, salto directo, miniaturas y swipe Android |
 | 🔎 Búsqueda | extracción de texto por página, snippets y navegación al resultado |
-| 🔍 Vista | pinza y doble toque independientes del número de páginas, zoom, ajustes y rotación |
+| 🔍 Vista | pinza, doble toque y botones conservan el punto de lectura; la página ampliada se recorre de borde a borde |
 | 🕘 Continuidad | copia local de hasta ocho PDF recientes, progreso reabrible y borrado explícito |
 | 💬 Compartir | hoja nativa Android con WhatsApp u otra app; fallback Web Share/WhatsApp Web |
-| 🧪 Calidad | 8 pruebas unitarias + verificador de estructura/alcance + tres jobs de CI |
+| 🧪 Calidad | 9 pruebas unitarias + verificador de estructura/alcance/zoom + tres jobs de CI |
 | 📦 Android | Gradle test + APK debug en CI; APK release firmado y auditado al etiquetar |
 | 🪟 Windows | instalador NSIS y portable generados en runner Windows |
 | 🌐 Web | landing y demo funcional separadas en GitHub Pages |
 | 🔒 Privacidad | cero permisos Android sensibles; Electron aislado; sin red de aplicación ni telemetría |
 
-El reporte de la versión está en [`reports/validation-v0.2.0.md`](reports/validation-v0.2.0.md). Se completa con la evidencia de GitHub Actions y los hashes del release, no con afirmaciones manuales.
+Las notas verificables de la versión están en [`docs/releases/v0.3.0.md`](docs/releases/v0.3.0.md). La evidencia definitiva la aportan GitHub Actions y los hashes del release, no afirmaciones manuales.
 
 ## ✨ Funcionalidades
 
 - Abrir PDF local desde el selector del sistema.
 - Navegar a la página anterior, siguiente o a un número exacto.
 - Recorrer miniaturas y abrir una página desde ellas.
-- Ampliar con pinza o doble toque, acercar/alejar, ajustar al ancho o mostrar la página completa.
+- Ampliar con pinza, doble toque o botones sin perder el punto de lectura y recorrer toda la página, incluidos ambos bordes.
 - Rotar en pasos de 90°.
 - Buscar texto por todas las páginas y abrir cada coincidencia.
 - Elegir tema claro u oscuro y usar pantalla completa.
@@ -122,7 +122,7 @@ Los PDF son contenido no confiable. En Windows, el renderer de Electron usa `con
 | **Windows** | Ventana Electron, diálogo de archivos, asociación `.pdf` y acceso a configuración predeterminada | Renderer aislado, sin Node y dentro de sandbox |
 | **Entrega** | CI, Pages y release firmado por tag | `pnpm` + lockfile único, checks reproducibles y hashes SHA-256 publicados |
 
-La arquitectura favorece un núcleo pequeño y auditable antes que una jerarquía de framework. Los adaptadores nativos solo exponen capacidades que el navegador no ofrece; no duplican la lógica del lector. El desglose técnico, los flujos de confianza y los límites de `v0.2.0` están en la [documentación de arquitectura](docs/architecture.md).
+La arquitectura favorece un núcleo pequeño y auditable antes que una jerarquía de framework. Los adaptadores nativos solo exponen capacidades que el navegador no ofrece; no duplican la lógica del lector. El desglose técnico y los flujos de confianza están en la [documentación de arquitectura](docs/architecture.md).
 
 ## 🚀 Ejecutar y verificar
 
@@ -173,7 +173,7 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 - [Roadmap](ROADMAP.md)
 - [Contribuir](CONTRIBUTING.md)
 
-## ⚠️ Límites de v0.2.0
+## ⚠️ Límites de v0.3.0
 
 - Los PDF con contraseña todavía no tienen un diálogo dedicado.
 - Los documentos escaneados sin capa de texto se pueden leer visualmente, pero no buscar por contenido.
@@ -183,7 +183,7 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 
 ## 🗺️ Próximo tramo
 
-`v0.3` prioriza diálogo de contraseña, miniaturas virtualizadas y más pruebas instrumentadas en dispositivos físicos. Edición, firma, anotaciones y sincronización en nube siguen fuera del alcance base.
+El próximo tramo prioriza diálogo de contraseña, miniaturas virtualizadas y más pruebas instrumentadas en dispositivos físicos. Edición, firma, anotaciones y sincronización en nube siguen fuera del alcance base.
 
 ## 📄 Licencias
 

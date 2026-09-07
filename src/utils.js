@@ -1,4 +1,5 @@
 export const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+export function readingAnchorDelta(canvasStart,canvasSize,anchorRatio,viewportPoint){const start=Number(canvasStart)||0;const size=Math.max(0,Number(canvasSize)||0);const ratio=clamp(Number(anchorRatio)||0,0,1);const point=Number(viewportPoint)||0;return start+size*ratio-point;}
 export function formatBytes(bytes){if(!Number.isFinite(bytes)||bytes<0)return '—';if(bytes===0)return '0 B';const units=['B','KB','MB','GB'];const i=Math.min(Math.floor(Math.log(bytes)/Math.log(1024)),units.length-1);const value=bytes/1024**i;return `${value>=10||i===0?value.toFixed(0):value.toFixed(1)} ${units[i]}`;}
 export function documentKey(file){return `pdf-state:${encodeURIComponent(file.name)}:${file.size||0}:${file.lastModified||0}`;}
 export function historyId(file){return `pdf:${encodeURIComponent(file.name)}:${file.size||0}:${file.lastModified||0}`;}

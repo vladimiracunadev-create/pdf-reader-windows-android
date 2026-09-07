@@ -80,9 +80,9 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 .feature-grid strong { display: block; color: var(--text); }
 .text-link { padding: 8px; border: 0; background: transparent; color: var(--accent); font-weight: 750; cursor: pointer; }
 .drop-hint { margin-top: 10px; font-size: 12px !important; }
-.viewer { width: 100%; height: 100%; overflow: auto; background: linear-gradient(135deg, color-mix(in srgb, var(--bg), #000 3%), var(--bg)); overscroll-behavior: contain; }
-.canvas-stage { min-width: 100%; min-height: 100%; display: flex; justify-content: center; align-items: flex-start; padding: 28px; touch-action: pan-x pan-y; }
-.canvas-stage canvas { max-width: none; background: white; box-shadow: var(--shadow); transform: scale(1); transition: transform 90ms ease-out; }
+.viewer { width: 100%; height: 100%; overflow: auto; background: linear-gradient(135deg, color-mix(in srgb, var(--bg), #000 3%), var(--bg)); overscroll-behavior: contain; scrollbar-color: var(--muted) transparent; scrollbar-width: thin; }
+.canvas-stage { width: max-content; min-width: 100%; min-height: 100%; display: flex; justify-content: flex-start; align-items: flex-start; padding: 28px; touch-action: pan-x pan-y; }
+.canvas-stage canvas { flex: 0 0 auto; max-width: none; margin-inline: auto; background: white; box-shadow: var(--shadow); transform: scale(1); transform-origin: center center; transition: transform 90ms ease-out; }
 .canvas-stage canvas.pinching { transition: none; }
 .loading { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 14px 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
 .sidebar, .search-panel { width: 250px; display: none; overflow: auto; background: var(--surface); border-right: 1px solid var(--border); z-index: 4; }

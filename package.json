@@ -1,6 +1,6 @@
 {
   "name": "pdf-reader-windows-android",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Lector PDF moderno, simple y de solo lectura para Windows, Android y navegador.",
   "homepage": "https://vladimiracunadev-create.github.io/pdf-reader-windows-android/",
@@ -88,6 +88,6 @@
   "type": "module",
   "packageManager": "pnpm@11.19.0",
   "pdfReader": {
-    "androidVersionCode": 2
+    "androidVersionCode": 3
   }
 }

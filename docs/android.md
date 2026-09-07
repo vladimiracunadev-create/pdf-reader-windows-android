@@ -1,14 +1,14 @@
 # Android · compilación, firma y verificación
 
-Este documento define la cadena Android de PDF Reader `v0.2.0`. El artefacto público es un APK release firmado; el APK debug de CI es solo evidencia de compilación y nunca se publica como release.
+Este documento define la cadena Android de PDF Reader `v0.3.0`. El artefacto público es un APK release firmado; el APK debug de CI es solo evidencia de compilación y nunca se publica como release.
 
 ## Contrato de la aplicación
 
 | Campo | Valor |
 |---|---|
 | Application ID | `cl.vladimiracunadev.pdfreader` |
-| Versión | `0.2.0` |
-| `versionCode` | `2` |
+| Versión | `0.3.0` |
+| `versionCode` | `3` |
 | Android mínimo | 7.0 · API 24 |
 | Android objetivo | API 36 |
 | Permisos sensibles o con consentimiento | ninguno |
@@ -87,7 +87,7 @@ Las contraseñas se envían por entrada estándar con `gh secret set`; no deben 
 
 ## Release automatizado
 
-Al publicar el tag `v0.2.0`, `.github/workflows/release.yml`:
+Al publicar el tag `v0.3.0`, `.github/workflows/release.yml`:
 
 1. comprueba que tag, `package.json` y notas coincidan;
 2. ejecuta pruebas y genera el proyecto web;
@@ -104,15 +104,15 @@ Al publicar el tag `v0.2.0`, `.github/workflows/release.yml`:
 Con Build Tools 36 en `PATH`:
 
 ```bash
-apksigner verify --verbose --print-certs PDF-Reader-Android-v0.2.0.apk
-aapt2 dump badging PDF-Reader-Android-v0.2.0.apk
+apksigner verify --verbose --print-certs PDF-Reader-Android-v0.3.0.apk
+aapt2 dump badging PDF-Reader-Android-v0.3.0.apk
 sha256sum -c SHA256SUMS.txt
 ```
 
 La salida de `aapt2` debe declarar:
 
 ```text
-package: name='cl.vladimiracunadev.pdfreader' versionCode='2' versionName='0.2.0'
+package: name='cl.vladimiracunadev.pdfreader' versionCode='3' versionName='0.3.0'
 ```
 
 No debe aparecer ningún `uses-permission`.
@@ -120,26 +120,27 @@ No debe aparecer ningún `uses-permission`.
 ## Instalar y probar
 
 ```bash
-adb install -r PDF-Reader-Android-v0.2.0.apk
+adb install -r PDF-Reader-Android-v0.3.0.apk
 adb shell monkey -p cl.vladimiracunadev.pdfreader 1
 ```
 
 Prueba manual mínima:
 
 1. la app inicia con icono, splash y nombre correctos;
-2. aparece la pregunta de lector predeterminado una sola vez para `v0.2.0` y **Ahora no** la cierra;
+2. aparece la pregunta de lector predeterminado una sola vez para `v0.3.0` y **Ahora no** la cierra;
 3. **Configurar ahora** permite elegir **PDF Reader → Siempre** si Android muestra el resolver;
 4. abrir un `.pdf` desde Archivos entra por `ACTION_VIEW` y renderiza el documento;
 5. **Seleccionar PDF** abre el selector del sistema;
 6. un PDF con texto renderiza su primera página;
 7. anterior/siguiente, salto, zoom, ajuste, rotación y búsqueda responden;
-8. la pinza amplía/reduce en PDF de una y varias páginas; doble toque vuelve al ancho;
-9. swipe cambia una página y no interfiere con el desplazamiento vertical;
-10. Historial permite reabrir el PDF en su última página y borrarlo;
-11. Compartir abre la hoja nativa y permite elegir WhatsApp sin adjuntar el PDF;
-12. modo oscuro mantiene legibilidad y no cubre la navegación inferior;
-13. Android no muestra solicitudes de permisos.
+8. la pinza amplía/reduce en PDF de una y varias páginas y conserva el punto situado entre los dedos;
+9. al ampliar en una pantalla estrecha se pueden alcanzar los bordes izquierdo y derecho sin recortes; doble toque vuelve al ancho;
+10. swipe cambia una página y no interfiere con el desplazamiento vertical ni con recorrer una página ampliada;
+11. Historial permite reabrir el PDF en su última página y borrarlo;
+12. Compartir abre la hoja nativa y permite elegir WhatsApp sin adjuntar el PDF;
+13. modo oscuro mantiene legibilidad y no cubre la navegación inferior;
+14. Android no muestra solicitudes de permisos.
 
 ## Google Play
 
-`v0.2.0` no se publica en Play Store. Una distribución futura debe producir AAB, separar app-signing key y upload key, completar ficha de privacidad y pasar pruebas en dispositivos físicos. Eso no cambia la validez del APK firmado que se distribuye desde GitHub.
+`v0.3.0` no se publica en Play Store. Una distribución futura debe producir AAB, separar app-signing key y upload key, completar ficha de privacidad y pasar pruebas en dispositivos físicos. Eso no cambia la validez del APK firmado que se distribuye desde GitHub.

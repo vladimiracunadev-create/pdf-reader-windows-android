@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0] - 2026-09-07
+### Fixed
+- Las páginas ampliadas ya no pierden ni vuelven inaccesible el borde izquierdo en pantallas móviles o estrechas.
+- El zoom por botones, pinza y doble toque conserva el punto de lectura en lugar de saltar a otra zona del documento.
+- Rotar o cambiar el modo de ajuste mantiene una posición de lectura estable.
+
+### Changed
+- El lienzo crece con el PDF y permite recorrerlo de borde a borde mediante desplazamiento horizontal y vertical.
+- Una indicación breve explica cómo desplazarse cuando la página supera el ancho visible.
+- La verificación del repositorio protege el layout de zoom y el cálculo del ancla de lectura contra regresiones.
+
 ## [0.2.0] - 2026-09-01
 ### Added
 - Historial local reabrible de hasta ocho PDF con última página, zoom, ajuste y rotación.

@@ -15,7 +15,7 @@ El documento se mantiene en memoria para renderizarse y, por defecto, se copia a
 
 ## Android
 
-El APK `v0.2.0` no declara permisos del sistema. El archivo entra mediante el selector de documentos de Android, que concede acceso únicamente al elemento elegido durante el flujo de apertura. La copia de historial vive dentro del almacenamiento privado del WebView.
+El APK `v0.3.0` no declara permisos del sistema. El archivo entra mediante el selector de documentos de Android, que concede acceso únicamente al elemento elegido durante el flujo de apertura. La copia de historial vive dentro del almacenamiento privado del WebView.
 
 La acción **Compartir** abre la hoja del sistema y propone un texto con nombre, página y enlace público del proyecto. No adjunta el PDF. Solo después de una acción explícita de la persona, Android entrega ese texto a WhatsApp u otra app elegida.
 
