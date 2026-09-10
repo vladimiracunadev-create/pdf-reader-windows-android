@@ -43,7 +43,7 @@
     "pdfjs-dist": "6.3.289"
   },
   "devDependencies": {
-    "@capacitor/android": "8.5.0",
+    "@capacitor/android": "8.5.1",
     "@capacitor/assets": "3.0.5",
     "@capacitor/cli": "8.5.0",
     "electron": "44.0.0",
