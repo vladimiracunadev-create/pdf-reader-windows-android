@@ -1,3 +1,4 @@
+/** Inicializa el proyecto Capacitor Android si falta y reaplica el contrato nativo. */
 import { existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 

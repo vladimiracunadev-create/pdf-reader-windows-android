@@ -1,3 +1,4 @@
+/** Frontera IPC explícita; evita entregar ipcRenderer o Node completos al renderer. */
 const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('desktopPdf', {
   pick: () => ipcRenderer.invoke('pdf:pick'),

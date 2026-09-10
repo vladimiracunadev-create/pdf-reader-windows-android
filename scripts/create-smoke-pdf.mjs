@@ -1,3 +1,4 @@
+/** Crea un PDF sintético sin datos privados para validaciones manuales del lector. */
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 

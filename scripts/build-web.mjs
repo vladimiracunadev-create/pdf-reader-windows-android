@@ -1,3 +1,4 @@
+/** Construye el núcleo Web y vendoriza los recursos de PDF.js necesarios en runtime. */
 import { cp, mkdir, rm, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 const required=['node_modules/pdfjs-dist/legacy/build/pdf.mjs','node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs'];

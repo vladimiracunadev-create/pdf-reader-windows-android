@@ -1,3 +1,4 @@
+/** Gate estructural para versión, alcance read-only, zoom, Android, docs y entrega. */
 import { readFile, access } from 'node:fs/promises';
 const must=['README.md','LICENSE','CHANGELOG.md','SECURITY.md','pnpm-lock.yaml','pnpm-workspace.yaml','spec/spec.md','docs/index.md','docs/architecture.md','docs/user-guide.md','docs/android.md','docs/privacy.md','docs/runbook.md','docs/security.md','docs/releases/v0.1.0.md','docs/releases/v0.2.0.md','docs/releases/v0.3.0.md','.github/workflows/ci.yml','.github/workflows/pages.yml','.github/workflows/release.yml','site/index.html','site/styles.css','assets/logo.svg','src/index.html','src/app.js','src/history-store.js','desktop/main.cjs','scripts/run-gradle.mjs','capacitor.config.json','android/app/build.gradle','android/app/src/main/AndroidManifest.xml','android/app/src/main/java/cl/vladimiracunadev/pdfreader/PdfIntentPlugin.java'];
 for(const f of must)await access(f);

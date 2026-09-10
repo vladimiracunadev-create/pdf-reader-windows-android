@@ -161,6 +161,14 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 
 ## 📚 Documentación
 
+- [Documentación integral del sistema](docs/system-documentation/README.md)
+- [Descripción general del sistema](docs/system-documentation/01-system-overview.md)
+- [Arquitectura detallada](docs/system-documentation/03-architecture.md)
+- [Referencia técnica](docs/system-documentation/05-technical-reference.md)
+- [Persistencia y diccionario de datos](docs/system-documentation/07-database.md)
+- [Resumen ejecutivo](docs/system-documentation/17-executive-summary.md)
+- [Guía para nuevos desarrolladores](docs/system-documentation/18-new-developer-guide.md)
+- [Documentos equivalentes en PDF](docs/system-documentation/pdf/)
 - [Índice de documentación](docs/index.md)
 - [Manual de usuario](docs/user-guide.md)
 - [Android: build, firma, instalación y verificación](docs/android.md)

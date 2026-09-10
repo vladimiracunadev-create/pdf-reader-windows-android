@@ -1,3 +1,4 @@
+/** Ejecuta tareas con el wrapper Gradle correcto para Windows o sistemas POSIX. */
 import {spawn} from 'node:child_process';
 
 const tasks=process.argv.slice(2);

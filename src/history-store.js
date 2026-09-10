@@ -1,3 +1,7 @@
+/**
+ * Repositorio IndexedDB del historial local.
+ * Cada operación cierra su conexión y la capa no transmite datos fuera del dispositivo.
+ */
 const DB_NAME='pdf-reader-local';
 const DB_VERSION=1;
 const STORE='documents';
@@ -9,6 +13,7 @@ async function database(){if(!('indexedDB'in globalThis))throw new Error('Este e
 
 export async function listHistory(){const db=await database();try{const transaction=db.transaction(STORE,'readonly');const rows=await requestResult(transaction.objectStore(STORE).getAll());await transactionDone(transaction);return rows.sort((a,b)=>(b.lastOpened||0)-(a.lastOpened||0)).map(({data,...entry})=>({...entry,stored:!!data}));}finally{db.close();}}
 export async function getHistoryDocument(id){const db=await database();try{const transaction=db.transaction(STORE,'readonly');const row=await requestResult(transaction.objectStore(STORE).get(id));await transactionDone(transaction);return row||null;}finally{db.close();}}
+/** Inserta o reemplaza una lectura y luego poda las entradas posteriores a la octava. */
 export async function saveHistoryDocument(entry){const db=await database();try{let transaction=db.transaction(STORE,'readwrite');transaction.objectStore(STORE).put(entry);await transactionDone(transaction);transaction=db.transaction(STORE,'readwrite');const store=transaction.objectStore(STORE);const rows=await requestResult(store.getAll());rows.sort((a,b)=>(b.lastOpened||0)-(a.lastOpened||0));for(const old of rows.slice(MAX_DOCUMENTS))store.delete(old.id);await transactionDone(transaction);}finally{db.close();}}
 export async function updateHistoryDocument(id,patch){const db=await database();try{const transaction=db.transaction(STORE,'readwrite');const store=transaction.objectStore(STORE);const row=await requestResult(store.get(id));if(row)store.put({...row,...patch,id});await transactionDone(transaction);}finally{db.close();}}
 export async function removeHistoryDocument(id){const db=await database();try{const transaction=db.transaction(STORE,'readwrite');transaction.objectStore(STORE).delete(id);await transactionDone(transaction);}finally{db.close();}}

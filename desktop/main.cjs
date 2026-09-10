@@ -1,3 +1,4 @@
+/** Proceso principal Electron: ventana aislada y acceso de solo lectura limitado a rutas .pdf. */
 const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs/promises');

@@ -1,3 +1,4 @@
+/** Compone una salida estática con landing en la raíz y lector bajo /app/. */
 import { cp, mkdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 

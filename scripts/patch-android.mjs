@@ -1,3 +1,4 @@
+/** Sincroniza versión/nombre Android y elimina permisos incompatibles con el alcance local. */
 import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 

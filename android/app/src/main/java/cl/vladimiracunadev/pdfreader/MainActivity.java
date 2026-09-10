@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;
 
+/** Registra el puente PDF y notifica al WebView cuando llega un intent a la instancia activa. */
 public class MainActivity extends BridgeActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {

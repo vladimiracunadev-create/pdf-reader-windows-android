@@ -24,11 +24,13 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 @CapacitorPlugin(name = "PdfIntent")
+/** Adapta intents PDF autorizados y el selector de lector predeterminado al núcleo Web. */
 public class PdfIntentPlugin extends Plugin {
     public static final String SETUP_EXTRA = "cl.vladimiracunadev.pdfreader.DEFAULT_SETUP";
     private static final int MAX_PDF_BYTES = 128 * 1024 * 1024;
 
     @PluginMethod
+    /** Consume una sola vez el ACTION_VIEW actual y limita la copia externa a 128 MiB. */
     public void getPendingPdf(PluginCall call) {
         Intent intent = getActivity().getIntent();
         Uri uri = intent == null ? null : intent.getData();
@@ -69,6 +71,7 @@ public class PdfIntentPlugin extends Plugin {
     }
 
     @PluginMethod
+    /** Abre un PDF temporal para que Android, no la app, permita elegir el handler predeterminado. */
     public void requestDefault(PluginCall call) {
         try {
             File directory = new File(getContext().getCacheDir(), "default-reader");
