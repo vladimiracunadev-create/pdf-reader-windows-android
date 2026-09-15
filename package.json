@@ -38,7 +38,7 @@
     "release:check": "pnpm check && pnpm build:pages"
   },
   "dependencies": {
-    "@capacitor/core": "8.5.0",
+    "@capacitor/core": "8.5.2",
     "@capacitor/share": "8.0.1",
     "pdfjs-dist": "6.3.289"
   },
