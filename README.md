@@ -42,7 +42,7 @@ El PDF se procesa localmente con Mozilla PDF.js. No existe backend, cuenta, publ
 | Permisos | **Cero permisos sensibles o con consentimiento**: sin `INTERNET` ni almacenamiento general |
 | Privacidad | Sin cuentas, anuncios, backend ni telemetría |
 | Interacción | Controles fuera del lienzo, zoom anclado con pinza/doble toque y desplazamiento completo de borde a borde |
-| Continuidad | Historial local de hasta ocho PDF con última página y apertura directa |
+| Continuidad | Historial local de hasta ocho PDF de hasta 24 MiB, con última página y apertura directa |
 | Compartir | Hoja nativa del sistema; WhatsApp recibe solo nombre/progreso, nunca el PDF |
 | Lector predeterminado | Pregunta una vez por versión y guía a elegir **PDF Reader → Siempre** |
 | Integridad | `SHA256SUMS.txt` publicado junto a cada release |
@@ -67,15 +67,17 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.0` puede in
 | 🧭 Navegación | anterior/siguiente, salto directo, miniaturas y swipe Android |
 | 🔎 Búsqueda | extracción de texto por página, snippets y navegación al resultado |
 | 🔍 Vista | pinza, doble toque y botones conservan el punto de lectura; la página ampliada se recorre de borde a borde |
-| 🕘 Continuidad | copia local de hasta ocho PDF recientes, progreso reabrible y borrado explícito |
+| 🕘 Continuidad | copia local de hasta ocho PDF de hasta 24 MiB, progreso reabrible y borrado explícito |
 | 💬 Compartir | hoja nativa Android con WhatsApp u otra app; fallback Web Share/WhatsApp Web |
-| 🧪 Calidad | 9 pruebas unitarias + verificador de estructura/alcance/zoom + tres jobs de CI |
+| 🧪 Calidad | 14 pruebas automatizadas + verificador de estructura/alcance/zoom + tres jobs de CI |
 | 📦 Android | Gradle test + APK debug en CI; APK release firmado y auditado al etiquetar |
 | 🪟 Windows | instalador NSIS y portable generados en runner Windows |
 | 🌐 Web | landing y demo funcional separadas en GitHub Pages |
 | 🔒 Privacidad | cero permisos Android sensibles; Electron aislado; sin red de aplicación ni telemetría |
 
 Las notas verificables de la versión están en [`docs/releases/v0.3.0.md`](docs/releases/v0.3.0.md). La evidencia definitiva la aportan GitHub Actions y los hashes del release, no afirmaciones manuales.
+
+La última validación funcional local, con comandos, flujos observados y límites no ejecutados, está en [`reports/functional-validation-2026-09-23.md`](reports/functional-validation-2026-09-23.md).
 
 ## ✨ Funcionalidades
 
@@ -86,7 +88,7 @@ Las notas verificables de la versión están en [`docs/releases/v0.3.0.md`](docs
 - Rotar en pasos de 90°.
 - Buscar texto por todas las páginas y abrir cada coincidencia.
 - Elegir tema claro u oscuro y usar pantalla completa.
-- Guardar localmente hasta ocho PDF recientes y reabrirlos en su última página.
+- Guardar localmente hasta ocho PDF recientes de hasta 24 MiB y reabrirlos en su última página.
 - Compartir el nombre y progreso de lectura hacia WhatsApp u otra conversación; el archivo no se adjunta.
 - Preguntar una vez por versión si debe ser el lector `.pdf` predeterminado, sin imponer la elección del sistema.
 - Cambiar entre Lector, Historial y About sin controles superpuestos.
@@ -97,7 +99,7 @@ Las notas verificables de la versión están en [`docs/releases/v0.3.0.md`](docs
 
 | Sí | No |
 |---|---|
-| Renderiza el PDF y guarda hasta ocho copias en el historial local | No edita ni sobrescribe el PDF original |
+| Renderiza el PDF y guarda hasta ocho copias de hasta 24 MiB en el historial local | No edita ni sobrescribe el PDF original |
 | Guarda preferencias y progreso en el dispositivo | No sube documentos a una nube |
 | Lee el archivo elegido por la persona | No explora todo el almacenamiento |
 | Busca texto que el PDF expone | No aplica OCR a documentos escaneados |
@@ -117,7 +119,7 @@ Los PDF son contenido no confiable. En Windows, el renderer de Electron usa `con
 |---|---|---|
 | **Experiencia** | Navegación, tema, zoom táctil, miniaturas, búsqueda, historial y About | La barra inferior nunca invade el documento; el zoom no depende del número de páginas |
 | **Motor** | Decodificar, renderizar y extraer texto con PDF.js | El archivo original es de solo lectura y nunca se sobrescribe |
-| **Persistencia local** | Guardar preferencias, progreso y hasta ocho PDF recientes | Todo queda en el dispositivo y puede borrarse desde Historial |
+| **Persistencia local** | Guardar preferencias, progreso y hasta ocho PDF recientes de hasta 24 MiB | Todo queda en el dispositivo y puede borrarse desde Historial |
 | **Android-first** | Recibir intents PDF, ofrecerse como lector predeterminado y abrir la hoja nativa de compartir | Kotlin queda limitado al puente del sistema; la lectura vive en el núcleo común |
 | **Windows** | Ventana Electron, diálogo de archivos, asociación `.pdf` y acceso a configuración predeterminada | Renderer aislado, sin Node y dentro de sandbox |
 | **Entrega** | CI, Pages y release firmado por tag | `pnpm` + lockfile único, checks reproducibles y hashes SHA-256 publicados |
@@ -185,7 +187,7 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 
 - Los PDF con contraseña todavía no tienen un diálogo dedicado.
 - Los documentos escaneados sin capa de texto se pueden leer visualmente, pero no buscar por contenido.
-- Un documento muy grande se carga en memoria y su copia de historial puede superar la cuota local del dispositivo; el lector informa ese caso y mantiene el PDF abierto.
+- Un documento de más de 24 MiB se abre, pero no se duplica en el historial; el lector lo informa para reducir cierres por memoria o cuota local.
 - El instalador Windows no tiene firma comercial Authenticode.
 - Google Play todavía no forma parte de la distribución; Android se entrega mediante APK firmado en GitHub Releases.
 

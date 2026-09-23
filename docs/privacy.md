@@ -9,9 +9,9 @@ PDF Reader funciona localmente. No incorpora cuentas, publicidad, analítica, te
 - contenido y metadatos básicos del PDF elegido por la persona;
 - tema visual;
 - página, zoom, modo de ajuste y rotación asociados a una huella local del documento;
-- hasta ocho copias recientes del PDF dentro de IndexedDB/WebView, junto con nombre, tamaño, fecha de apertura y progreso, para poder reabrirlas.
+- hasta ocho copias recientes de PDF de hasta 24 MiB dentro de IndexedDB/WebView, junto con nombre, tamaño, fecha de apertura y progreso, para poder reabrirlas.
 
-El documento se mantiene en memoria para renderizarse y, por defecto, se copia al historial privado local para poder recuperarlo. La aplicación no modifica el original ni transmite el PDF. La persona puede eliminar una lectura o borrar todo el historial desde la app.
+El documento se mantiene en memoria para renderizarse y, si no supera 24 MiB, se copia al historial privado local para poder recuperarlo. Los documentos mayores se abren sin persistir sus bytes. La aplicación no modifica el original ni transmite el PDF. La persona puede eliminar una lectura o borrar todo el historial desde la app.
 
 ## Android
 

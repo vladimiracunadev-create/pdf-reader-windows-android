@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {clamp,readingAnchorDelta,formatBytes,buildSnippet,highlightSnippet,documentKey,historyId,touchDistance,buildShareText} from '../src/utils.js';
+import test from 'node:test';import assert from 'node:assert/strict';import {clamp,readingAnchorDelta,formatBytes,buildSnippet,highlightSnippet,documentKey,historyId,touchDistance,pageTurnFromSwipe,buildShareText} from '../src/utils.js';
 test('clamp limita valores',()=>{assert.equal(clamp(9,1,5),5);assert.equal(clamp(-1,0,2),0);assert.equal(clamp(1,0,2),1)});
 test('formatBytes es legible',()=>{assert.equal(formatBytes(0),'0 B');assert.equal(formatBytes(1024),'1.0 KB');assert.equal(formatBytes(1048576),'1.0 MB')});
 test('snippet centra coincidencia',()=>{const s=buildSnippet('uno dos tres cuatro cinco','tres',5);assert.match(s,/tres/)});
@@ -8,3 +8,6 @@ test('historyId distingue documentos',()=>{assert.notEqual(historyId({name:'a.pd
 test('touchDistance calcula el gesto sin depender de páginas',()=>{assert.equal(touchDistance({clientX:0,clientY:0},{clientX:3,clientY:4}),5)});
 test('texto para compartir incluye documento y progreso',()=>{const text=buildShareText({name:'manual.pdf'},4,10);assert.match(text,/manual\.pdf/);assert.match(text,/página 4 de 10/);assert.match(text,/solo lectura/)});
 test('zoom conserva el punto de lectura dentro del visor',()=>{assert.equal(readingAnchorDelta(8,957,0,0),8);assert.equal(readingAnchorDelta(8,957,.5,190),296.5);assert.equal(readingAnchorDelta(-182,700,.5,168),0)});
+test('swipe cambia página cuando el documento cabe en pantalla',()=>{assert.equal(pageTurnFromSwipe({dx:-120,dy:12,elapsed:300,scrollWidth:360,clientWidth:360}),1);assert.equal(pageTurnFromSwipe({dx:120,dy:12,elapsed:300,scrollWidth:360,clientWidth:360}),-1)});
+test('swipe ampliado desplaza antes de cambiar página',()=>{assert.equal(pageTurnFromSwipe({dx:-120,dy:5,elapsed:250,scrollLeft:100,clientWidth:360,scrollWidth:800}),0);assert.equal(pageTurnFromSwipe({dx:-120,dy:5,elapsed:250,scrollLeft:440,clientWidth:360,scrollWidth:800}),1);assert.equal(pageTurnFromSwipe({dx:120,dy:5,elapsed:250,scrollLeft:0,clientWidth:360,scrollWidth:800}),-1)});
+test('swipe ignora gestos lentos, cortos o verticales',()=>{assert.equal(pageTurnFromSwipe({dx:-120,dy:5,elapsed:700}),0);assert.equal(pageTurnFromSwipe({dx:-50,dy:2,elapsed:200}),0);assert.equal(pageTurnFromSwipe({dx:-100,dy:90,elapsed:200}),0)});

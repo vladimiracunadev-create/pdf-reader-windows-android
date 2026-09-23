@@ -9,6 +9,20 @@ export function documentKey(file){return `pdf-state:${encodeURIComponent(file.na
 export function historyId(file){return `pdf:${encodeURIComponent(file.name)}:${file.size||0}:${file.lastModified||0}`;}
 /** Distancia euclidiana entre dos contactos táctiles. */
 export function touchDistance(a,b){return Math.hypot(Number(b?.clientX||0)-Number(a?.clientX||0),Number(b?.clientY||0)-Number(a?.clientY||0));}
+/**
+ * Decide si un gesto horizontal debe cambiar de página. Cuando el PDF está
+ * ampliado, primero deja que la persona recorra el ancho y solo cambia al
+ * arrastrar más allá del borde correspondiente.
+ */
+export function pageTurnFromSwipe({dx,dy,elapsed,scrollLeft=0,clientWidth=0,scrollWidth=0}){
+  if(!(elapsed<550&&Math.abs(dx)>85&&Math.abs(dx)>Math.abs(dy)*1.4))return 0;
+  const maxScroll=Math.max(0,Number(scrollWidth)-Number(clientWidth));
+  const position=clamp(Number(scrollLeft)||0,0,maxScroll);
+  const edgeTolerance=3;
+  if(dx<0&&(maxScroll<=edgeTolerance||position>=maxScroll-edgeTolerance))return 1;
+  if(dx>0&&(maxScroll<=edgeTolerance||position<=edgeTolerance))return-1;
+  return 0;
+}
 /** Construye el texto explícito de compartir; nunca incorpora los bytes del PDF. */
 export function buildShareText(file,page,total){const name=file?.name||'un PDF';const progress=total?` (página ${clamp(Number(page)||1,1,total)} de ${total})`:'';return `Estoy leyendo “${name}”${progress} con PDF Reader, un lector local y de solo lectura. https://vladimiracunadev-create.github.io/pdf-reader-windows-android/`;}
 /** Extrae contexto alrededor de la primera coincidencia de búsqueda. */

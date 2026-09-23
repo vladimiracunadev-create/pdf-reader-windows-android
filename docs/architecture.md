@@ -26,7 +26,7 @@ PDF Reader comparte el mismo motor y la misma experiencia en las tres plataforma
 | Componente | Rol | Datos que maneja |
 |---|---|---|
 | `src/app.js` | Orquesta lector, gestos, vistas y capacidades de plataforma | Documento activo y estado de UI |
-| `src/history-store.js` | Encapsula IndexedDB y limita el historial | Bytes, nombre y progreso de hasta ocho PDF |
+| `src/history-store.js` | Encapsula IndexedDB y limita el historial | Bytes, nombre y progreso de hasta ocho PDF de hasta 24 MiB |
 | `src/utils.js` | Funciones puras testeables | Cálculos de zoom, páginas y gestos |
 | `PdfIntentPlugin.java` | Traduce un intent Android en una carga explícita | URI autorizada y bytes del PDF |
 | `desktop/preload.cjs` | Expone IPC mínimo al renderer aislado | Apertura de archivo y preferencias del sistema |
@@ -34,7 +34,7 @@ PDF Reader comparte el mismo motor y la misma experiencia en las tres plataforma
 
 ## Estado local
 
-`localStorage` guarda tema y estado de lectura por huella simple (`nombre + tamaño + mtime`). IndexedDB conserva hasta ocho PDF recientes con metadatos y progreso para reabrirlos en Android, Windows o web. La persona puede eliminar una entrada o borrar el historial completo.
+`localStorage` guarda tema y estado de lectura por huella simple (`nombre + tamaño + mtime`). IndexedDB conserva hasta ocho PDF recientes de hasta 24 MiB con metadatos y progreso para reabrirlos en Android, Windows o web. Los documentos mayores se leen sin duplicarse en el historial. La persona puede eliminar una entrada o borrar el historial completo.
 
 ## Límites
 

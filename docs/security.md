@@ -13,7 +13,7 @@ La selección usa el selector de archivos del sistema. El APK v0.3.0 no declara 
 - no hay cuentas;
 - no hay telemetría;
 - no hay upload automático;
-- las preferencias y hasta ocho PDF del historial quedan localmente en el dispositivo y pueden borrarse desde la app.
+- las preferencias y hasta ocho PDF de hasta 24 MiB del historial quedan localmente en el dispositivo y pueden borrarse desde la app.
 
 ## Dependencias
 CI debe revisar actualizaciones de PDF.js, Electron y Capacitor antes de cada release. Un cambio mayor requiere ADR o actualización de arquitectura.

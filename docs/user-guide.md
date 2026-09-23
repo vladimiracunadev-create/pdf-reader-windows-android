@@ -31,9 +31,9 @@ Pulsa `⌕` o `Ctrl+F`. La búsqueda indica las páginas que contienen la palabr
 El botón de luna cambia el color de la interfaz. Está en la cabecera y no cubre los controles inferiores. La página PDF mantiene sus colores originales para no alterar visualmente el documento.
 
 ## Historial
-La pestaña **Historial** conserva hasta ocho PDF recientes dentro del almacenamiento privado de la app y recuerda la última página. Pulsa **Continuar** para reabrir uno o **Eliminar** para quitar solo esa lectura. **Borrar historial** elimina todas las copias y el progreso local; no borra los originales.
+La pestaña **Historial** conserva hasta ocho PDF recientes de hasta 24 MiB dentro del almacenamiento privado de la app y recuerda la última página. Pulsa **Continuar** para reabrir uno o **Eliminar** para quitar solo esa lectura. **Borrar historial** elimina todas las copias y el progreso local; no borra los originales.
 
-Si el dispositivo no tiene cuota suficiente para copiar un PDF grande, la lectura sigue funcionando y la app avisa que no podrá reabrirlo desde el historial.
+Si un PDF supera 24 MiB o el dispositivo no tiene cuota suficiente para copiarlo, la lectura sigue funcionando y la app avisa que no podrá reabrirlo desde el historial.
 
 ## Compartir hacia WhatsApp
 Con un PDF abierto, pulsa **Compartir** en la navegación inferior. Android abre su hoja nativa: elige WhatsApp y luego la conversación. Se comparte un mensaje con el nombre del documento, página actual y enlace del proyecto; el PDF no se adjunta ni se envía automáticamente.

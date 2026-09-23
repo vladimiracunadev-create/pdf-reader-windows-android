@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased]
+### Fixed
+- Búsqueda y miniaturas permanecen abiertas al tocarlas: la navegación ya no registra por error el `body[data-view]` ni captura todos los clics.
+- Las solicitudes de render, búsqueda, navegación y zoom se invalidan correctamente cuando una operación más reciente las reemplaza.
+- Abrir un PDF dañado conserva el documento que ya estaba visible y muestra un error recuperable.
+- El swipe de una página ampliada desplaza el contenido antes de cambiar de página y solo navega al alcanzar el borde correspondiente.
+- Historial y About crean entradas de navegación para que Atrás regrese al lector en vez de cerrar directamente la aplicación.
+
+### Changed
+- Los PDF mayores de 24 MiB se abren sin duplicar sus bytes en IndexedDB, reduciendo presión de memoria y fallos de cuota en móviles.
+- La suite Node aumenta de 9 a 14 pruebas y añade contratos contra la captura global de clics y la persistencia de documentos grandes.
+- Se documenta la validación funcional ejecutada y se separan explícitamente las pruebas que requieren un dispositivo Android conectado.
+
 ## [0.3.0] - 2026-09-07
 ### Fixed
 - Las páginas ampliadas ya no pierden ni vuelven inaccesible el borde izquierdo en pantallas móviles o estrechas.
