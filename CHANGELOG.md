@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 ### Fixed
+- La generación de la documentación PDF es determinista y deja de modificar binarios sin cambios de contenido.
+- Abrir un segundo PDF ya reemplaza correctamente el documento anterior: se destruye la tarea de carga de PDF.js en vez de invocar un método inexistente sobre el proxy.
+- Las aperturas concurrentes descartan resultados obsoletos para que una carga anterior no sobrescriba la selección más reciente.
+- Los errores de acceso, seguridad o cuota de `localStorage` ya no impiden iniciar ni continuar la lectura.
+- Página, zoom, ajuste y rotación se guardan también al ocultar o abandonar la aplicación.
 - Búsqueda y miniaturas permanecen abiertas al tocarlas: la navegación ya no registra por error el `body[data-view]` ni captura todos los clics.
 - Las solicitudes de render, búsqueda, navegación y zoom se invalidan correctamente cuando una operación más reciente las reemplaza.
 - Abrir un PDF dañado conserva el documento que ya estaba visible y muestra un error recuperable.
@@ -10,7 +15,7 @@
 
 ### Changed
 - Los PDF mayores de 24 MiB se abren sin duplicar sus bytes en IndexedDB, reduciendo presión de memoria y fallos de cuota en móviles.
-- La suite Node aumenta de 9 a 14 pruebas y añade contratos contra la captura global de clics y la persistencia de documentos grandes.
+- La suite Node aumenta de 9 a 21 pruebas y añade regresiones para segunda apertura, concurrencia, ciclo de vida y almacenamiento bloqueado.
 - Se documenta la validación funcional ejecutada y se separan explícitamente las pruebas que requieren un dispositivo Android conectado.
 
 ## [0.3.0] - 2026-09-07

@@ -69,7 +69,7 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.0` puede in
 | 🔍 Vista | pinza, doble toque y botones conservan el punto de lectura; la página ampliada se recorre de borde a borde |
 | 🕘 Continuidad | copia local de hasta ocho PDF de hasta 24 MiB, progreso reabrible y borrado explícito |
 | 💬 Compartir | hoja nativa Android con WhatsApp u otra app; fallback Web Share/WhatsApp Web |
-| 🧪 Calidad | 14 pruebas automatizadas + verificador de estructura/alcance/zoom + tres jobs de CI |
+| 🧪 Calidad | 21 pruebas automatizadas + verificador de estructura/alcance/zoom + tres jobs de CI |
 | 📦 Android | Gradle test + APK debug en CI; APK release firmado y auditado al etiquetar |
 | 🪟 Windows | instalador NSIS y portable generados en runner Windows |
 | 🌐 Web | landing y demo funcional separadas en GitHub Pages |
@@ -77,7 +77,7 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.0` puede in
 
 Las notas verificables de la versión están en [`docs/releases/v0.3.0.md`](docs/releases/v0.3.0.md). La evidencia definitiva la aportan GitHub Actions y los hashes del release, no afirmaciones manuales.
 
-La última validación funcional local, con comandos, flujos observados y límites no ejecutados, está en [`reports/functional-validation-2026-09-23.md`](reports/functional-validation-2026-09-23.md).
+La validación funcional inicial está en [`reports/functional-validation-2026-09-23.md`](reports/functional-validation-2026-09-23.md). La aplicación posterior de la suite preliminar —incluido el defecto de segunda apertura, su corrección y la repetición real— está en [`reports/preliminary-product-validation-2026-09-23.md`](reports/preliminary-product-validation-2026-09-23.md).
 
 ## ✨ Funcionalidades
 

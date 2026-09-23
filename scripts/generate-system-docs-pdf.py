@@ -303,7 +303,7 @@ def generate(source: Path) -> Path:
     doc = BaseDocTemplate(
         str(target), pagesize=pagesize, leftMargin=left, rightMargin=right,
         topMargin=top, bottomMargin=bottom, title=title, author="PDF Reader project",
-        subject="Documentación integral del sistema",
+        subject="Documentación integral del sistema", invariant=1,
     )
     frame = Frame(left, bottom, width - left - right, height - top - bottom, id="normal")
     doc.addPageTemplates(PageTemplate(id="docs", frames=frame, onPage=lambda canvas, current: header_footer(canvas, current, title)))
