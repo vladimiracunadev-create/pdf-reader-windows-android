@@ -42,7 +42,7 @@ pnpm start:desktop
 pnpm build:windows
 ```
 
-El primero abre Electron; el segundo genera NSIS y portable en `release/windows/`, sin Authenticode en `0.3.0`.
+El primero abre Electron; el segundo genera NSIS y portable en `release/windows/`, sin Authenticode en `0.3.1`.
 
 ## Android
 
@@ -63,7 +63,7 @@ pnpm build:pages
 pnpm release:check
 ```
 
-`check` ejecuta 9 pruebas Node y `scripts/verify-repo.mjs`. `release:check` añade el build de Pages. El 2026-09-10, instalación congelada, `check` y `build:pages` finalizaron correctamente.
+`check` ejecuta 24 pruebas Node y `scripts/verify-repo.mjs`. `release:check` añade el build de Pages. El 2026-09-24, la instalación congelada y ambos gates finalizaron correctamente; CI repitió Web, Android y Windows sobre el commit etiquetado.
 
 ## Producción y despliegue
 

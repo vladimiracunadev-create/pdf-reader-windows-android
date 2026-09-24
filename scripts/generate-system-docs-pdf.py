@@ -42,8 +42,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs" / "system-documentation"
 OUTPUT = SOURCE / "pdf"
 VERSION = "0.3.1"
-COMMIT = "265b122"
-ANALYSIS_DATE = "2026-09-10"
+COMMIT = "e22b730"
+ANALYSIS_DATE = "2026-09-24"
 
 
 def register_fonts() -> tuple[str, str, str]:

@@ -12,7 +12,7 @@ Este registro describe el estado observado; no implica que los hallazgos se haya
 | `app.js` concentra UI, dominio y plataforma | Media | Alta | módulo denso con unas 40 funciones | separar controladores por responsabilidad | P2 |
 | Colisión de identidad por metadatos | Media | Baja/Media | `documentKey`, `historyId` | hash parcial/UUID por documento | P2 |
 | Guardado y poda en dos transacciones | Baja | Baja | `saveHistoryDocument` | una transacción o cursor por índice | P3 |
-| Miniaturas no virtualizadas | Media | Alta en PDF largo | botón por página, canvas hasta 120 | virtualización/cancelación | P2 |
+| Miniaturas cargadas por lotes pero retenidas mientras el panel sigue abierto | Media | Media en PDF largo | ventanas de 60 y cancelación al cerrar | reciclar lotes ya lejanos y medir memoria | P2 |
 | Búsqueda secuencial completa | Media | Alta en PDF largo | `searchDocument` | progreso cancelable/worker/índice | P2 |
 | Sin diálogo de contraseña | Media | Media | `friendlyPdfError` | flujo dedicado sin registrar secreto | P2 |
 | Sin OCR | Baja | Media | especificación/no objetivo | mantener límite visible o evaluar OCR local | P3 |
@@ -25,7 +25,7 @@ Este registro describe el estado observado; no implica que los hallazgos se haya
 
 ## Problemas confirmados frente a riesgos
 
-Confirmados: cobertura funcional limitada, prueba Android trivial, falta de Authenticode, falta de diálogo de contraseña, ausencia de OCR, miniaturas no virtualizadas y marcadores de versión duplicados. Potenciales: explotación de parsers, colisiones de identidad, exposición por backup y agotamiento de memoria; requieren pruebas para cuantificar impacto.
+Confirmados: faltan E2E continuos y pruebas físicas Android, la prueba Java sigue siendo básica, no hay Authenticode, diálogo de contraseña ni OCR, y las miniaturas ya generadas se retienen mientras el panel permanece abierto. Los marcadores de versión están distribuidos, aunque el gate y el sondeo de versión reducen el riesgo de drift. Potenciales: explotación de parsers, colisiones de identidad, exposición por backup y agotamiento de memoria; requieren pruebas para cuantificar impacto.
 
 ## Módulos obsoletos o duplicados
 

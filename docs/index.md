@@ -21,6 +21,7 @@
 - [AI policy](ai-policy.md)
 - [ADR 0001](adr/0001-cross-platform-shells.md)
 - [Notas y verificación v0.3.1](releases/v0.3.1.md)
+- [Evidencia de publicación v0.3.1](../reports/release-evidence-v0.3.1.md)
 - [Notas históricas v0.3.0](releases/v0.3.0.md)
 - [Validación histórica v0.2.0](../reports/validation-v0.2.0.md)
 - [Validación histórica v0.1.0](../reports/validation-v0.1.0.md)

@@ -10,7 +10,7 @@ Ejecuta `pnpm android:init`. Capacitor generará el proyecto nativo.
 Instala Android SDK 36 y define `ANDROID_HOME`/`ANDROID_SDK_ROOT` según tu entorno.
 
 ## Windows muestra advertencia al instalar
-El MVP no está firmado digitalmente. GitHub Release es el canal de distribución previsto para esta fase.
+Los ejecutables Windows no están firmados con Authenticode. GitHub Release es el canal de distribución previsto para esta fase; contrasta el SHA-256 con `SHA256SUMS.txt`. El APK Android sí tiene firma criptográfica y se verifica por separado.
 
 ## PDF protegido por contraseña
 La v0.3.1 no incluye diálogo de contraseña. Usa otro lector o una copia permitida sin protección.

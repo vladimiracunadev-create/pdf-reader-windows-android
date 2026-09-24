@@ -1,9 +1,9 @@
 # Documentación integral de PDF Reader
 
 **Sistema:** PDF Reader
-**Versión analizada:** `0.3.0` (`265b122bca105e9605a4fe36c7ac44f03cb45067`)
-**Fecha del análisis:** 2026-09-10
-**Estado:** validado contra código, configuración, pruebas y build local
+**Versión analizada:** `0.3.1` (`e22b7307a7f49c2644415b2c2a447d85054854e6`)
+**Fecha de la revisión:** 2026-09-24
+**Estado:** validado contra código, configuración, pruebas, builds locales y release remoto
 
 Esta carpeta explica el producto desde tres perspectivas: visión general para personas no técnicas, referencia para desarrollo y operación, y trazabilidad profunda desde una función de usuario hasta el código y sus pruebas. La fuente primaria es el repositorio; cuando una afirmación procede de una inferencia se identifica expresamente.
 
@@ -49,7 +49,7 @@ Esta carpeta explica el producto desde tres perspectivas: visión general para p
 
 ## Evidencia de esta revisión
 
-Se analizaron los 152 archivos versionados presentes en el commit base `265b122`, incluidos 37 Markdown preexistentes, JavaScript del lector, HTML/CSS, dos módulos Electron, scripts, cuatro clases/pruebas Java, Gradle, manifiesto Android y tres workflows principales. Se ejecutaron `pnpm install --frozen-lockfile`, `pnpm check` y `pnpm build:pages`: 9 pruebas aprobadas, verificador aprobado y build Web/Pages correcto.
+Se revisaron el núcleo JavaScript del lector, HTML/CSS, adaptadores Electron y Android, persistencia, scripts, Gradle, manifiesto Android y los workflows de CI/Pages/release. En `v0.3.1` aprobaron 24 pruebas Node, el verificador del repositorio, el build de Pages, el APK debug local y los tres jobs de CI. El workflow remoto del tag publicó APK firmado, instalador, portable y checksums; la auditoría exacta se conserva en [`reports/release-evidence-v0.3.1.md`](../../reports/release-evidence-v0.3.1.md).
 
 ## Pendientes que requieren validación externa
 

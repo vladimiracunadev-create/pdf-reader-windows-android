@@ -14,7 +14,7 @@ Un mismo núcleo HTML/CSS/JavaScript se empaqueta con Capacitor para Android y E
 
 ## Estado actual
 
-La versión analizada es `0.3.0`, commit `265b122`. El 2026-09-10 aprobaron 9 pruebas unitarias, el verificador del contrato y el build Web/Pages. `main` está protegida con PR, aprobación y tres checks obligatorios. El repositorio contiene documentación de producto, seguridad, releases y operación, ampliada por este dossier integral.
+La versión analizada es `0.3.1`, commit `e22b730`. El 2026-09-24 aprobaron 24 pruebas Node, el verificador, Pages, el APK debug y los paquetes Windows; el workflow del tag publicó y auditó APK firmado, instalador, portable y checksums. `main` usa tres checks de CI. La evidencia funcional cubre PDF sintéticos de 1, 12 y 1.000 páginas; la interacción física Android permanece pendiente y no se infiere del build.
 
 ## Fortalezas
 
@@ -35,7 +35,7 @@ Los PDF se cargan completos en memoria y las aperturas Android por intent usan B
 1. medir memoria y establecer límites por plataforma;
 2. probar/decidir la política de backup Android del historial;
 3. incorporar E2E Web/Electron y pruebas instrumentadas reales;
-4. virtualizar miniaturas y hacer búsqueda cancelable;
+4. reciclar miniaturas ya lejanas y medir memoria en documentos gigantes;
 5. añadir contraseñas PDF y mejorar accesibilidad;
 6. evaluar Authenticode y canales de tienda sin romper la promesa de privacidad.
 

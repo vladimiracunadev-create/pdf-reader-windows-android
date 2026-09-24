@@ -77,6 +77,8 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.1` puede in
 
 Las notas verificables de la versión están en [`docs/releases/v0.3.1.md`](docs/releases/v0.3.1.md). La evidencia definitiva la aportan GitHub Actions y los hashes del release, no afirmaciones manuales.
 
+La auditoría posterior a la publicación —commit/tag, jobs remotos, artefactos descargados, checksums, firma Android y límites no ejecutados— está en [`reports/release-evidence-v0.3.1.md`](reports/release-evidence-v0.3.1.md).
+
 La validación funcional inicial está en [`reports/functional-validation-2026-09-23.md`](reports/functional-validation-2026-09-23.md). La aplicación posterior de la suite preliminar —incluido el defecto de segunda apertura, su corrección y la repetición real— está en [`reports/preliminary-product-validation-2026-09-23.md`](reports/preliminary-product-validation-2026-09-23.md).
 
 La validación ampliada de navegación sobre PDF de 1, 12 y 1.000 páginas, con comparación funcional contra lectores consolidados y evidencia antes/después, está en [`reports/functional-reading-validation-2026-09-24.md`](reports/functional-reading-validation-2026-09-24.md).
