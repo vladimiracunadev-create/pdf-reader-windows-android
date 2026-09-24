@@ -55,7 +55,7 @@ reports/             Evidencia histórica de validación
 
 ## Pruebas
 
-`test/utils.test.mjs` contiene 9 pruebas para límites, formato, snippets, escape HTML, identidad de documentos, distancia táctil, compartir y ancla de zoom. Android aporta una prueba instrumentada del application ID y una prueba plantilla `additionIsCorrect`; esta última es trivial y se considera deuda.
+`test/utils.test.mjs` contiene 14 pruebas para límites, formato, snippets, escape HTML, identidad de documentos, distancia táctil, compartir, ancla de zoom, swipe y ventanas de miniaturas. `test/app-contract.test.mjs` contiene 6 contratos y `test/storage.test.mjs`, 4 casos defensivos: 24 pruebas Node en total. Android aporta una prueba instrumentada del application ID y una prueba plantilla `additionIsCorrect`; esta última es trivial y se considera deuda.
 
 ## Configuración y documentación
 

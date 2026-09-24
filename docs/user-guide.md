@@ -9,7 +9,9 @@ La primera vez que abres cada versión instalada aparece una pregunta. Pulsa **C
 El sistema operativo es quien guarda o cambia esta preferencia; PDF Reader nunca la impone silenciosamente.
 
 ## Navegar
-Usa `‹` y `›`, escribe una página concreta o abre el panel de miniaturas. En Android puedes deslizar horizontalmente para avanzar o retroceder.
+Usa `‹` y `›`, escribe una página concreta y confirma con **Enter**, o abre el panel de miniaturas. En documentos extensos, las miniaturas se muestran en lotes de 60 con botones para recorrer los lotes siguientes y anteriores.
+
+En Android puedes deslizar horizontalmente para avanzar o retroceder. Si ampliaste la página y tiene desplazamiento horizontal, el primer gesto recorre el contenido: solo se cambia de página cuando el gesto siguiente comienza en el borde correspondiente.
 
 ## Zoom
 - `−`: alejar.

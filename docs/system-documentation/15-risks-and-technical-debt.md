@@ -8,7 +8,7 @@ Este registro describe el estado observado; no implica que los hallazgos se haya
 | PDF.js/Electron/WebView procesan contenido hostil | Alta | Media | arquitectura y dependencias | actualizaciones rápidas, corpus/fuzz, CSP | P1 |
 | Historial local sin cifrado/expiración | Alta para datos sensibles | Media | IndexedDB guarda Blob | política de retención y advertencia clara | P1 |
 | `android:allowBackup=true` | Alta para privacidad | Variable | `AndroidManifest.xml` | decidir si excluir datos y probar backups | P1 |
-| Cobertura centrada en utilidades | Media | Alta | 9 tests; sin E2E | Playwright/Web, Electron y Android real | P1 |
+| Cobertura centrada en utilidades/contratos | Media | Alta | 24 tests; recorrido Web manual, sin E2E CI | Playwright/Web, Electron y Android real | P1 |
 | `app.js` concentra UI, dominio y plataforma | Media | Alta | módulo denso con unas 40 funciones | separar controladores por responsabilidad | P2 |
 | Colisión de identidad por metadatos | Media | Baja/Media | `documentKey`, `historyId` | hash parcial/UUID por documento | P2 |
 | Guardado y poda en dos transacciones | Baja | Baja | `saveHistoryDocument` | una transacción o cursor por índice | P3 |

@@ -14,14 +14,23 @@ export function touchDistance(a,b){return Math.hypot(Number(b?.clientX||0)-Numbe
  * ampliado, primero deja que la persona recorra el ancho y solo cambia al
  * arrastrar más allá del borde correspondiente.
  */
-export function pageTurnFromSwipe({dx,dy,elapsed,scrollLeft=0,clientWidth=0,scrollWidth=0}){
+export function pageTurnFromSwipe({dx,dy,elapsed,startScrollLeft=0,clientWidth=0,scrollWidth=0}){
   if(!(elapsed<550&&Math.abs(dx)>85&&Math.abs(dx)>Math.abs(dy)*1.4))return 0;
   const maxScroll=Math.max(0,Number(scrollWidth)-Number(clientWidth));
-  const position=clamp(Number(scrollLeft)||0,0,maxScroll);
+  const position=clamp(Number(startScrollLeft)||0,0,maxScroll);
   const edgeTolerance=3;
   if(dx<0&&(maxScroll<=edgeTolerance||position>=maxScroll-edgeTolerance))return 1;
   if(dx>0&&(maxScroll<=edgeTolerance||position<=edgeTolerance))return-1;
   return 0;
+}
+/** Devuelve una ventana acotada y navegable para documentos con muchas páginas. */
+export function thumbnailPageRange(total,current,limit=60,startPage=null){
+  const count=Math.max(0,Math.floor(Number(total)||0));if(!count)return{start:0,end:0};
+  const size=Math.max(1,Math.min(count,Math.floor(Number(limit)||60)));
+  const selected=clamp(Math.floor(Number(current)||1),1,count);
+  const requested=startPage!==null&&startPage!==undefined&&Number.isFinite(Number(startPage))?Math.floor(Number(startPage)):selected-Math.floor(size/2);
+  const start=clamp(requested,1,Math.max(1,count-size+1));
+  return{start,end:start+size-1};
 }
 /** Construye el texto explícito de compartir; nunca incorpora los bytes del PDF. */
 export function buildShareText(file,page,total){const name=file?.name||'un PDF';const progress=total?` (página ${clamp(Number(page)||1,1,total)} de ${total})`:'';return `Estoy leyendo “${name}”${progress} con PDF Reader, un lector local y de solo lectura. https://vladimiracunadev-create.github.io/pdf-reader-windows-android/`;}

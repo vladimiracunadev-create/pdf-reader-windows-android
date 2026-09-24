@@ -21,4 +21,4 @@ El PDF se mantiene en memoria para render y, hasta 24 MiB, puede persistirse en 
 - PDFs cifrados con contraseña sin diálogo dedicado en el MVP.
 
 ## Recomendación siguiente
-Mantener pruebas físicas de pinza, historial, rotación de pantalla y hoja de compartir en varios WebView; avanzar a miniaturas virtualizadas y diálogo de contraseña sin ampliar el alcance de edición.
+Mantener pruebas físicas de pinza, historial, rotación de pantalla y hoja de compartir en varios WebView; ampliar la navegación semántica y añadir diálogo de contraseña sin aumentar el alcance de edición. Las miniaturas ya se cargan bajo demanda en ventanas de 60 páginas, aunque todavía falta medir memoria en hardware Android de gama baja.

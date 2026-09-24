@@ -4,7 +4,7 @@
 
 | Gate | Herramienta | Cobertura observable |
 |---|---|---|
-| Unitarias y contratos Web | Node `--test` | 21 casos de utilidades, interacción, ciclo de vida y almacenamiento defensivo |
+| Unitarias y contratos Web | Node `--test` | 24 casos de utilidades, interacción, ciclo de vida y almacenamiento defensivo |
 | Contrato repositorio | `verify-repo.mjs` | estructura, alcance read-only, zoom, versión, permisos y workflows |
 | Build Web/Pages | scripts Node | copia PDF.js y composición landing+demo |
 | Android unit | Gradle/JUnit | prueba trivial de plantilla |
@@ -15,7 +15,19 @@
 | Release | Ubuntu+Windows | versión, firma APK, contenido y checksums |
 | Documentación integral | `verify-system-docs.mjs` | 20 Markdown/PDF, enlaces, tablas y UTF-8 |
 
-## Resultado de esta ejecución
+## Resultado actual
+
+El 2026-09-24, después de corregir navegación táctil, salto directo y carga de miniaturas para documentos gigantes, se obtuvo:
+
+```text
+CI=true pnpm test                     -> 24/24 pruebas
+pnpm build:web                        -> dist generado
+Prueba Web interactiva                -> PDF de 1, 12 y 1.000 páginas aprobados
+```
+
+El detalle observable, incluidos resultados de navegación, búsqueda, error recuperable y viewport móvil, está en `reports/functional-reading-validation-2026-09-24.md`.
+
+## Ejecución preliminar anterior
 
 El 2026-09-23 se aplicó la suite preliminar de producto sobre Web local. La ejecución fresca posterior a las correcciones obtuvo:
 
@@ -43,7 +55,7 @@ El primer intento sin `CI=true` no ejecutó tests porque pnpm no podía confirma
 
 ## Casos cubiertos
 
-`utils.test.mjs` valida cálculos, formato, snippets seguros, identidad, gestos, compartir, ancla de zoom y swipe. `app-contract.test.mjs` protege navegación, documentos grandes, segunda apertura, concurrencia y guardado en cambios de ciclo de vida. `storage.test.mjs` comprueba lectura/escritura normal y degradación ante `SecurityError` o cuota. `verify-repo` confirma marcadores del layout, ausencia de funciones de edición, versión Android, permisos prohibidos, asociación PDF, release firmado y Pages.
+`utils.test.mjs` contiene 14 casos y valida cálculos, formato, snippets seguros, identidad, gestos, compartir, ancla de zoom, borde inicial del swipe y ventanas de miniaturas. `app-contract.test.mjs` contiene 6 casos y protege navegación, documentos grandes, segunda apertura, concurrencia, ciclo de vida y confirmación de página con Enter. `storage.test.mjs` contiene 4 casos de lectura/escritura normal y degradación ante `SecurityError` o cuota. `verify-repo` confirma marcadores del layout, ausencia de funciones de edición, versión Android, permisos prohibidos, asociación PDF, release firmado y Pages.
 
 ## Cobertura faltante priorizada
 
@@ -51,7 +63,7 @@ El primer intento sin `CI=true` no ejecutó tests porque pnpm no podía confirma
 2. **Alta:** pruebas Android reales para intent, pinza, rotación, background/restore y compartir.
 3. **Alta:** pruebas Electron del preload/IPC, asociación `.pdf` y rutas inválidas.
 4. **Media:** IndexedDB: poda a ocho, transacciones fallidas, cuota y migraciones; `localStorage` bloqueado sí dispone de regresiones unitarias.
-5. **Media:** PDF cifrado, corrupto, enorme, sin texto, con CMaps y muchas páginas.
+5. **Media:** PDF cifrado, sin texto, con CMaps y archivos enormes por bytes; PDF corrupto y de 1.000 páginas sí tienen recorrido Web ejecutado.
 6. **Media:** accesibilidad automatizada y manual con lector de pantalla.
 7. **Baja:** reemplazar `additionIsCorrect` por pruebas del plugin nativo.
 
@@ -65,4 +77,4 @@ El `spec/spec.md` exige tests Node, verificación, build Web, packaging Windows,
 
 ## Datos de prueba
 
-No se versionan PDF privados. `scripts/create-smoke-pdf.mjs` crea un PDF sintético de una página. Los informes `reports/validation-v0.*.md` conservan evidencia histórica, no sustituyen una ejecución actual.
+No se versionan PDF privados. `scripts/create-smoke-pdf.mjs` crea PDF sintéticos deterministas de 1 a 2.000 páginas; las salidas viven en `reports/smoke/` y están ignoradas por Git. Los informes `reports/validation-v0.*.md` conservan evidencia histórica, no sustituyen una ejecución actual.

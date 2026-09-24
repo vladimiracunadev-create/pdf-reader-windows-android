@@ -11,11 +11,16 @@
 - Las solicitudes de render, búsqueda, navegación y zoom se invalidan correctamente cuando una operación más reciente las reemplaza.
 - Abrir un PDF dañado conserva el documento que ya estaba visible y muestra un error recuperable.
 - El swipe de una página ampliada desplaza el contenido antes de cambiar de página y solo navega al alcanzar el borde correspondiente.
+- El swipe evalúa el borde donde comenzó el gesto; llegar al borde durante el mismo arrastre ya no cambia de página accidentalmente.
+- El salto directo confirma el número con Enter y mantiene sincronizados campo, estado interno y navegación posterior.
+- Abrir otro documento cierra paneles antiguos para que búsqueda y miniaturas no queden vacíos o desfasados.
 - Historial y About crean entradas de navegación para que Atrás regrese al lector en vez de cerrar directamente la aplicación.
 
 ### Changed
 - Los PDF mayores de 24 MiB se abren sin duplicar sus bytes en IndexedDB, reduciendo presión de memoria y fallos de cuota en móviles.
-- La suite Node aumenta de 9 a 21 pruebas y añade regresiones para segunda apertura, concurrencia, ciclo de vida y almacenamiento bloqueado.
+- Las miniaturas se construyen al abrir el panel y en lotes navegables de 60, evitando trabajo proporcional a miles de páginas durante la apertura.
+- El generador sintético acepta de 1 a 2.000 páginas para pruebas reproducibles de documentos pequeños y gigantes.
+- La suite Node aumenta de 21 a 24 pruebas y añade regresiones para borde táctil, salto con Enter y miniaturas acotadas.
 - Se documenta la validación funcional ejecutada y se separan explícitamente las pruebas que requieren un dispositivo Android conectado.
 
 ## [0.3.0] - 2026-09-07

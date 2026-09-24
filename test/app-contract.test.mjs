@@ -32,3 +32,10 @@ test('el ciclo de vida conserva el estado antes de ocultar o cerrar',async()=>{
   assert.match(source,/addEventListener\('pagehide',saveReadingState\)/);
   assert.match(source,/visibilityState==='hidden'/);
 });
+
+test('el salto directo confirma la página con Enter',async()=>{
+  const source=await readFile(new URL('../src/app.js',import.meta.url),'utf8');
+  assert.match(source,/pageInput\.addEventListener\('keydown'/);
+  assert.match(source,/event\.key==='Enter'/);
+  assert.match(source,/goPage\(els\.pageInput\.value\)/);
+});

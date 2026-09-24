@@ -14,5 +14,5 @@ Principios para usuario novato:
 ## Futuras mejoras
 - lectura por voz mediante APIs de accesibilidad;
 - marcadores locales explícitos (el historial ya conserva la última página);
-- miniaturas virtualizadas para documentos de cientos de páginas;
+- tabla de contenido y marcadores del propio PDF para navegación semántica;
 - reflow/text mode para documentos compatibles.

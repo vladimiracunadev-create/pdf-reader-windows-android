@@ -64,12 +64,12 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.0` puede in
 | Superficie | Evidencia |
 |---|---|
 | 📄 Lectura | PDF.js `6.3.289`, worker separado, CMaps, fuentes estándar y decodificadores WASM empaquetados |
-| 🧭 Navegación | anterior/siguiente, salto directo, miniaturas y swipe Android |
+| 🧭 Navegación | anterior/siguiente, salto directo con Enter, miniaturas por lotes y swipe Android sin saltos al llegar al borde |
 | 🔎 Búsqueda | extracción de texto por página, snippets y navegación al resultado |
 | 🔍 Vista | pinza, doble toque y botones conservan el punto de lectura; la página ampliada se recorre de borde a borde |
 | 🕘 Continuidad | copia local de hasta ocho PDF de hasta 24 MiB, progreso reabrible y borrado explícito |
 | 💬 Compartir | hoja nativa Android con WhatsApp u otra app; fallback Web Share/WhatsApp Web |
-| 🧪 Calidad | 21 pruebas automatizadas + verificador de estructura/alcance/zoom + tres jobs de CI |
+| 🧪 Calidad | 24 pruebas automatizadas + verificador de estructura/alcance/zoom + tres jobs de CI |
 | 📦 Android | Gradle test + APK debug en CI; APK release firmado y auditado al etiquetar |
 | 🪟 Windows | instalador NSIS y portable generados en runner Windows |
 | 🌐 Web | landing y demo funcional separadas en GitHub Pages |
@@ -79,11 +79,13 @@ Las notas verificables de la versión están en [`docs/releases/v0.3.0.md`](docs
 
 La validación funcional inicial está en [`reports/functional-validation-2026-09-23.md`](reports/functional-validation-2026-09-23.md). La aplicación posterior de la suite preliminar —incluido el defecto de segunda apertura, su corrección y la repetición real— está en [`reports/preliminary-product-validation-2026-09-23.md`](reports/preliminary-product-validation-2026-09-23.md).
 
+La validación ampliada de navegación sobre PDF de 1, 12 y 1.000 páginas, con comparación funcional contra lectores consolidados y evidencia antes/después, está en [`reports/functional-reading-validation-2026-09-24.md`](reports/functional-reading-validation-2026-09-24.md).
+
 ## ✨ Funcionalidades
 
 - Abrir PDF local desde el selector del sistema.
-- Navegar a la página anterior, siguiente o a un número exacto.
-- Recorrer miniaturas y abrir una página desde ellas.
+- Navegar a la página anterior, siguiente o a un número exacto confirmado con Enter.
+- Recorrer miniaturas en lotes de 60 y abrir cualquier página sin construir miles de nodos al cargar.
 - Ampliar con pinza, doble toque o botones sin perder el punto de lectura y recorrer toda la página, incluidos ambos bordes.
 - Rotar en pasos de 90°.
 - Buscar texto por todas las páginas y abrir cada coincidencia.
@@ -92,7 +94,7 @@ La validación funcional inicial está en [`reports/functional-validation-2026-0
 - Compartir el nombre y progreso de lectura hacia WhatsApp u otra conversación; el archivo no se adjunta.
 - Preguntar una vez por versión si debe ser el lector `.pdf` predeterminado, sin imponer la elección del sistema.
 - Cambiar entre Lector, Historial y About sin controles superpuestos.
-- Deslizar horizontalmente para cambiar de página en Android.
+- Deslizar horizontalmente para cambiar de página en Android; si la página está ampliada, el gesto debe comenzar en el borde para avanzar o retroceder.
 - Arrastrar archivos, usar atajos y asociar `.pdf` en Windows.
 
 ## 🔒 Qué hace y qué no hace
@@ -193,7 +195,7 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 
 ## 🗺️ Próximo tramo
 
-El próximo tramo prioriza diálogo de contraseña, miniaturas virtualizadas y más pruebas instrumentadas en dispositivos físicos. Edición, firma, anotaciones y sincronización en nube siguen fuera del alcance base.
+El próximo tramo prioriza diálogo de contraseña, tabla de contenido/marcadores y más pruebas instrumentadas en dispositivos físicos. Edición, firma, anotaciones y sincronización en nube siguen fuera del alcance base.
 
 ## 📄 Licencias
 
