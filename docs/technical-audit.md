@@ -1,4 +1,4 @@
-# Technical Audit · v0.3.0
+# Technical Audit · v0.3.1
 
 ## Superficie
 El renderer carece de acceso Node directo. Electron opera con aislamiento de contexto y sandbox. La lectura desktop se expone mediante IPC limitado a archivos `.pdf`.
@@ -16,7 +16,7 @@ El PDF se mantiene en memoria para render y, hasta 24 MiB, puede persistirse en 
 ## Riesgos conocidos
 - consumo de memoria con PDF de gran tamaño;
 - cuota local variable incluso dentro del límite preventivo de 24 MiB por PDF guardado;
-- binarios Windows sin firma en v0.3.0;
+- binarios Windows sin firma Authenticode en v0.3.1;
 - ausencia de pruebas instrumentadas sobre un dispositivo físico en el gate local;
 - PDFs cifrados con contraseña sin diálogo dedicado en el MVP.
 

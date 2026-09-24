@@ -4,16 +4,16 @@
 
 | Archivo | Responsabilidad | Valores actuales relevantes |
 |---|---|---|
-| `package.json` | versión, scripts, dependencias, empaquetado | `0.3.0`, Node >=22, pnpm 11.19.0 |
+| `package.json` | versión, scripts, dependencias, empaquetado | `0.3.1`, Node >=22, pnpm 11.19.0 |
 | `pnpm-lock.yaml` | resolución reproducible | lockfile único |
 | `capacitor.config.json` | identidad/shell Android | appId, `webDir=dist`, HTTPS, sin mixed content |
 | `android/variables.gradle` | matriz SDK/librerías | min 24, compile/target 36 |
-| `android/app/build.gradle` | paquete y versión APK | versionCode 3, versionName 0.3.0 |
+| `android/app/build.gradle` | paquete y versión APK | versionCode 4, versionName 0.3.1 |
 | `AndroidManifest.xml` | actividades, intents y provider | launcher, VIEW PDF, FileProvider |
 | `.github/workflows/*.yml` | CI/CD | Node 22, Java 21, SDK/Build Tools 36 |
 | `.github/dependabot.yml` | actualizaciones | npm y Actions semanales |
 
-`src/app.js` también contiene `APP_VERSION='0.3.0'`; es un marcador actual que debe mantenerse sincronizado. `scripts/patch-android.mjs` deriva Gradle desde `package.json`, pero no actualiza `APP_VERSION` ni textos de documentación.
+`src/app.js` también contiene `APP_VERSION='0.3.1'`; es un marcador actual que debe mantenerse sincronizado. `scripts/patch-android.mjs` deriva Gradle desde `package.json`, pero no actualiza `APP_VERSION` ni textos de documentación.
 
 ## Variables de entorno
 

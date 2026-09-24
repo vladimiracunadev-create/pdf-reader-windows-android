@@ -3,7 +3,7 @@
 | Término | Definición en este sistema |
 |---|---|
 | APK | Paquete instalable de Android publicado por el proyecto |
-| AAB | Formato para Play Store; no se genera en `0.3.0` |
+| AAB | Formato para Play Store; no se genera en `0.3.1` |
 | AndroidX | Bibliotecas Android usadas por Capacitor y pruebas |
 | Ancla de lectura | Punto del PDF que se intenta mantener visible al cambiar zoom/rotación |
 | API | Contrato entre componentes; aquí son Web APIs, IPC y plugin, no un servidor |

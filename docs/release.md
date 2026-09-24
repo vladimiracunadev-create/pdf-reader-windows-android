@@ -14,7 +14,7 @@ SemVer: `MAJOR.MINOR.PATCH`. Versión inicial `0.1.0`.
 
 ## Distribución
 - Windows: assets de GitHub Releases; no versionar `.exe` en el repositorio ni servirlo desde GitHub Pages.
-- Android: APK release firmado con una clave persistente protegida por GitHub Secrets. `v0.3.0` conserva package name/certificado de las versiones anteriores y sube `versionCode` a 3. No publicar un APK debug.
+- Android: APK release firmado con una clave persistente protegida por GitHub Secrets. `v0.3.1` conserva package name/certificado de las versiones anteriores y sube `versionCode` a 4. No publicar un APK debug.
 - GitHub Pages: demo/documentación web, no canal de binarios.
 
 ## Rollback

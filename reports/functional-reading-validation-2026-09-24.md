@@ -63,7 +63,7 @@ BUILD SUCCESSFUL · 123 tareas · APK debug generado
 
 El generador se ejecutó realmente para producir `one-page.pdf`, `twelve-pages.pdf` y `thousand-pages.pdf`. Estas salidas son temporales e ignoradas por Git; el generador versionado permite repetirlas con cualquier conteo entre 1 y 2.000.
 
-El APK debug final pesó 7.829.893 bytes y su SHA-256 fue `7B11343BC0EDE6104C4274D1E95DDD99C9297511DE72AA5D0E69FC6C0039A2CB`. `aapt2` confirmó paquete `cl.vladimiracunadev.pdfreader`, `versionCode 3`, `versionName 0.3.0`, `minSdk 24`, `targetSdk 36` y solo el permiso interno `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`; no aparecieron permisos de Internet ni almacenamiento general.
+En aquella validación histórica de `v0.3.0`, el APK debug pesó 7.829.893 bytes y su SHA-256 fue `7B11343BC0EDE6104C4274D1E95DDD99C9297511DE72AA5D0E69FC6C0039A2CB`. `aapt2` confirmó paquete `cl.vladimiracunadev.pdfreader`, código Android 3, versión coincidente con esa entrega, `minSdk 24`, `targetSdk 36` y solo el permiso interno `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`; no aparecieron permisos de Internet ni almacenamiento general.
 
 ## Cobertura funcional resultante
 

@@ -38,6 +38,6 @@ PDF Reader comparte el mismo motor y la misma experiencia en las tres plataforma
 
 ## Límites
 
-El documento se carga en memoria y una copia puede persistirse en IndexedDB. La cuota la decide el dispositivo y un fallo de persistencia no impide leer. PDF extremadamente grandes pueden requerir más RAM. El streaming parcial queda fuera de `v0.3.0`.
+El documento se carga en memoria y una copia puede persistirse en IndexedDB. La cuota la decide el dispositivo y un fallo de persistencia no impide leer. PDF extremadamente grandes pueden requerir más RAM. El streaming parcial queda fuera de `v0.3.1`; las miniaturas sí se cargan bajo demanda en ventanas de 60 páginas.
 
 `@capacitor/share` conecta la acción explícita de compartir con la hoja nativa de Android. La capa web usa `navigator.share` y, cuando no está disponible, abre WhatsApp Web. El mensaje nunca contiene los bytes del PDF.

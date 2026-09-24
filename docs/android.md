@@ -1,14 +1,14 @@
 # Android · compilación, firma y verificación
 
-Este documento define la cadena Android de PDF Reader `v0.3.0`. El artefacto público es un APK release firmado; el APK debug de CI es solo evidencia de compilación y nunca se publica como release.
+Este documento define la cadena Android de PDF Reader `v0.3.1`. El artefacto público es un APK release firmado; el APK debug de CI es solo evidencia de compilación y nunca se publica como release.
 
 ## Contrato de la aplicación
 
 | Campo | Valor |
 |---|---|
 | Application ID | `cl.vladimiracunadev.pdfreader` |
-| Versión | `0.3.0` |
-| `versionCode` | `3` |
+| Versión | `0.3.1` |
+| `versionCode` | `4` |
 | Android mínimo | 7.0 · API 24 |
 | Android objetivo | API 36 |
 | Permisos sensibles o con consentimiento | ninguno |
@@ -87,7 +87,7 @@ Las contraseñas se envían por entrada estándar con `gh secret set`; no deben 
 
 ## Release automatizado
 
-Al publicar el tag `v0.3.0`, `.github/workflows/release.yml`:
+Al publicar el tag `v0.3.1`, `.github/workflows/release.yml`:
 
 1. comprueba que tag, `package.json` y notas coincidan;
 2. ejecuta pruebas y genera el proyecto web;
@@ -104,15 +104,15 @@ Al publicar el tag `v0.3.0`, `.github/workflows/release.yml`:
 Con Build Tools 36 en `PATH`:
 
 ```bash
-apksigner verify --verbose --print-certs PDF-Reader-Android-v0.3.0.apk
-aapt2 dump badging PDF-Reader-Android-v0.3.0.apk
+apksigner verify --verbose --print-certs PDF-Reader-Android-v0.3.1.apk
+aapt2 dump badging PDF-Reader-Android-v0.3.1.apk
 sha256sum -c SHA256SUMS.txt
 ```
 
 La salida de `aapt2` debe declarar:
 
 ```text
-package: name='cl.vladimiracunadev.pdfreader' versionCode='3' versionName='0.3.0'
+package: name='cl.vladimiracunadev.pdfreader' versionCode='4' versionName='0.3.1'
 ```
 
 No debe aparecer ningún `uses-permission`.
@@ -120,14 +120,14 @@ No debe aparecer ningún `uses-permission`.
 ## Instalar y probar
 
 ```bash
-adb install -r PDF-Reader-Android-v0.3.0.apk
+adb install -r PDF-Reader-Android-v0.3.1.apk
 adb shell monkey -p cl.vladimiracunadev.pdfreader 1
 ```
 
 Prueba manual mínima:
 
 1. la app inicia con icono, splash y nombre correctos;
-2. aparece la pregunta de lector predeterminado una sola vez para `v0.3.0` y **Ahora no** la cierra;
+2. aparece la pregunta de lector predeterminado una sola vez para `v0.3.1` y **Ahora no** la cierra;
 3. **Configurar ahora** permite elegir **PDF Reader → Siempre** si Android muestra el resolver;
 4. abrir un `.pdf` desde Archivos entra por `ACTION_VIEW` y renderiza el documento;
 5. **Seleccionar PDF** abre el selector del sistema;
@@ -143,4 +143,4 @@ Prueba manual mínima:
 
 ## Google Play
 
-`v0.3.0` no se publica en Play Store. Una distribución futura debe producir AAB, separar app-signing key y upload key, completar ficha de privacidad y pasar pruebas en dispositivos físicos. Eso no cambia la validez del APK firmado que se distribuye desde GitHub.
+`v0.3.1` no se publica en Play Store. Una distribución futura debe producir AAB, separar app-signing key y upload key, completar ficha de privacidad y pasar pruebas en dispositivos físicos. Eso no cambia la validez del APK firmado que se distribuye desde GitHub.

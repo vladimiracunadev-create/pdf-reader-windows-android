@@ -41,7 +41,7 @@ except ModuleNotFoundError as error:
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs" / "system-documentation"
 OUTPUT = SOURCE / "pdf"
-VERSION = "0.3.0"
+VERSION = "0.3.1"
 COMMIT = "265b122"
 ANALYSIS_DATE = "2026-09-10"
 

@@ -9,7 +9,7 @@ import {listHistory,getHistoryDocument,saveHistoryDocument,updateHistoryDocument
 import {readStorage,writeStorage} from './storage.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc=new URL('./vendor/pdf.worker.mjs',import.meta.url).toString();
-const APP_VERSION='0.3.0';
+const APP_VERSION='0.3.1';
 const MAX_HISTORY_PDF_BYTES=24*1024*1024;
 const $=id=>document.getElementById(id);
 const els={

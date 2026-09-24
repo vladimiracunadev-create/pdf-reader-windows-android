@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [0.3.1] - 2026-09-24
+
 ### Fixed
 - La generación de la documentación PDF es determinista y deja de modificar binarios sin cambios de contenido.
 - Abrir un segundo PDF ya reemplaza correctamente el documento anterior: se destruye la tarea de carga de PDF.js en vez de invocar un método inexistente sobre el proxy.
