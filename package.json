@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@capacitor/core": "8.5.0",
-    "@capacitor/share": "8.0.1",
+    "@capacitor/share": "8.0.2",
     "pdfjs-dist": "6.3.289"
   },
   "devDependencies": {
