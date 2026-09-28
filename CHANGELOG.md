@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-09-28
+
+### Fixed
+- Android conserva la página visible entre acciones mediante render de doble búfer.
+- Android 16 respeta barras del sistema y display cutouts mediante insets nativos.
+- Los controles táctiles centrales e inferiores alcanzan un mínimo de 44 px.
+- Compartir en Windows copia el resumen mediante IPC limitado y entrega confirmación visible.
+- El renderer declara CSP y limita los enlaces externos permitidos.
+
+### Quality
+- 16 variantes PDF reproducibles, 47 E2E Electron y 14 E2E sobre APK Android instalada.
+- Acciones compuestas, gestos, orientación, lifecycle, paneles y usabilidad forman parte del gate.
+
 ## [0.3.1] - 2026-09-24
 
 ### Fixed

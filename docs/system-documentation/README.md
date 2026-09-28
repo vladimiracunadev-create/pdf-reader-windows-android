@@ -1,7 +1,7 @@
 # Documentación integral de PDF Reader
 
 **Sistema:** PDF Reader
-**Versión analizada:** `0.3.1` (`e22b7307a7f49c2644415b2c2a447d85054854e6`)
+**Versión analizada:** `0.3.2` (commit de release pendiente)
 **Fecha de la revisión:** 2026-09-24
 **Estado:** validado contra código, configuración, pruebas, builds locales y release remoto
 
@@ -49,7 +49,7 @@ Esta carpeta explica el producto desde tres perspectivas: visión general para p
 
 ## Evidencia de esta revisión
 
-Se revisaron el núcleo JavaScript del lector, HTML/CSS, adaptadores Electron y Android, persistencia, scripts, Gradle, manifiesto Android y los workflows de CI/Pages/release. En `v0.3.1` aprobaron 24 pruebas Node, el verificador del repositorio, el build de Pages, el APK debug local y los tres jobs de CI. El workflow remoto del tag publicó APK firmado, instalador, portable y checksums; la auditoría exacta se conserva en [`reports/release-evidence-v0.3.1.md`](../../reports/release-evidence-v0.3.1.md).
+Se revisaron núcleo, HTML/CSS, adaptadores Electron/Android, persistencia, scripts, Gradle, manifiesto y workflows. En `v0.3.2` aprobaron 29 pruebas Node, 47 E2E Electron y 14 E2E Android locales; la auditoría de publicación se conserva en [`reports/release-evidence-v0.3.2.md`](../../reports/release-evidence-v0.3.2.md).
 
 ## Pendientes que requieren validación externa
 

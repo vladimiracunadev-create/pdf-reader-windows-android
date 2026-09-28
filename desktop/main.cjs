@@ -1,7 +1,8 @@
 /** Proceso principal Electron: ventana aislada y acceso de solo lectura limitado a rutas .pdf. */
-const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, clipboard, dialog, ipcMain, shell } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs/promises');
+if(process.env.PDF_READER_QA_PROFILE)app.setPath('userData',path.resolve(process.env.PDF_READER_QA_PROFILE));
 let mainWindow;
 let startupPath = process.argv.find((arg, index) => index > 0 && typeof arg === 'string' && arg.toLowerCase().endsWith('.pdf')) || null;
 
@@ -17,11 +18,14 @@ function createWindow(){
   mainWindow = new BrowserWindow({width:1280,height:850,minWidth:720,minHeight:560,backgroundColor:'#101827',show:false,webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
   mainWindow.loadFile(path.join(__dirname,'..','dist','index.html'));
   mainWindow.once('ready-to-show',()=>mainWindow.show());
-  mainWindow.webContents.setWindowOpenHandler(()=>({action:'deny'}));
+  mainWindow.webContents.on('render-process-gone',(_event,details)=>console.error('Renderer finalizado:',details));
+  const externalLinks=new Set(['https://github.com/vladimiracunadev-create/pdf-reader-windows-android','https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest']);
+  mainWindow.webContents.setWindowOpenHandler(({url})=>{if(externalLinks.has(url))void shell.openExternal(url).catch(()=>{});return{action:'deny'}});
 }
 app.whenReady().then(()=>{
   ipcMain.handle('pdf:pick',async()=>{const result=await dialog.showOpenDialog(mainWindow,{title:'Abrir PDF',properties:['openFile'],filters:[{name:'Documento PDF',extensions:['pdf']}]});if(result.canceled||!result.filePaths[0])return {canceled:true};return readPdf(result.filePaths[0]);});
   ipcMain.handle('pdf:open-path',(_,p)=>readPdf(p));ipcMain.handle('pdf:startup',()=>({path:startupPath}));
+  ipcMain.handle('share:copy-text',(_,text)=>{if(typeof text!=='string'||!text.trim()||text.length>2_000)return{error:'El texto para compartir no es válido.'};clipboard.writeText(text);return{copied:true}});
   ipcMain.handle('pdf:open-default-apps',()=>shell.openExternal('ms-settings:defaultapps'));
   createWindow();app.on('activate',()=>{if(BrowserWindow.getAllWindows().length===0)createWindow()});
 });

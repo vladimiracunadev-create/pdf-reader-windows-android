@@ -26,6 +26,7 @@ jobs:
           VERSION="$(node -p "require('./package.json').version")"
           test "$GITHUB_REF_NAME" = "v$VERSION"
           test -f "docs/releases/$GITHUB_REF_NAME.md"
+          test -f "reports/release-evidence-$GITHUB_REF_NAME.md"
 
   android:
     name: Android · signed release APK
@@ -108,6 +109,18 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
       - run: pnpm build:windows
+      - name: Verify exact Windows artifacts
+        shell: pwsh
+        run: |
+          $version = node -p "require('./package.json').version"
+          $expected = @(
+            "release/windows/PDF-Reader-Windows-$version-x64-Setup.exe",
+            "release/windows/PDF-Reader-Windows-$version-x64-Portable.exe"
+          )
+          foreach ($artifact in $expected) {
+            if (-not (Test-Path -LiteralPath $artifact -PathType Leaf)) { throw "Falta $artifact" }
+            if ((Get-Item -LiteralPath $artifact).Length -lt 50MB) { throw "Artefacto incompleto: $artifact" }
+          }
       - uses: actions/upload-artifact@v7
         with:
           name: release-windows

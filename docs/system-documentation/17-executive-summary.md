@@ -14,7 +14,7 @@ Un mismo núcleo HTML/CSS/JavaScript se empaqueta con Capacitor para Android y E
 
 ## Estado actual
 
-La versión analizada es `0.3.1`, commit `e22b730`. El 2026-09-24 aprobaron 24 pruebas Node, el verificador, Pages, el APK debug y los paquetes Windows; el workflow del tag publicó y auditó APK firmado, instalador, portable y checksums. `main` usa tres checks de CI. La evidencia funcional cubre PDF sintéticos de 1, 12 y 1.000 páginas; la interacción física Android permanece pendiente y no se infiere del build.
+La versión analizada es `0.3.2` en preparación. Aprobaron 29 pruebas Node, 47 E2E Electron y 14 E2E sobre APK instalada con 16 variantes PDF. La prueba física Android permanece pendiente y no se infiere del emulador. La evidencia del tag y de artefactos descargados se completa después de publicación.
 
 ## Fortalezas
 

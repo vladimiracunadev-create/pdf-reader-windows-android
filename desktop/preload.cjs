@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld('desktopPdf', {
   pick: () => ipcRenderer.invoke('pdf:pick'),
   openPath: (path) => ipcRenderer.invoke('pdf:open-path', path),
   startup: () => ipcRenderer.invoke('pdf:startup'),
+  copyShareText: (text) => ipcRenderer.invoke('share:copy-text', text),
   openDefaultApps: () => ipcRenderer.invoke('pdf:open-default-apps'),
   onExternalOpen: (callback) => ipcRenderer.on('pdf:external-open', (_event, path) => callback(path))
 });

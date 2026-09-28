@@ -1,6 +1,6 @@
 {
   "name": "pdf-reader-windows-android",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "Lector PDF moderno, simple y de solo lectura para Windows, Android y navegador.",
   "homepage": "https://vladimiracunadev-create.github.io/pdf-reader-windows-android/",
@@ -22,6 +22,9 @@
     "build:pages": "pnpm build:web && node scripts/build-pages.mjs",
     "docs:pdf": "python scripts/generate-system-docs-pdf.py",
     "docs:check": "node scripts/verify-system-docs.mjs",
+    "qa:pdf-corpus": "node scripts/generate-pdf-test-corpus.mjs",
+    "qa:desktop-e2e": "pnpm build:web && node scripts/test-desktop-e2e.mjs",
+    "qa:android-e2e": "node scripts/test-android-webview-e2e.mjs",
     "clean": "node scripts/clean.mjs",
     "start:web": "node scripts/serve.mjs",
     "start:pages": "pnpm build:pages && node scripts/serve.mjs pages-dist",
@@ -90,6 +93,6 @@
   "type": "module",
   "packageManager": "pnpm@11.19.0",
   "pdfReader": {
-    "androidVersionCode": 4
+    "androidVersionCode": 5
   }
 }

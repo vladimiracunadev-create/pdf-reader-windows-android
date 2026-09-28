@@ -20,7 +20,7 @@
 El 2026-09-24, después de corregir navegación táctil, salto directo y carga de miniaturas para documentos gigantes, se obtuvo:
 
 ```text
-CI=true pnpm test                     -> 24/24 pruebas
+CI=true pnpm test                     -> 29/29 pruebas
 pnpm build:web                        -> dist generado
 Prueba Web interactiva                -> PDF de 1, 12 y 1.000 páginas aprobados
 ```

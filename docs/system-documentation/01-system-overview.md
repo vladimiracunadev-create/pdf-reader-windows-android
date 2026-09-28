@@ -52,4 +52,4 @@ El adaptador entrega bytes autorizados al núcleo; PDF.js construye el documento
 
 No edita, firma, anota, aplica OCR ni sincroniza PDF. Los documentos protegidos con contraseña no tienen diálogo dedicado. Cada PDF se carga completo en memoria y la persistencia depende de la cuota del dispositivo. Windows no tiene firma Authenticode; Android se distribuye como APK firmado desde GitHub Releases, no desde Play Store.
 
-El estado `0.3.1` es reproducible para el alcance comprobado: 24/24 pruebas Node, verificador, build de Pages, APK debug y paquetes Windows aprobaron el 2026-09-24. El tag `v0.3.1` publicó un APK firmado, dos ejecutables Windows y checksums mediante un workflow remoto verde. Las pruebas físicas Android siguen declaradas como no ejecutadas.
+El estado `0.3.2` incorpora 29 pruebas Node, 47 E2E Electron, 14 E2E sobre APK Android instalada y un corpus de 16 PDF. La validación física Android sigue declarada como no ejecutada; el artefacto publicado se audita después del tag.

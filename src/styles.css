@@ -159,9 +159,9 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   .dock-button, .dock-page { min-width: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
   .dock-button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-size: 10px; font-weight: 720; }
   .dock-button svg { width: 22px; height: 22px; }
-  .dock-page { align-self: center; min-width: 60px; height: 38px; padding: 0 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-soft); color: var(--text); font-size: 11px; font-weight: 820; }
+  .dock-page { align-self: center; min-width: 60px; min-height: 44px; height: 44px; padding: 0 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-soft); color: var(--text); font-size: 11px; font-weight: 820; }
   .bottom-nav { min-height: 66px; display: grid; grid-template-columns: repeat(4, 1fr); padding: 4px max(5px, env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(5px, env(safe-area-inset-left)); border-top: 1px solid var(--border); background: var(--surface); }
-  .nav-item { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-size: 10px; font-weight: 760; cursor: pointer; }
+  .nav-item { min-width: 0; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-size: 10px; font-weight: 760; cursor: pointer; }
   .nav-item svg { width: 22px; height: 22px; }
   .nav-item.active { background: var(--accent-soft); color: var(--accent); }
   .canvas-stage { padding: 14px 8px; }
@@ -175,9 +175,9 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   .brand img { width: 32px; height: 32px; }
   .brand small { max-width: 145px; }
   .top-actions { gap: 5px; }
-  .top-actions .btn.primary { min-height: 40px; padding: 8px 11px; font-size: 13px; }
+  .top-actions .btn.primary { min-height: 44px; padding: 8px 11px; font-size: 13px; }
   .toolbar { min-height: 54px; }
-  .toolbar .btn.icon { width: 40px; min-width: 40px; min-height: 40px; }
+  .toolbar .btn.icon { width: 44px; min-width: 44px; min-height: 44px; }
   .page-control input { width: 48px; }
   .welcome-card { padding: 22px 18px; }
   .welcome-card h1 { font-size: 30px; }
