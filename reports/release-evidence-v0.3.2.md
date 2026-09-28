@@ -1,6 +1,6 @@
 # Evidencia de release v0.3.2
 
-Estado: **EN PREPARACIÓN**. Se completará con IDs remotos, hashes y resultados sobre las descargas exactas después de publicar el tag. Ningún pendiente se presenta como ejecutado.
+Estado: **PUBLICADO Y VERIFICADO** el 2026-09-28. Release: https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/tag/v0.3.2. Commit/tag: `0638d05130787651d5c0e062f75233b5d7dc03ff` / `v0.3.2`.
 
 ## Evidencia previa al tag
 
@@ -23,10 +23,35 @@ Estado: **EN PREPARACIÓN**. Se completará con IDs remotos, hashes y resultados
 
 Las capturas reproducibles están en `.qa/android-webview-e2e/`: selector del sistema, secuencia compuesta horizontal y retorno desde background. El directorio se excluye del release porque contiene además el corpus pesado; el informe versionado conserva la trazabilidad.
 
-## Pendiente después de publicar
+## Automatización remota
 
-- Commit y tag exactos; ejecuciones CI/Pages/Release.
-- Nombres, tamaños y SHA-256 de los artefactos descargados.
-- Firma, paquete, `versionCode=5`, `versionName=0.3.2`, permisos y worker PDF.js del APK publicado.
-- E2E contra el portable descargado, sin usar Electron del árbol fuente.
-- Instalación limpia del APK descargado y repetición crítica Android.
+| Ejecución | ID | Resultado |
+|---|---:|---|
+| CI (Web, Android debug, Windows package) | [36493962171](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36493962171) | PASS |
+| GitHub Pages | [36493962170](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36493962170) | PASS |
+| Release (contrato, Windows, Android firmado y publicación) | [36494437903](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36494437903) | PASS |
+
+## Descarga exacta del release
+
+Los cuatro assets se descargaron mediante `gh release download v0.3.2`, no se reutilizaron los binarios locales. Cada hash local coincide con `SHA256SUMS.txt` y con el digest publicado por GitHub.
+
+| Artefacto publicado | Bytes | SHA-256 | Resultado posterior a descarga |
+|---|---:|---|---|
+| `PDF-Reader-Windows-0.3.2-x64-Portable.exe` | 128540679 | `cbaaeec04a944976ef27a330061fa051cfc2bb2020b69635ef467def5ba67d0e` | PASS · wrapper inicia y responde; contenido exacto extraído 47/47 E2E |
+| `PDF-Reader-Windows-0.3.2-x64-Setup.exe` | 128764320 | `845d096a02acf03d100799e8cd3f5b515031218fdeb17d367079780a81b5869c` | PASS · nombre/tamaño verificados por workflow y checksum local |
+| `PDF-Reader-Android-v0.3.2.apk` | 6232729 | `e30b43fbd81395c4a380e1f5c985a497af73248ed9db01419e32f66fd7e983be` | PASS · firma, paquete, instalación limpia y flujos críticos reales |
+| `SHA256SUMS.txt` | 315 | `4a8a60b163160fb7a780f6de842426e3361ef1b35de82f7bd7ead5f966623036` | PASS |
+
+### APK publicado
+
+- `cl.vladimiracunadev.pdfreader`, `versionName=0.3.2`, `versionCode=5`, min SDK 24, target/compile SDK 36.
+- Firma verificada: APK Signature Scheme v2/v3, RSA 4096, certificado SHA-256 `8005f1d679b970f43f0c627ff3b668daafa3a4af9c7abbe6afa7cb19b2cb1a12`.
+- Solo declara el permiso interno `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`; no declara Internet ni permisos de almacenamiento.
+- Se desinstaló la build debug y se instaló el APK descargado desde cero en Android Emulator API 36.1.
+- PASS: inicio limpio, selector Android real, PDF de 12 páginas, área segura (`screenY=63`), controles ≥44×44, secuencia Siguiente → Zoom+ → Zoom+ → Rotar, swipe 2→3, horizontal, background/foreground en página 3 y hoja nativa de compartir.
+- Evidencia: `.qa/android-release-clean-home.png`, `.qa/android-release-system-picker.png`, `.qa/android-release-reader-open.png`, `.qa/android-release-composite.png`, `.qa/android-release-after-swipe.png`, `.qa/android-release-landscape.png`, `.qa/android-release-after-background.png` y `.qa/android-release-share-sheet.png`.
+- La build release no expone CDP/WebView debugging. Los 14 casos instrumentados se ejecutaron 14/14 sobre la APK debug del mismo commit; en la APK firmada se repitió por UI black-box el conjunto crítico anterior.
+
+## Límite explícito
+
+Teléfono físico: **NO EJECUTADO**. No se convierte el emulador API 36.1 en evidencia de hardware físico.
