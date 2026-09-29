@@ -16,6 +16,7 @@ Los PDF, nombres y rutas son entradas no confiables. Los activos principales son
 | Android intents | acceso por URI concedida y FileProvider no exportado |
 | Android memoria | apertura externa limitada a 128 MiB |
 | Web | mixed content desactivado en Capacitor |
+| CSP | política local explícita compatible con PDF.js; `object-src` y `frame-src` bloqueados |
 | Búsqueda | contenido y consulta se escapan antes de `innerHTML` |
 | Persistencia | borrado por entrada o completo mediante UI |
 | CI | auditoría de permisos APK y dependencias de producción |
@@ -37,7 +38,6 @@ La selección Web revisa extensión o MIME; Electron exige extensión; Android c
 - IPC `openPath`: cualquier código que comprometiera el renderer podría solicitar lectura de una ruta `.pdf`; el sandbox/preload reducen, no eliminan, este impacto.
 - Persistencia local sin cifrado ni expiración temporal.
 - `allowBackup=true` puede permitir que Android incluya datos privados según política/dispositivo; requiere decisión explícita.
-- Ausencia de CSP visible en `src/index.html`; una CSP estricta reduciría impacto de inyección.
 - Windows sin Authenticode: SmartScreen y menor garantía de procedencia.
 - Las GitHub Actions se referencian por tags mayores (`@vN`) mutables, no por SHA inmutable; una cuenta upstream comprometida podría alterar el código ejecutado por CI.
 
@@ -53,7 +53,6 @@ La búsqueda estática no identifica secretos reales versionados; solo nombres d
 
 1. decidir y probar `android:allowBackup` respecto del historial;
 2. imponer límites configurables de tamaño en todas las plataformas;
-3. añadir CSP compatible con PDF.js;
-4. incorporar pruebas E2E de IPC/intents y fuzz/regresión con corpus no sensible;
-5. firmar Windows con Authenticode cuando exista infraestructura de certificados.
-6. fijar Actions a SHA completos y mantener comentarios con su versión legible.
+3. incorporar fuzz/regresión adicional con corpus no sensible y ejecutar los E2E locales dentro de CI;
+4. firmar Windows con Authenticode cuando exista infraestructura de certificados;
+5. fijar Actions a SHA completos y mantener comentarios con su versión legible.

@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Quality
+- Se incorporan suites reproducibles de 21 casos Web localhost y 21 casos Android en emulador, con las 16 variantes PDF, acciones compuestas, recuperación y evidencia visual.
+- El harness Android inicia la APK, tolera rutas internas y selecciona documentos mediante DocumentsUI sin depender del estado dejado por una ejecución anterior.
+- La matriz funcional distingue PASS, NO EJECUTADO y N/A; la prueba en teléfono Android físico continúa explícitamente pendiente.
+- La documentación integral y sus PDF se sincronizan con la versión, los conteos y la evidencia remota actuales.
+
 ## [0.3.2] - 2026-09-28
 
 ### Fixed

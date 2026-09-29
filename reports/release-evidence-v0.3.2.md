@@ -33,6 +33,8 @@ Las capturas reproducibles están en `.qa/android-webview-e2e/`: selector del si
 | GitHub Pages | [36493962170](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36493962170) | PASS |
 | Release (contrato, Windows, Android firmado y publicación) | [36494437903](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36494437903) | PASS |
 | CI posterior de documentación/evidencia, commit `7ab323e` | [36496505600](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36496505600) | PASS · Web, Android y Windows |
+| CI que integra suites 21+21 y matriz corregida, commit `48306d2` | [36504652217](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36504652217) | PASS · Web, Android y Windows |
+| Pages del commit `48306d2` | [36504652223](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/actions/runs/36504652223) | PASS |
 
 El run de push `36495722863` quedó atascado antes del checkout Android y fue cancelado. El run manual `36496505600` sobre el mismo commit lo sustituyó y terminó PASS en los tres jobs; el cancelado se conserva como incidente histórico, no se presenta como verde.
 

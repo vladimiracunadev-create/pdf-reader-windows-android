@@ -28,13 +28,13 @@ La versión analizada es `0.3.2`, publicada el 2026-09-28. Aprobaron 29 pruebas 
 
 ## Riesgos principales
 
-Los PDF se cargan completos en memoria y las aperturas Android por intent usan Base64. El historial conserva documentos potencialmente sensibles sin cifrado propio. Faltan pruebas E2E y de dispositivos, una CSP visible, diálogo de contraseña y firma Authenticode. PDF.js, Electron y WebView deben mantenerse actualizados por tratar contenido no confiable.
+Los PDF se cargan completos en memoria y las aperturas Android por intent usan Base64. El historial conserva documentos potencialmente sensibles sin cifrado propio. Existen E2E locales Web, Electron y Android, pero todavía no se ejecutan dentro de CI y no hubo teléfono físico. Faltan diálogo de contraseña y firma Authenticode. PDF.js, Electron y WebView deben mantenerse actualizados por tratar contenido no confiable.
 
 ## Oportunidades y próximos pasos
 
 1. medir memoria y establecer límites por plataforma;
 2. probar/decidir la política de backup Android del historial;
-3. incorporar E2E Web/Electron y pruebas instrumentadas reales;
+3. integrar los E2E existentes en CI y repetir Android en hardware físico;
 4. reciclar miniaturas ya lejanas y medir memoria en documentos gigantes;
 5. añadir contraseñas PDF y mejorar accesibilidad;
 6. evaluar Authenticode y canales de tienda sin romper la promesa de privacidad.

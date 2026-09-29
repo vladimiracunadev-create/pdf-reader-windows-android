@@ -4,7 +4,7 @@
 
 | Gate | Herramienta | Cobertura observable |
 |---|---|---|
-| Unitarias y contratos Web | Node `--test` | 24 casos de utilidades, interacción, ciclo de vida y almacenamiento defensivo |
+| Unitarias y contratos Web | Node `--test` | 29 casos de utilidades, interacción, ciclo de vida y almacenamiento defensivo |
 | Contrato repositorio | `verify-repo.mjs` | estructura, alcance read-only, zoom, versión, permisos y workflows |
 | Build Web/Pages | scripts Node | copia PDF.js y composición landing+demo |
 | Android unit | Gradle/JUnit | prueba trivial de plantilla |
@@ -17,15 +17,22 @@
 
 ## Resultado actual
 
-El 2026-09-24, después de corregir navegación táctil, salto directo y carga de miniaturas para documentos gigantes, se obtuvo:
+El 2026-09-28/29, sobre el commit `48306d2`, se obtuvo:
 
 ```text
-CI=true pnpm test                     -> 29/29 pruebas
-pnpm build:web                        -> dist generado
-Prueba Web interactiva                -> PDF de 1, 12 y 1.000 páginas aprobados
+pnpm check                            -> 29/29 Node; verify y 20 Markdown/20 PDF correctos
+pnpm qa:desktop-e2e                   -> 47/47 Electron; repetido sobre el Setup publicado e instalado
+pnpm qa:web-e2e                       -> 21/21 Edge/Chromium localhost a 390x844
+pnpm qa:android-e2e                   -> 21/21 APK debug en Android Emulator API 36.1
+CI 36504652217                        -> Web, Android y Windows PASS
+Pages 36504652223                     -> PASS
 ```
 
-El detalle observable, incluidos resultados de navegación, búsqueda, error recuperable y viewport móvil, está en `reports/functional-reading-validation-2026-09-24.md`.
+Las suites Web y Android recorren las 16 variantes PDF, acciones compuestas, errores recuperables, historial y paneles. Android añade pinza, doble toque, swipe, orientación y background/foreground mediante la APK instalada y DocumentsUI. El detalle actual está en `reports/pdf-functional-validation-2026-09-28.md`; la prueba en teléfono físico continúa **NO EJECUTADA**.
+
+## Validación histórica de lectura
+
+El 2026-09-24 se ejecutaron 24/24 pruebas Node y un recorrido Web interactivo con PDF de 1, 12 y 1.000 páginas. Esa evidencia histórica, incluidos navegación, búsqueda, error recuperable y viewport móvil, permanece en `reports/functional-reading-validation-2026-09-24.md`.
 
 ## Ejecución preliminar anterior
 
@@ -55,17 +62,16 @@ El primer intento sin `CI=true` no ejecutó tests porque pnpm no podía confirma
 
 ## Casos cubiertos
 
-`utils.test.mjs` contiene 14 casos y valida cálculos, formato, snippets seguros, identidad, gestos, compartir, ancla de zoom, borde inicial del swipe y ventanas de miniaturas. `app-contract.test.mjs` contiene 6 casos y protege navegación, documentos grandes, segunda apertura, concurrencia, ciclo de vida y confirmación de página con Enter. `storage.test.mjs` contiene 4 casos de lectura/escritura normal y degradación ante `SecurityError` o cuota. `verify-repo` confirma marcadores del layout, ausencia de funciones de edición, versión Android, permisos prohibidos, asociación PDF, release firmado y Pages.
+`utils.test.mjs` contiene 14 casos y valida cálculos, formato, snippets seguros, identidad, gestos, compartir, ancla de zoom, borde inicial del swipe y ventanas de miniaturas. `app-contract.test.mjs` contiene 11 casos y protege navegación, documentos grandes, segunda apertura, concurrencia, ciclo de vida, confirmación de página con Enter, IPC de compartir, CSP, render atómico, insets Android y objetivos táctiles. `storage.test.mjs` contiene 4 casos de lectura/escritura normal y degradación ante `SecurityError` o cuota. `verify-repo` confirma marcadores del layout, ausencia de funciones de edición, versión Android, permisos prohibidos, asociación PDF, release firmado, Pages y presencia de los harness E2E.
 
 ## Cobertura faltante priorizada
 
-1. **Alta:** automatizar en CI los recorridos DOM/E2E hoy comprobados manualmente: apertura sucesiva, navegación, render, búsqueda, historial, errores y teclado.
-2. **Alta:** pruebas Android reales para intent, pinza, rotación, background/restore y compartir.
-3. **Alta:** pruebas Electron del preload/IPC, asociación `.pdf` y rutas inválidas.
-4. **Media:** IndexedDB: poda a ocho, transacciones fallidas, cuota y migraciones; `localStorage` bloqueado sí dispone de regresiones unitarias.
-5. **Media:** PDF cifrado, sin texto, con CMaps y archivos enormes por bytes; PDF corrupto y de 1.000 páginas sí tienen recorrido Web ejecutado.
-6. **Media:** accesibilidad automatizada y manual con lector de pantalla.
-7. **Baja:** reemplazar `additionIsCorrect` por pruebas del plugin nativo.
+1. **Alta:** ejecutar en CI las suites E2E Web/Electron/Android que hoy son reproducibles pero locales.
+2. **Alta:** repetir Android en teléfono físico: intent, pinza, rotación, background/restore, compartir y tamaños de pantalla reales.
+3. **Media:** IndexedDB: poda a ocho, transacciones fallidas, cuota y migraciones; `localStorage` bloqueado sí dispone de regresiones unitarias.
+4. **Media:** medir memoria y tiempos con PDF pesados/alta resolución; contraseña, ausencia de OCR, corrupción recuperable y 1.000 páginas ya tienen regresión funcional.
+5. **Media:** accesibilidad automatizada y manual con lector de pantalla.
+6. **Baja:** reemplazar `additionIsCorrect` por pruebas del plugin nativo.
 
 ## Análisis estático y formato
 
