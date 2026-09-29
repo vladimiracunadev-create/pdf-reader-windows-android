@@ -32,7 +32,7 @@ El PDF se procesa localmente con Mozilla PDF.js. No existe backend, cuenta, publ
 
 ## 📱 Android primero
 
-`v0.3.2` mantiene la página visible entre acciones consecutivas, respeta las áreas seguras de Android 16 y amplía los objetivos táctiles. Windows permite compartir copiando un resumen local al portapapeles. La validación combina 29 pruebas Node, 47 casos Electron y 14 casos sobre la APK Android en ejecución.
+`v0.3.2` mantiene la página visible entre acciones consecutivas, respeta las áreas seguras de Android 16 y amplía los objetivos táctiles. Windows permite compartir copiando un resumen local al portapapeles. La validación actual combina 29 pruebas Node, 47 casos Electron, 21 casos Web localhost y 21 casos sobre la APK Android debug instalada. La prueba en teléfono físico sigue explícitamente no ejecutada.
 
 | Superficie Android | Estado en v0.3.2 |
 |---|---|
@@ -69,7 +69,7 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.2` puede in
 | 🔍 Vista | pinza, doble toque y botones conservan el punto de lectura; la página ampliada se recorre de borde a borde |
 | 🕘 Continuidad | copia local de hasta ocho PDF de hasta 24 MiB, progreso reabrible y borrado explícito |
 | 💬 Compartir | hoja nativa Android; Windows copia el resumen al portapapeles sin transmitirlo |
-| 🧪 Calidad | 29 pruebas Node + 47 E2E Electron + 14 E2E Android + tres jobs de CI |
+| 🧪 Calidad | 29 pruebas Node + 47 E2E Electron + 21 E2E Web + 21 E2E Android + tres jobs de CI; teléfono físico pendiente |
 | 📦 Android | Gradle test + APK debug en CI; APK release firmado y auditado al etiquetar |
 | 🪟 Windows | instalador NSIS y portable generados en runner Windows |
 | 🌐 Web | landing y demo funcional separadas en GitHub Pages |

@@ -24,6 +24,7 @@
     "docs:check": "node scripts/verify-system-docs.mjs",
     "qa:pdf-corpus": "node scripts/generate-pdf-test-corpus.mjs",
     "qa:desktop-e2e": "pnpm build:web && node scripts/test-desktop-e2e.mjs",
+    "qa:web-e2e": "pnpm build:web && node scripts/test-web-e2e.mjs",
     "qa:android-e2e": "node scripts/test-android-webview-e2e.mjs",
     "clean": "node scripts/clean.mjs",
     "start:web": "node scripts/serve.mjs",

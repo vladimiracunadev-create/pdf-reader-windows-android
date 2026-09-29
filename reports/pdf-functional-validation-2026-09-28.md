@@ -6,12 +6,12 @@ Una corrección solo cierra después de implementación, integración, prueba, d
 
 | Entorno | Ejecución real | Alcance |
 |---|---|---|
-| Windows 11 x64, Electron 44 | Sí | 29 pruebas Node + 47 E2E, corpus completo, mouse/teclado, recuperación e historial |
-| Android Emulator API 36.1, APK debug instalada | Sí | 14 E2E compuestos, táctil, orientación, lifecycle y espacio de pantalla |
-| Chromium integrado, localhost:4173 | Parcial | Carga inicial; selector de archivos BLOCKED por el controlador disponible |
-| Teléfono físico | No | NO EJECUTADO |
+| Windows 11 x64, Electron 44 | Sí | 29 pruebas Node + 47 E2E; corpus completo, mouse/teclado, recuperación e historial |
+| Android Emulator API 36.1, APK debug instalada | Sí | 21 E2E; 16 PDF por DocumentsUI, táctil, orientación, lifecycle, historial y pantalla restringida |
+| Microsoft Edge/Chromium, localhost:4174 | Sí | 21 E2E; selector, drop, corpus completo, controles, responsive 390×844, recarga y errores |
+| Teléfono Android físico | No | **NO EJECUTADO**; no había hardware conectado |
 
-Evidencia reproducible: `.qa/desktop-e2e/results.json`, `.qa/android-webview-e2e/results.json`, capturas asociadas y `.qa/pdf-corpus/manifest.json`. `.qa/` se ignora para no incorporar binarios de casi 100 MiB; scripts, matriz y resultados resumidos sí se versionan.
+Evidencia reproducible: `.qa/desktop-e2e/results.json`, `.qa/web-e2e/results.json`, `.qa/android-webview-e2e/results.json`, capturas asociadas y `.qa/pdf-corpus/manifest.json`. `.qa/` se ignora para no incorporar binarios de casi 100 MiB; scripts, matriz y resultados resumidos sí se versionan.
 
 ## Inventario real
 
@@ -44,44 +44,44 @@ Se genera con `CI=true pnpm qa:pdf-corpus`; `manifest.json` conserva tamaños, S
 
 ## Matriz funcional × entorno × PDF
 
-`NE` = no ejecutado en ese entorno. “Web BLOCKED” significa que no se pudo entregar el archivo al selector mediante el controlador; no implica fallo del producto.
+`N/A` significa que la función no existe en esa superficie. `NO EJECUTADO` no se contabiliza como PASS. La columna física permanece abierta hasta disponer de un teléfono real.
 
-| ID | Funcionalidad | PDF | Electron | Android APK | Web localhost | Resultado |
-|---|---|---|---|---|---|---|
-| FUN-001 | Abrir asociación/argumento | 002 | PASS | N/A | N/A | PASS |
-| FUN-002 | Selector sistema | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-003 | Cambiar PDF | 001→007 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-004 | Drag-and-drop | 007 | PASS | N/A | BLOCKED | PASS parcial |
-| FUN-005 | Anterior/siguiente | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-006 | Página exacta | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-007 | Home/End/límites | 002 | PASS | NE | BLOCKED | PASS parcial |
-| FUN-008 | Zoom +/- | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-009 | Pinza táctil | 002 | N/A | PASS | BLOCKED | PASS |
-| FUN-010 | Doble toque | 002 | N/A | NE | BLOCKED | NO EJECUTADO |
-| FUN-011 | Ajustar página/ancho | 002 | PASS | PASS ancho | BLOCKED | PASS parcial |
-| FUN-012 | Scroll rueda/pan táctil | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-013 | Swipe | 002 | N/A | PASS | BLOCKED | PASS |
-| FUN-014 | Rotar documento | 002 | PASS | PASS compuesto | BLOCKED | PASS parcial |
-| FUN-015 | Orientación dispositivo | 002 | N/A | PASS | N/A | PASS |
-| FUN-016 | Pantalla completa | 002 | PASS | NE | BLOCKED | PASS parcial |
-| FUN-017 | Miniaturas | 002/003 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-018 | Búsqueda | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-019 | Búsqueda sin OCR | 004 | PASS | NE | BLOCKED | PASS parcial |
-| FUN-020 | Tema | 002 | PASS | PASS | PASS inicial | PASS |
-| FUN-021 | Historial/progreso/reabrir | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-022 | Eliminar/borrar historial | historial | PASS | NE | BLOCKED | PASS parcial |
-| FUN-023 | Recarga/background | 007/002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-024 | Compartir resumen | 002 | PASS portapapeles | PASS hoja nativa | NE | PASS |
-| FUN-025 | Lector predeterminado | N/A | PASS diálogo | PASS diálogo | N/A | PASS |
-| FUN-026 | About/regreso | N/A | PASS | NE | PASS | PASS parcial |
-| FUN-027 | Secuencia rápida página→zoom→rotación | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-028 | Limpieza miniaturas→búsqueda→cerrar | 002 | PASS | PASS | BLOCKED | PASS parcial |
-| FUN-029 | Área segura Android 16 | N/A | N/A | PASS | N/A | PASS |
-| FUN-030 | Objetivos táctiles ≥44×44 | N/A | PASS representativo | PASS | PASS inicial | PASS |
-| FUN-031 | Responsive estrecho | 001/002 | PASS 390×844 | PASS 360 CSS px | PASS inicial | PASS |
-| FUN-032 | Corpus completo 16 variantes | 001–016 | PASS | Solo 002 | BLOCKED | PASS parcial |
-| FUN-033 | Contraseña y preservar anterior | 013 | PASS | NE | BLOCKED | PASS parcial |
-| FUN-034 | PDF >24 MiB | 009 | PASS | NE | BLOCKED | PASS parcial |
+| ID | Funcionalidad | PDF | Electron | Android emulador | Web localhost | Android físico | Resultado disponible |
+|---|---|---|---|---|---|---|---|
+| FUN-001 | Abrir asociación/argumento | 002 | PASS | PASS release | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-002 | Selector sistema/input | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-003 | Cambiar PDF | 001→007 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-004 | Drag-and-drop | 007 | PASS | N/A | PASS | N/A | PASS |
+| FUN-005 | Anterior/siguiente | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-006 | Página exacta | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-007 | Home/End/límites | 002 | PASS | PASS teclado | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-008 | Zoom +/- | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-009 | Pinza táctil | 002 | N/A | PASS | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-010 | Doble toque | 002 | N/A | PASS | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-011 | Ajustar página/ancho | 002 | PASS ambos | PASS ancho; página N/A móvil | PASS ambos | NO EJECUTADO | PASS sin hardware físico |
+| FUN-012 | Scroll rueda/pan táctil | 002 | PASS | PASS | PASS rueda | NO EJECUTADO | PASS sin hardware físico |
+| FUN-013 | Swipe | 002 | N/A | PASS | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-014 | Rotar documento | 002 | PASS | PASS | PASS compuesto | NO EJECUTADO | PASS sin hardware físico |
+| FUN-015 | Orientación dispositivo | 002 | N/A | PASS | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-016 | Pantalla completa | 002 | PASS | N/A móvil | PASS | N/A móvil | PASS |
+| FUN-017 | Miniaturas | 002/003 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-018 | Búsqueda | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-019 | Búsqueda sin OCR | 004 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-020 | Tema | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-021 | Historial/progreso/reabrir | 002 | PASS | PASS | PASS recarga | NO EJECUTADO | PASS sin hardware físico |
+| FUN-022 | Eliminar/borrar historial | historial | PASS | PASS eliminar | PASS eliminar | NO EJECUTADO | PASS sin hardware físico |
+| FUN-023 | Recarga/background | 007/002 | PASS recarga | PASS background | PASS recarga | NO EJECUTADO | PASS sin hardware físico |
+| FUN-024 | Compartir resumen | 002 | PASS portapapeles | PASS hoja nativa release | NO EJECUTADO externo | NO EJECUTADO | NO EJECUTADO Web/físico |
+| FUN-025 | Lector predeterminado | N/A | PASS diálogo | PASS diálogo release | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-026 | About/regreso | N/A | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-027 | Secuencia rápida página→zoom→rotación | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-028 | Limpieza miniaturas→búsqueda→cerrar | 002 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-029 | Área segura Android 16 | N/A | N/A | PASS | N/A | NO EJECUTADO | PASS sin hardware físico |
+| FUN-030 | Objetivos táctiles ≥44×44 | N/A | PASS representativo | PASS | PASS 390×844 | NO EJECUTADO | PASS sin hardware físico |
+| FUN-031 | Responsive estrecho | 001/002 | PASS 390×844 | PASS 360 CSS px | PASS 390×844 | NO EJECUTADO | PASS sin hardware físico |
+| FUN-032 | Corpus completo 16 variantes | 001–016 | PASS | PASS DocumentsUI | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-033 | Contraseña y preservar anterior | 013 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
+| FUN-034 | PDF >24 MiB | 009 | PASS | PASS | PASS | NO EJECUTADO | PASS sin hardware físico |
 
 ## Incidencias y regresiones
 
@@ -103,14 +103,18 @@ Se genera con `CI=true pnpm qa:pdf-corpus`; `manifest.json` conserva tamaños, S
 
 ### PDF pesado informaba “0 B”
 
-**Reproducción:** abrir PDF-009 después de transferir sus bytes al worker PDF.js. **Causa:** el mensaje consultaba el `byteLength` de un buffer ya transferido y desacoplado. **Solución:** usar el tamaño de metadatos conservado en `state.file.size`. **Verificación:** contrato Node y FUN-020 E2E exigen tamaño en MB y rechazan “0 B”. **Resultado:** PASS tras corrección.
+**Reproducción:** abrir PDF-009 después de transferir sus bytes al worker PDF.js. **Causa:** el mensaje consultaba el `byteLength` de un buffer ya transferido y desacoplado. **Solución:** usar el tamaño de metadatos conservado en `state.file.size`. **Verificación:** contrato Node y FUN-034 E2E exigen tamaño en MB y rechazan “0 B”. **Resultado:** PASS tras corrección.
 
 ### CSP ausente
 
 Se añadió CSP local compatible con PDF.js y prueba contractual. El aviso correspondiente desapareció. Resultado: PASS.
 
+### Harness dependía del estado previo del entorno
+
+**Reproducción:** la suite Web podía perder el target si Edge navegaba mientras se configuraba el viewport; la suite Android fallaba si la APK estaba detenida, si iniciaba en `#history` o si el PDF inicial no seguía abierto. **Causa raíz:** ambos harness asumían estado ambiental no declarado. **Solución:** Web crea primero una pestaña vacía, aplica métricas y luego navega; Android inicia la APK cuando corresponde, acepta rutas internas con fragmento y abre el PDF inicial mediante DocumentsUI. La búsqueda de archivos usa bounds reales de la jerarquía Android y reintentos acotados. **Verificación:** ejecuciones limpias posteriores de 21/21 Web y 21/21 Android; capturas `localhost-mobile-compound.png`, `landscape-compound.png` y `portrait-after-background.png`. **Resultado:** PASS del harness. Edge debe ejecutarse fuera del sandbox de archivos para permitir sus procesos GPU; esa restricción pertenece al entorno de prueba, no al producto.
+
 ## Límites explícitos
 
 - No hubo teléfono físico disponible; Android se validó en emulador API 36.1.
-- La demo localhost cargó, pero el selector quedó BLOCKED por la automatización disponible.
+- El fallback Web de compartir hacia un servicio externo no se ejecutó: abrirlo produciría salida de datos fuera del entorno de prueba y requiere autorización específica.
 - La ejecución final contra el portable y APK descargados pertenece al gate posterior a publicación y se documenta en `release-evidence-v0.3.2.md`.

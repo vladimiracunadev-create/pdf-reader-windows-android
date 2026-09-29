@@ -1,8 +1,8 @@
 # Documentación integral de PDF Reader
 
 **Sistema:** PDF Reader
-**Versión analizada:** `0.3.2` (commit de release pendiente)
-**Fecha de la revisión:** 2026-09-24
+**Versión analizada:** `0.3.2` (publicada el 2026-09-28; evidencia posterior en `reports/release-evidence-v0.3.2.md`)
+**Fecha de la revisión:** 2026-09-28
 **Estado:** validado contra código, configuración, pruebas, builds locales y release remoto
 
 Esta carpeta explica el producto desde tres perspectivas: visión general para personas no técnicas, referencia para desarrollo y operación, y trazabilidad profunda desde una función de usuario hasta el código y sus pruebas. La fuente primaria es el repositorio; cuando una afirmación procede de una inferencia se identifica expresamente.
@@ -49,7 +49,7 @@ Esta carpeta explica el producto desde tres perspectivas: visión general para p
 
 ## Evidencia de esta revisión
 
-Se revisaron núcleo, HTML/CSS, adaptadores Electron/Android, persistencia, scripts, Gradle, manifiesto y workflows. En `v0.3.2` aprobaron 29 pruebas Node, 47 E2E Electron y 14 E2E Android locales; la auditoría de publicación se conserva en [`reports/release-evidence-v0.3.2.md`](../../reports/release-evidence-v0.3.2.md).
+Se revisaron núcleo, HTML/CSS, adaptadores Electron/Android, persistencia, scripts, Gradle, manifiesto y workflows. Para `v0.3.2` aprobaron 29 pruebas Node, 47 E2E Electron, 21 E2E Web localhost y 21 E2E Android locales. La auditoría de publicación se conserva en [`reports/release-evidence-v0.3.2.md`](../../reports/release-evidence-v0.3.2.md); el teléfono físico sigue no ejecutado.
 
 ## Pendientes que requieren validación externa
 

@@ -8,7 +8,7 @@ Este documento define la cadena Android de PDF Reader `v0.3.2`. El artefacto pú
 |---|---|
 | Application ID | `cl.vladimiracunadev.pdfreader` |
 | Versión | `0.3.2` |
-| `versionCode` | `4` |
+| `versionCode` | `5` |
 | Android mínimo | 7.0 · API 24 |
 | Android objetivo | API 36 |
 | Permisos sensibles o con consentimiento | ninguno |

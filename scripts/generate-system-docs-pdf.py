@@ -42,8 +42,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs" / "system-documentation"
 OUTPUT = SOURCE / "pdf"
 VERSION = "0.3.2"
-COMMIT = "e22b730"
-ANALYSIS_DATE = "2026-09-24"
+RELEASE_COMMIT = "0638d05"
+ANALYSIS_DATE = "2026-09-28"
 
 
 def register_fonts() -> tuple[str, str, str]:
@@ -157,7 +157,11 @@ def header_footer(canvas, doc, title: str):
     canvas.drawString(doc.leftMargin, height - 11.5 * mm, "PDF Reader - Documentación del sistema")
     canvas.drawRightString(width - doc.rightMargin, height - 11.5 * mm, f"v{VERSION} - {title[:58]}")
     canvas.line(doc.leftMargin, 13 * mm, width - doc.rightMargin, 13 * mm)
-    canvas.drawString(doc.leftMargin, 9 * mm, f"Análisis {ANALYSIS_DATE} - commit {COMMIT}")
+    canvas.drawString(
+        doc.leftMargin,
+        9 * mm,
+        f"Análisis {ANALYSIS_DATE} - commit del release {RELEASE_COMMIT}",
+    )
     canvas.drawRightString(width - doc.rightMargin, 9 * mm, f"Página {doc.page}")
     canvas.restoreState()
 
@@ -168,7 +172,7 @@ def build_story(lines: list[str], style, usable_width: float):
     story.append(Paragraph(inline_markup(first_title), style["title"]))
     story.append(
         Paragraph(
-            f"PDF Reader v{VERSION} &nbsp;&nbsp;|&nbsp;&nbsp; Análisis {ANALYSIS_DATE} &nbsp;&nbsp;|&nbsp;&nbsp; Commit {COMMIT}",
+            f"PDF Reader v{VERSION} &nbsp;&nbsp;|&nbsp;&nbsp; Análisis {ANALYSIS_DATE} &nbsp;&nbsp;|&nbsp;&nbsp; Commit del release {RELEASE_COMMIT}",
             style["subtitle"],
         )
     )
