@@ -20,8 +20,8 @@
 | Solo lectura | toda la app | ausencia de APIs de escritura | originales externos | `verify-repo` | 01, 11 | Validado estructural |
 | Sin permisos Android sensibles | manifiesto/APK | `patch-android`, CI `aapt2` | no aplica | verify + CI APK | 11, 13 | Validado |
 | Tema | cabecera | `applyTheme`, `toggleTheme` | localStorage `theme` | E2E Electron/Web/Android | 05 | Validado local |
-| Pages | push main | build/pages workflow | artifact estático | Actions `36504652223` | 13 | Validado remoto |
-| Release firmado | tag `v*` | `release.yml` | GitHub Release | preflight/apksigner/hash | 13 | Validado por pipeline |
+| Pages | push main | build/pages workflow | artifact estático | Actions `36514689616`, HTTP 200 y versión 0.3.3 | 13 | Validado remoto |
+| Release firmado | tag `v0.3.3` | `release.yml` | GitHub Release | Actions `36514950301`, hashes, firma e instalación desde descarga | 13 | Validado por pipeline y black-box |
 
 ## Cobertura de requisitos
 

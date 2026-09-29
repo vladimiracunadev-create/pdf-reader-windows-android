@@ -43,7 +43,7 @@ SOURCE = ROOT / "docs" / "system-documentation"
 OUTPUT = SOURCE / "pdf"
 VERSION = "0.3.3"
 RELEASE_REF = "v0.3.3"
-ANALYSIS_DATE = "2026-09-28"
+ANALYSIS_DATE = "2026-09-29"
 
 
 def register_fonts() -> tuple[str, str, str]:

@@ -14,7 +14,7 @@ Un mismo núcleo HTML/CSS/JavaScript se empaqueta con Capacitor para Android y E
 
 ## Estado actual
 
-La versión analizada es `0.3.3`, preparada el 2026-09-28. Aprobaron 29 pruebas Node, 47 E2E Electron, 21 E2E Web localhost y 21 E2E sobre APK Android debug instalada; el corpus contiene 16 variantes PDF. La prueba física Android permanece **NO EJECUTADA** y no se infiere del emulador. La evidencia del tag, de los artefactos descargados y de la instalación del Setup se conserva en `reports/release-evidence-v0.3.3.md`.
+La versión analizada es `0.3.3`, publicada el 2026-09-29. Aprobaron 29 pruebas Node, 47 E2E Electron, 21 E2E Web localhost y 21 E2E sobre APK Android debug instalada; el corpus contiene 16 variantes PDF. Portable y Setup públicos aprobaron 47/47 cada uno, y el APK firmado superó el conjunto crítico black-box. La prueba física Android permanece **NO EJECUTADA** y no se infiere del emulador. La evidencia del tag, de los artefactos descargados y de la instalación se conserva en `reports/release-evidence-v0.3.3.md`.
 
 ## Fortalezas
 

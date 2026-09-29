@@ -1,8 +1,8 @@
 # Documentación integral de PDF Reader
 
 **Sistema:** PDF Reader
-**Versión analizada:** `0.3.3` (preparada el 2026-09-28; evidencia de publicación en `reports/release-evidence-v0.3.3.md`)
-**Fecha de la revisión:** 2026-09-28
+**Versión analizada:** `0.3.3` (publicada el 2026-09-29; evidencia en `reports/release-evidence-v0.3.3.md`)
+**Fecha de la revisión:** 2026-09-29
 **Estado:** validado contra código, configuración, pruebas, builds locales y release remoto
 
 Esta carpeta explica el producto desde tres perspectivas: visión general para personas no técnicas, referencia para desarrollo y operación, y trazabilidad profunda desde una función de usuario hasta el código y sus pruebas. La fuente primaria es el repositorio; cuando una afirmación procede de una inferencia se identifica expresamente.

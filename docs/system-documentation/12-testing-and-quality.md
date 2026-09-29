@@ -17,15 +17,17 @@
 
 ## Resultado actual
 
-El 2026-09-28/29, sobre el commit `48306d2`, se obtuvo:
+El 2026-09-28/29, para el release `v0.3.3` creado desde el commit `366a27ca6cceadf3599758a872cc920e4f939850`, se obtuvo:
 
 ```text
 pnpm check                            -> 29/29 Node; verify y 20 Markdown/20 PDF correctos
-pnpm qa:desktop-e2e                   -> 47/47 Electron; repetido sobre el Setup publicado e instalado
+pnpm qa:desktop-e2e                   -> 47/47 Electron; repetido sobre Portable y Setup públicos
 pnpm qa:web-e2e                       -> 21/21 Edge/Chromium localhost a 390x844
 pnpm qa:android-e2e                   -> 21/21 APK debug en Android Emulator API 36.1
-CI 36504652217                        -> Web, Android y Windows PASS
-Pages 36504652223                     -> PASS
+APK firmado publicado                -> PASS black-box crítico tras instalación limpia
+CI 36514689572                        -> Web, Android y Windows PASS
+Pages 36514689616                     -> PASS
+Release 36514950301                   -> contrato, firma, paquetes y publicación PASS
 ```
 
 Las suites Web y Android recorren las 16 variantes PDF, acciones compuestas, errores recuperables, historial y paneles. Android añade pinza, doble toque, swipe, orientación y background/foreground mediante la APK instalada y DocumentsUI. El detalle actual está en `reports/pdf-functional-validation-2026-09-28.md`; la prueba en teléfono físico continúa **NO EJECUTADA**.
