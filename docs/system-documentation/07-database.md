@@ -69,7 +69,7 @@ La integridad depende de validación de `app.js`; IndexedDB no impone esquema, t
 |---|---|
 | `theme` | `light` o `dark` |
 | `pdf-state:<nombre>:<size>:<mtime>` | JSON con página, zoom, ajuste y rotación |
-| `default-reader-prompted:0.3.2` | `1` tras mostrar/decidir el aviso |
+| `default-reader-prompted:0.3.3` | `1` tras mostrar/decidir el aviso |
 
 ## Sensibilidad y riesgos
 

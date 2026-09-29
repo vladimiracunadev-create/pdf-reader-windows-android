@@ -41,8 +41,8 @@ except ModuleNotFoundError as error:
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs" / "system-documentation"
 OUTPUT = SOURCE / "pdf"
-VERSION = "0.3.2"
-RELEASE_COMMIT = "0638d05"
+VERSION = "0.3.3"
+RELEASE_REF = "v0.3.3"
 ANALYSIS_DATE = "2026-09-28"
 
 
@@ -160,7 +160,7 @@ def header_footer(canvas, doc, title: str):
     canvas.drawString(
         doc.leftMargin,
         9 * mm,
-        f"Análisis {ANALYSIS_DATE} - commit del release {RELEASE_COMMIT}",
+        f"Análisis {ANALYSIS_DATE} - referencia del release {RELEASE_REF}",
     )
     canvas.drawRightString(width - doc.rightMargin, 9 * mm, f"Página {doc.page}")
     canvas.restoreState()
@@ -172,7 +172,7 @@ def build_story(lines: list[str], style, usable_width: float):
     story.append(Paragraph(inline_markup(first_title), style["title"]))
     story.append(
         Paragraph(
-            f"PDF Reader v{VERSION} &nbsp;&nbsp;|&nbsp;&nbsp; Análisis {ANALYSIS_DATE} &nbsp;&nbsp;|&nbsp;&nbsp; Commit del release {RELEASE_COMMIT}",
+            f"PDF Reader v{VERSION} &nbsp;&nbsp;|&nbsp;&nbsp; Análisis {ANALYSIS_DATE} &nbsp;&nbsp;|&nbsp;&nbsp; Referencia del release {RELEASE_REF}",
             style["subtitle"],
         )
     )

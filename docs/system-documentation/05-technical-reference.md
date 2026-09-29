@@ -2,7 +2,7 @@
 
 ## Estado global y constantes
 
-`src/app.js` usa `APP_VERSION = '0.3.2'`, un mapa `els` de elementos DOM y `state` como estado mutable de sesión. Sus campos incluyen documento, página, zoom, rotación y secuencias independientes para carga, render, búsqueda y miniaturas; estas últimas invalidan trabajo obsoleto al cambiar de documento o cerrar un panel.
+`src/app.js` usa `APP_VERSION = '0.3.3'`, un mapa `els` de elementos DOM y `state` como estado mutable de sesión. Sus campos incluyen documento, página, zoom, rotación y secuencias independientes para carga, render, búsqueda y miniaturas; estas últimas invalidan trabajo obsoleto al cambiar de documento o cerrar un panel.
 
 `src/history-store.js` define `DB_NAME=pdf-reader-local`, `DB_VERSION=1`, `STORE=documents` y `MAX_DOCUMENTS=8`. Android limita aperturas externas a `MAX_PDF_BYTES=128 MiB`.
 

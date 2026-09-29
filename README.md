@@ -15,7 +15,7 @@
 [![Telemetría](https://img.shields.io/badge/telemetr%C3%ADa-cero-2f9e67)](docs/privacy.md)
 [![Licencia](https://img.shields.io/badge/licencia-MIT-blue)](LICENSE)
 
-📱 **[Descargar APK Android →](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest/download/PDF-Reader-Android-v0.3.2.apk)** ·
+📱 **[Descargar APK Android →](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest/download/PDF-Reader-Android-v0.3.3.apk)** ·
 🌐 **[Página del producto →](https://vladimiracunadev-create.github.io/pdf-reader-windows-android/)** ·
 ▶️ **[Probar en el navegador →](https://vladimiracunadev-create.github.io/pdf-reader-windows-android/app/)** ·
 📘 **[Manual de usuario →](docs/user-guide.md)**
@@ -32,9 +32,9 @@ El PDF se procesa localmente con Mozilla PDF.js. No existe backend, cuenta, publ
 
 ## 📱 Android primero
 
-`v0.3.2` mantiene la página visible entre acciones consecutivas, respeta las áreas seguras de Android 16 y amplía los objetivos táctiles. Windows permite compartir copiando un resumen local al portapapeles. La validación actual combina 29 pruebas Node, 47 casos Electron, 21 casos Web localhost y 21 casos sobre la APK Android debug instalada. La prueba en teléfono físico sigue explícitamente no ejecutada.
+`v0.3.3` reúne las correcciones móviles de continuidad, áreas seguras y objetivos táctiles con la validación ampliada y reproducible. Windows permite compartir copiando un resumen local al portapapeles. La validación actual combina 29 pruebas Node, 47 casos Electron, 21 casos Web localhost y 21 casos sobre la APK Android debug instalada. La prueba en teléfono físico sigue explícitamente no ejecutada.
 
-| Superficie Android | Estado en v0.3.2 |
+| Superficie Android | Estado en v0.3.3 |
 |---|---|
 | Compatibilidad | Android 7.0+ · API mínima 24 · objetivo API 36 |
 | Instalación | APK release firmado para descarga directa desde GitHub |
@@ -50,14 +50,14 @@ El PDF se procesa localmente con Mozilla PDF.js. No existe backend, cuenta, publ
 
 ### Instalar el APK
 
-1. Descarga `PDF-Reader-Android-v0.3.2.apk` desde el [release más reciente](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest).
+1. Descarga `PDF-Reader-Android-v0.3.3.apk` desde el [release más reciente](https://github.com/vladimiracunadev-create/pdf-reader-windows-android/releases/latest).
 2. Abre el archivo en Android.
 3. Si el sistema lo solicita, permite a tu navegador o gestor de archivos instalar aplicaciones desconocidas.
 4. Revisa el resumen: PDF Reader no debe solicitar acceso a cámara, micrófono, ubicación, contactos ni Internet.
 5. Instala y pulsa **Seleccionar PDF**.
 6. La primera apertura de cada versión pregunta si quieres usar PDF Reader por defecto. Pulsa **Configurar ahora**, elige **PDF Reader** y después **Siempre** en el selector de Android.
 
-La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.2` puede instalarse como actualización sin cambiar la identidad criptográfica de la app. El procedimiento está en [Compilar y publicar Android](docs/android.md).
+La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.3` puede instalarse como actualización sin cambiar la identidad criptográfica de la app. El procedimiento está en [Compilar y publicar Android](docs/android.md).
 
 ## ✅ Estado verificable
 
@@ -75,9 +75,9 @@ La clave de firma es la misma usada desde `v0.1.0`, por lo que `v0.3.2` puede in
 | 🌐 Web | landing y demo funcional separadas en GitHub Pages |
 | 🔒 Privacidad | cero permisos Android sensibles; Electron aislado; sin red de aplicación ni telemetría |
 
-Las notas verificables de la versión están en [`docs/releases/v0.3.2.md`](docs/releases/v0.3.2.md). La evidencia definitiva la aportan GitHub Actions y los hashes del release, no afirmaciones manuales.
+Las notas verificables de la versión están en [`docs/releases/v0.3.3.md`](docs/releases/v0.3.3.md). La evidencia definitiva la aportan GitHub Actions y los hashes del release, no afirmaciones manuales.
 
-La auditoría posterior a la publicación —commit/tag, jobs remotos, artefactos descargados, checksums, firma Android y límites no ejecutados— está en [`reports/release-evidence-v0.3.2.md`](reports/release-evidence-v0.3.2.md). La matriz PDF/funcional está en [`reports/pdf-functional-validation-2026-09-28.md`](reports/pdf-functional-validation-2026-09-28.md).
+La auditoría de publicación —commit/tag, jobs remotos, artefactos descargados, checksums, firma Android y límites no ejecutados— está en [`reports/release-evidence-v0.3.3.md`](reports/release-evidence-v0.3.3.md). La matriz PDF/funcional está en [`reports/pdf-functional-validation-2026-09-28.md`](reports/pdf-functional-validation-2026-09-28.md).
 
 La validación funcional inicial está en [`reports/functional-validation-2026-09-23.md`](reports/functional-validation-2026-09-23.md). La aplicación posterior de la suite preliminar —incluido el defecto de segunda apertura, su corrección y la repetición real— está en [`reports/preliminary-product-validation-2026-09-23.md`](reports/preliminary-product-validation-2026-09-23.md).
 
@@ -187,7 +187,7 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 - [Roadmap](ROADMAP.md)
 - [Contribuir](CONTRIBUTING.md)
 
-## ⚠️ Límites de v0.3.2
+## ⚠️ Límites de v0.3.3
 
 - Los PDF con contraseña todavía no tienen un diálogo dedicado.
 - Los documentos escaneados sin capa de texto se pueden leer visualmente, pero no buscar por contenido.

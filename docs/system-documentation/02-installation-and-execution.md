@@ -42,7 +42,7 @@ pnpm start:desktop
 pnpm build:windows
 ```
 
-El primero abre Electron; el segundo genera NSIS y portable en `release/windows/`, sin Authenticode en `0.3.2`.
+El primero abre Electron; el segundo genera NSIS y portable en `release/windows/`, sin Authenticode en `0.3.3`.
 
 ## Android
 

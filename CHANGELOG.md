@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-09-28
+
+### Fixed
+- Se consolida en un release nuevo el render de doble búfer que mantiene visible la página al encadenar navegación, zoom y rotación en Android.
+- Se incluyen los insets nativos de Android 16, objetivos táctiles de al menos 44 px, compartir acotado en Windows y la política CSP del renderer.
+
 ### Quality
 - Se incorporan suites reproducibles de 21 casos Web localhost y 21 casos Android en emulador, con las 16 variantes PDF, acciones compuestas, recuperación y evidencia visual.
 - El harness Android inicia la APK, tolera rutas internas y selecciona documentos mediante DocumentsUI sin depender del estado dejado por una ejecución anterior.
