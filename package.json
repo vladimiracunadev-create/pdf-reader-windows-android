@@ -42,15 +42,15 @@
     "release:check": "pnpm check && pnpm build:pages"
   },
   "dependencies": {
-    "@capacitor/core": "8.5.0",
-    "@capacitor/share": "8.0.1",
+    "@capacitor/core": "8.5.2",
+    "@capacitor/share": "8.0.2",
     "pdfjs-dist": "6.3.289"
   },
   "devDependencies": {
-    "@capacitor/android": "8.5.0",
+    "@capacitor/android": "8.5.2",
     "@capacitor/assets": "3.0.5",
-    "@capacitor/cli": "8.5.0",
-    "electron": "44.0.0",
+    "@capacitor/cli": "8.5.2",
+    "electron": "44.10.1",
     "electron-builder": "26.15.3"
   },
   "build": {

@@ -9,35 +9,35 @@ importers:
   .:
     dependencies:
       '@capacitor/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 8.5.2
+        version: 8.5.2
       '@capacitor/share':
-        specifier: 8.0.1
-        version: 8.0.1(@capacitor/core@8.5.0)
+        specifier: 8.0.2
+        version: 8.0.2(@capacitor/core@8.5.2)
       pdfjs-dist:
         specifier: 6.3.289
         version: 6.3.289
     devDependencies:
       '@capacitor/android':
-        specifier: 8.5.0
-        version: 8.5.0(@capacitor/core@8.5.0)
+        specifier: 8.5.2
+        version: 8.5.2(@capacitor/core@8.5.2)
       '@capacitor/assets':
         specifier: 3.0.5
         version: 3.0.5(supports-color@7.2.0)
       '@capacitor/cli':
-        specifier: 8.5.0
-        version: 8.5.0(supports-color@7.2.0)
+        specifier: 8.5.2
+        version: 8.5.2(supports-color@7.2.0)
       electron:
-        specifier: 44.0.0
-        version: 44.0.0(supports-color@7.2.0)
+        specifier: 44.10.1
+        version: 44.10.1(supports-color@7.2.0)
       electron-builder:
         specifier: 26.15.3
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)(supports-color@7.2.0)
 
 packages:
 
-  '@capacitor/android@8.5.0':
-    resolution: {integrity: sha512-Rb3prJeQiTp0pQhSSOReJuG9VgibOGMG4ECs+UhMwr6TCCHZ3NCZO811bDA0HxD0xrT/gCrJAsY5yfEATu84JQ==}
+  '@capacitor/android@8.5.2':
+    resolution: {integrity: sha512-rtiaz78egCcS+vs29wkWCL3C+RhazKMSygXcjutwWP8NmO6r5UBxOvGf3Wjz5+ahobyQ723tn9gCePwRwcNDZQ==}
     peerDependencies:
       '@capacitor/core': ^8.5.0
 
@@ -51,16 +51,16 @@ packages:
     engines: {node: '>=16.0.0'}
     hasBin: true
 
-  '@capacitor/cli@8.5.0':
-    resolution: {integrity: sha512-rLdzMUM5QV4WITcqoWv04p32i14BXgUH2diqEH6MWQlWaJfiyNrvOyt/+d5vHAfOxOm1klBu637VDEobctlwBA==}
+  '@capacitor/cli@8.5.2':
+    resolution: {integrity: sha512-O2kpA5ZPJUAmliDCcmpMf8xnJwMezxlFPUrlyOAjbL3U9MFNY3l4ZpPI/UXwvyPmR8ETcVF9pFr+VdWq61rqTQ==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
-  '@capacitor/core@8.5.0':
-    resolution: {integrity: sha512-Ca4krtqH1hothjtBIwf2J2TW7IhYq1ujp8QeItTiJohNsqij8ja2DYYH3DU0l8RmxCWaBAFTGA2TgOgOMCSNsQ==}
+  '@capacitor/core@8.5.2':
+    resolution: {integrity: sha512-agnQbGdhGw/KZFuLf7H9SY2o+oE7upkr/WPQsYaokXP6f9chaE8iVmbKkfN6SVl4w3pmz7oZ3Ur1hbkmy1hx+w==}
 
-  '@capacitor/share@8.0.1':
-    resolution: {integrity: sha512-3cSBKBCJVon54rKDROP2rqGyeGks4pBh9TbaEk9S375Kbek/ZHe72N50zIa0Vn9Eac/SuhwgehO/mmA4CsUOiw==}
+  '@capacitor/share@8.0.2':
+    resolution: {integrity: sha512-L2M4iBLTf/IaMmg+ruuriAoJyBzu1EgayWhgC5cX1HJGkA665g2ROz8c2Z5lfkT/XSLbAuG3bb7VlW3eGgUCNQ==}
     peerDependencies:
       '@capacitor/core': '>=8.0.0'
 
@@ -713,8 +713,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@44.0.0:
-    resolution: {integrity: sha512-FkTqPrFPZYljdPI5b7KORGsJTd6FgUQDefl5MrU3Xz9R87pAj9JLreIjDqcRN8hJIkFHIou0o8kKzvcpT9qiRQ==}
+  electron@44.10.1:
+    resolution: {integrity: sha512-CTqxvx02P+xCR/xUxAWBexQEJ42g9Rzy1/0N+ofGAtI/atgSYZKQnTX9/juwzftocWbZtoF2ftEGMGJujJDeBw==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -1730,9 +1730,9 @@ packages:
 
 snapshots:
 
-  '@capacitor/android@8.5.0(@capacitor/core@8.5.0)':
+  '@capacitor/android@8.5.2(@capacitor/core@8.5.2)':
     dependencies:
-      '@capacitor/core': 8.5.0
+      '@capacitor/core': 8.5.2
 
   '@capacitor/assets@3.0.5(supports-color@7.2.0)':
     dependencies:
@@ -1777,7 +1777,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@capacitor/cli@8.5.0(supports-color@7.2.0)':
+  '@capacitor/cli@8.5.2(supports-color@7.2.0)':
     dependencies:
       '@ionic/cli-framework-output': 2.2.8(supports-color@7.2.0)
       '@ionic/utils-subprocess': 3.0.1(supports-color@7.2.0)
@@ -1800,13 +1800,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@capacitor/core@8.5.0':
+  '@capacitor/core@8.5.2':
     dependencies:
       tslib: 2.8.1
 
-  '@capacitor/share@8.0.1(@capacitor/core@8.5.0)':
+  '@capacitor/share@8.0.2(@capacitor/core@8.5.2)':
     dependencies:
-      '@capacitor/core': 8.5.0
+      '@capacitor/core': 8.5.2
 
   '@electron-internal/extract-zip@1.0.5': {}
 
@@ -1937,10 +1937,10 @@ snapshots:
     dependencies:
       '@ionic/utils-object': 2.1.6(supports-color@7.2.0)
       '@ionic/utils-terminal': 2.3.4(supports-color@7.2.0)
-      debug: 4.3.4(supports-color@7.2.0)
+      debug: 4.4.3(supports-color@7.2.0)
       signal-exit: 3.0.7
       tree-kill: 1.2.2
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1957,8 +1957,8 @@ snapshots:
 
   '@ionic/utils-stream@3.1.6(supports-color@7.2.0)':
     dependencies:
-      debug: 4.3.4(supports-color@7.2.0)
-      tslib: 2.6.2
+      debug: 4.4.3(supports-color@7.2.0)
+      tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1977,8 +1977,8 @@ snapshots:
       '@ionic/utils-stream': 3.1.6(supports-color@7.2.0)
       '@ionic/utils-terminal': 2.3.4(supports-color@7.2.0)
       cross-spawn: 7.0.6
-      debug: 4.3.4(supports-color@7.2.0)
-      tslib: 2.6.2
+      debug: 4.4.3(supports-color@7.2.0)
+      tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1998,12 +1998,12 @@ snapshots:
   '@ionic/utils-terminal@2.3.4(supports-color@7.2.0)':
     dependencies:
       '@types/slice-ansi': 4.0.0
-      debug: 4.3.4(supports-color@7.2.0)
+      debug: 4.4.3(supports-color@7.2.0)
       signal-exit: 3.0.7
       slice-ansi: 4.0.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
-      tslib: 2.6.2
+      tslib: 2.8.1
       untildify: 4.0.0
       wrap-ansi: 7.0.0
     transitivePeerDependencies:
@@ -2646,7 +2646,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@44.0.0(supports-color@7.2.0):
+  electron@44.10.1(supports-color@7.2.0):
     dependencies:
       '@electron-internal/extract-zip': 1.0.5
       '@electron/get': 5.1.0(supports-color@7.2.0)
