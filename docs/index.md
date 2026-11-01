@@ -17,6 +17,7 @@
 
 ## Ingeniería y gobierno
 - [Seguridad y privacidad](security.md)
+- [Actualizaciones de seguridad por CVE](security-updates.md)
 - [Política de privacidad](privacy.md)
 - [AI policy](ai-policy.md)
 - [ADR 0001](adr/0001-cross-platform-shells.md)

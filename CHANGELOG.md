@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Security
+- Electron sube de `44.0.0` a `44.10.1` y deja corregidos ocho advisories publicados contra la rama 44: CVE-2026-115570 (alta), CVE-2026-113796, CVE-2026-114121, CVE-2026-113800 y CVE-2026-113798 (medias), y CVE-2026-114122, CVE-2026-114124 y CVE-2026-113797 (bajas). El detalle, la exposición real y el criterio para permanecer en la rama 44 están en [Actualizaciones de seguridad por CVE](docs/security-updates.md).
+- `pnpm check` incorpora `verify:runtime`, que consulta OSV.dev con la versión exacta de las dependencias que se distribuyen dentro de los artefactos y falla si alguna tiene advisories. Cierra el hueco por el que `pnpm audit --prod` no cubría Electron, declarado en `devDependencies` pero empaquetado en el instalador de Windows.
+
+### Changed
+- Capacitor sube a `8.6.0` (`core`, `android`, `cli`) y `@capacitor/share` a `8.0.3`. Es mantenimiento: OSV.dev no reporta advisories para estas versiones. `@capacitor/android` exige el peer `@capacitor/core` compatible, así que los paquetes suben en el mismo lote y `android/capacitor.settings.gradle` se regenera con `pnpm android:sync`.
+
+### Fixed
+- Los cinco PR de dependabot abiertos ya pueden integrarse: subir un único paquete de Capacitor dejaba `android/capacitor.settings.gradle` desincronizado, porque ese archivo versionado incrusta rutas `node_modules/.pnpm` que incluyen la versión del peer, y el paso `git diff --exit-code -- android` de CI fallaba.
+
 ## [0.3.3] - 2026-09-28
 
 ### Fixed

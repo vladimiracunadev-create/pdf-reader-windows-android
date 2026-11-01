@@ -5,8 +5,25 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      # android/capacitor.settings.gradle esta versionado e incrusta rutas
+      # node_modules/.pnpm que incluyen la version del peer @capacitor/core.
+      # Subir un solo paquete deja ese archivo generado desincronizado y el
+      # paso `git diff --exit-code -- android` de CI falla, asi que Capacitor
+      # tiene que llegar siempre en un unico PR.
+      capacitor:
+        patterns:
+          - "@capacitor/*"
+      electron:
+        patterns:
+          - "electron"
+          - "electron-builder"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns:
+          - "*"

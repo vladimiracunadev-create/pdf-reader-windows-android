@@ -19,8 +19,8 @@ Los PDF, nombres y rutas son entradas no confiables. Los activos principales son
 | CSP | política local explícita compatible con PDF.js; `object-src` y `frame-src` bloqueados |
 | Búsqueda | contenido y consulta se escapan antes de `innerHTML` |
 | Persistencia | borrado por entrada o completo mediante UI |
-| CI | auditoría de permisos APK y dependencias de producción |
-| Supply chain | versiones fijadas, lockfile congelado, Dependabot |
+| CI | auditoría de permisos APK, dependencias de producción y advisories del runtime distribuido |
+| Supply chain | versiones fijadas, lockfile congelado, Dependabot agrupado por ecosistema |
 | Release | `zipalign`, `apksigner`, verificación y SHA-256 |
 
 ## Datos personales y privacidad
@@ -44,6 +44,18 @@ La selección Web revisa extensión o MIME; Electron exige extensión; Android c
 ## CORS, CSRF e inyección
 
 No hay endpoints ni cookies de sesión, por lo que CSRF no aplica. CORS no se configura porque no se consume una API del producto. Sí aplican XSS/HTML injection: el único `innerHTML` con datos del PDF pasa por escape; `defaultText.innerHTML` usa texto constante. No se encontraron SQL, `eval` de contenido ni comandos shell formados desde datos del PDF. Android ejecuta un JavaScript constante al anunciar intent nuevo.
+
+## Actualizaciones de dependencias por CVE
+
+Los cambios de versión motivados por vulnerabilidades publicadas se registran en [Actualizaciones de seguridad por CVE](../security-updates.md), con identificador CVE y GHSA, severidad, versión que corrige y exposición real del producto.
+
+| Fecha | Dependencia | Cambio | Resultado |
+|---|---|---|---|
+| 2026-11-01 | `electron` | 44.0.0 → 44.10.1 | ocho advisories corregidos, uno de severidad alta |
+
+La cobertura de la auditoría automática tiene dos capas, porque una sola no basta. `pnpm audit --prod --audit-level high` recorre el árbol de producción: `@capacitor/core`, `@capacitor/share` y `pdfjs-dist`. `pnpm verify:runtime` consulta OSV.dev con la versión exacta de las dependencias que se distribuyen dentro de un artefacto instalable, lo que añade Electron: está declarado en `devDependencies` porque solo se necesita para construir y ejecutar, pero su binario viaja dentro del instalador de Windows, de modo que sus advisories no aparecían en la auditoría de producción y convivieron con un CI en verde.
+
+El árbol completo de desarrollo acumula hallazgos concentrados en el utillaje de build (`electron-builder` y sus transitivas; `rimraf`, `glob` y `tar` bajo `@capacitor/cli` y `@capacitor/assets`). No se usa como gate porque su corrección depende de releases de terceros ajenos al repositorio y porque ese código no se distribuye; se revisa al preparar cada release.
 
 ## Secretos y respuesta
 

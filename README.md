@@ -111,6 +111,16 @@ La validación ampliada de navegación sobre PDF de 1, 12 y 1.000 páginas, con 
 
 Los PDF son contenido no confiable. En Windows, el renderer de Electron usa `contextIsolation`, desactiva Node y se ejecuta en sandbox; en Android, el manifiesto no declara permisos y el archivo entra mediante el selector del sistema. Consulta [Seguridad](docs/security.md) y [Privacidad](docs/privacy.md).
 
+### Actualizaciones de seguridad por CVE
+
+Todo cambio de versión motivado por una vulnerabilidad publicada queda registrado en [Actualizaciones de seguridad por CVE](docs/security-updates.md), con identificadores CVE y GHSA, severidad, versión que corrige y la exposición real de esta aplicación.
+
+| Fecha | Dependencia | Cambio | Advisories |
+|---|---|---|---|
+| 2026-11-01 | `electron` | 44.0.0 → 44.10.1 | 8 corregidos: CVE-2026-115570 (alta), cuatro medias y tres bajas |
+
+`pnpm check` ejecuta `verify:runtime`, que consulta OSV.dev con la versión exacta de las dependencias que viajan dentro de los artefactos y falla si alguna tiene advisories conocidos. Esto cubre Electron, que está en `devDependencies` pero se distribuye dentro del instalador de Windows y por eso quedaba fuera de `pnpm audit --prod`.
+
 ## 🏗️ Arquitectura
 
 <p align="center">
@@ -180,6 +190,7 @@ Los `.exe` quedan en `release/windows/`. La versión comunitaria no está firmad
 - [Android: build, firma, instalación y verificación](docs/android.md)
 - [Arquitectura](docs/architecture.md)
 - [Seguridad](docs/security.md)
+- [Actualizaciones de seguridad por CVE](docs/security-updates.md)
 - [Privacidad](docs/privacy.md)
 - [Releases](docs/release.md)
 - [Troubleshooting](docs/troubleshooting.md)
