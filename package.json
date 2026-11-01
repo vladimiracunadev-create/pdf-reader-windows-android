@@ -45,14 +45,14 @@
   "dependencies": {
     "@capacitor/core": "8.6.0",
     "@capacitor/share": "8.0.3",
-    "pdfjs-dist": "6.3.289"
+    "pdfjs-dist": "6.4.299"
   },
   "devDependencies": {
     "@capacitor/android": "8.6.0",
     "@capacitor/assets": "3.0.5",
     "@capacitor/cli": "8.6.0",
     "electron": "44.10.1",
-    "electron-builder": "26.15.3"
+    "electron-builder": "26.18.0"
   },
   "build": {
     "appId": "cl.vladimiracunadev.pdfreader",

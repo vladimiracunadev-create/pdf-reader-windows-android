@@ -39,6 +39,8 @@ Electron mantiene las tres majors estables más recientes. Con 45 como última, 
 
 Dado que `44.10.1` y `45.2.1` están igual de limpios en OSV.dev, pasar a 45 no aporta ventaja de seguridad, mientras que adoptar una major publicada el 2026-10-21 introduce un cambio de Chromium y de Node en el runtime que se distribuye a las personas usuarias. La rama 44 se revisará cuando Electron 47 entre en desarrollo, momento en que 44 saldría de la ventana de soporte.
 
+Para que esta decisión no se reabra cada semana, `.github/dependabot.yml` ignora las actualizaciones *major* de `electron`. Las *minor* y *patch* siguen llegando automáticamente, que es justamente por donde entran las correcciones de seguridad de la rama. Al retirar la regla, Dependabot volverá a proponer la major siguiente.
+
 ## Dependencias sin cambios por CVE
 
 Estas subidas se registran como mantenimiento porque OSV.dev no reporta advisories para las versiones involucradas:
@@ -47,6 +49,8 @@ Estas subidas se registran como mantenimiento porque OSV.dev no reporta advisori
 |---|---|---|
 | `@capacitor/core`, `@capacitor/android`, `@capacitor/cli` | 8.5.0 → 8.5.2 → 8.6.0 | 2026-11-01 |
 | `@capacitor/share` | 8.0.1 → 8.0.2 → 8.0.3 | 2026-11-01 |
+| `pdfjs-dist` | 6.3.289 → 6.4.299 | 2026-11-01 |
+| `electron-builder` | 26.15.3 → 26.18.0 | 2026-11-01 |
 
 ## Alcance de la auditoría automática
 

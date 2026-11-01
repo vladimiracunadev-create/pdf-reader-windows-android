@@ -14,10 +14,15 @@ updates:
       capacitor:
         patterns:
           - "@capacitor/*"
-      electron:
-        patterns:
-          - "electron"
-          - "electron-builder"
+    ignore:
+      # Electron se mantiene en la rama mayor vigente del proyecto. Las majors
+      # se evaluan a mano porque cambian Chromium y Node en el runtime que se
+      # distribuye a las personas usuarias, y Electron parchea las tres majors
+      # mas recientes al mismo ritmo. El criterio esta en
+      # docs/security-updates.md. Las minor y patch siguen llegando solas.
+      - dependency-name: "electron"
+        update-types:
+          - "version-update:semver-major"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:

@@ -8,6 +8,8 @@
 
 ### Changed
 - Capacitor sube a `8.6.0` (`core`, `android`, `cli`) y `@capacitor/share` a `8.0.3`. Es mantenimiento: OSV.dev no reporta advisories para estas versiones. `@capacitor/android` exige el peer `@capacitor/core` compatible, así que los paquetes suben en el mismo lote y `android/capacitor.settings.gradle` se regenera con `pnpm android:sync`.
+- `pdfjs-dist` sube a `6.4.299` y `electron-builder` a `26.18.0`. También mantenimiento, sin advisories en OSV.dev para ninguna de las versiones implicadas.
+- Dependabot ignora las actualizaciones *major* de `electron` y agrupa Capacitor en un único PR. Las *minor* y *patch* de Electron siguen llegando solas, que es por donde entran las correcciones de seguridad de la rama; las *major* se evalúan a mano porque cambian Chromium y Node en el runtime distribuido. El criterio está en [Actualizaciones de seguridad por CVE](docs/security-updates.md).
 
 ### Fixed
 - Los cinco PR de dependabot abiertos ya pueden integrarse: subir un único paquete de Capacitor dejaba `android/capacitor.settings.gradle` desincronizado, porque ese archivo versionado incrusta rutas `node_modules/.pnpm` que incluyen la versión del peer, y el paso `git diff --exit-code -- android` de CI fallaba.
