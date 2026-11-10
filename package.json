@@ -45,13 +45,13 @@
   "dependencies": {
     "@capacitor/core": "8.6.0",
     "@capacitor/share": "8.0.3",
-    "pdfjs-dist": "6.4.299"
+    "pdfjs-dist": "6.5.438"
   },
   "devDependencies": {
     "@capacitor/android": "8.6.0",
-    "@capacitor/assets": "3.0.5",
+    "@capacitor/assets": "4.0.0",
     "@capacitor/cli": "8.6.0",
-    "electron": "44.10.1",
+    "electron": "44.10.2",
     "electron-builder": "26.18.0"
   },
   "build": {

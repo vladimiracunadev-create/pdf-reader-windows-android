@@ -51,6 +51,9 @@ Estas subidas se registran como mantenimiento porque OSV.dev no reporta advisori
 | `@capacitor/share` | 8.0.1 → 8.0.2 → 8.0.3 | 2026-11-01 |
 | `pdfjs-dist` | 6.3.289 → 6.4.299 | 2026-11-01 |
 | `electron-builder` | 26.15.3 → 26.18.0 | 2026-11-01 |
+| `pdfjs-dist` | 6.4.299 → 6.5.438 | 2026-11-10 |
+| `electron` | 44.10.1 → 44.10.2 | 2026-11-10 |
+| `@capacitor/assets` | 3.0.5 → 4.0.0 | 2026-11-10 |
 
 ## Alcance de la auditoría automática
 
