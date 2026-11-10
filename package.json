@@ -51,7 +51,7 @@
     "@capacitor/android": "8.6.0",
     "@capacitor/assets": "3.0.5",
     "@capacitor/cli": "8.6.0",
-    "electron": "44.10.1",
+    "electron": "44.10.2",
     "electron-builder": "26.18.0"
   },
   "build": {
