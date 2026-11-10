@@ -45,7 +45,7 @@
   "dependencies": {
     "@capacitor/core": "8.6.0",
     "@capacitor/share": "8.0.3",
-    "pdfjs-dist": "6.4.299"
+    "pdfjs-dist": "6.5.438"
   },
   "devDependencies": {
     "@capacitor/android": "8.6.0",
